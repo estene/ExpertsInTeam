@@ -11,6 +11,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JMenu;
 
 public class MainView {
 
@@ -45,22 +48,23 @@ public class MainView {
 	 */
 	private void initialize() {
 		mainFrame = new JFrame();
-		mainFrame.setBounds(100, 100, 720, 445);
+		mainFrame.setTitle("G6 Animation");
+		mainFrame.setBounds(100, 100, 1117, 517);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 684, 385);
+		panel.setBounds(10, 0, 1081, 447);
 		mainFrame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel animationLabel = new JLabel("");
-		animationLabel.setIcon(new ImageIcon(MainView.class.getResource("/prinsenkryssetmed.png")));
-		animationLabel.setBounds(305, 5, 369, 333);
+		animationLabel.setIcon(new ImageIcon(MainView.class.getResource("/prinsenkryssetmedium.png")));
+		animationLabel.setBounds(481, 11, 590, 425);
 		panel.add(animationLabel);
 		
 		JList messageList = new JList();
-		messageList.setBounds(10, 5, 285, 277);
+		messageList.setBounds(10, 11, 461, 333);
 		panel.add(messageList);
 		
 		JButton btnNewButton = new JButton("");
@@ -70,12 +74,30 @@ public class MainView {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton.setBounds(20, 293, 113, 81);
+		btnNewButton.setBounds(22, 355, 113, 81);
 		panel.add(btnNewButton);
 		
 		JButton button = new JButton("");
-		button.setSelectedIcon(new ImageIcon(MainView.class.getResource("/stop2.png")));
-		button.setBounds(143, 293, 113, 81);
+		button.setIcon(new ImageIcon(MainView.class.getResource("/stop2.png")));
+		button.setBounds(145, 355, 113, 81);
 		panel.add(button);
+		
+		JMenuBar menuBar = new JMenuBar();
+		mainFrame.setJMenuBar(menuBar);
+		
+		JMenu mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+		
+		JMenuItem mntmExit = new JMenuItem("Exit");
+		mnFile.add(mntmExit);
+		
+		JMenu mnAbout = new JMenu("About");
+		menuBar.add(mnAbout);
+		
+		JMenuItem mntmOmOss = new JMenuItem("Om oss");
+		mnAbout.add(mntmOmOss);
+		
+		JMenu mnFint = new JMenu("Fint");
+		menuBar.add(mnFint);
 	}
 }
