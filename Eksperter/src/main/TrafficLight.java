@@ -7,6 +7,10 @@ public class TrafficLight extends Thread{
 	private final int greenToRedSleepTime = 2500;
 	private final int redToGreenSleepTime = 6000;
 	
+	//Istedenfor en array med opposingtrafficlights?
+	private TrafficLight opposingTrafficLight1 = null;
+	private TrafficLight opposingTrafficLight2 = null;
+	
 	
 	public enum LightColour{
 		GREEN,
@@ -68,6 +72,14 @@ public class TrafficLight extends Thread{
 		this.opposingTrafficLight = new TrafficLight[temp.length];
 		
 		System.arraycopy(temp, 0, this.opposingTrafficLight, 0, temp.length);
+		
+		//Istedenfor array av opposingtrafficlights
+		if(opposingTrafficLight1 == null){
+			this.opposingTrafficLight1 = opposingTrafficLight;
+		} else if(opposingTrafficLight2 == null){
+			this.opposingTrafficLight2 = opposingTrafficLight;
+		}
+		
 	}
 
 	public LightColour getMyColour() {
