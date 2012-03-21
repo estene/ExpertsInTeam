@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JList;
-import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -58,10 +57,10 @@ public class MainView {
 		mainFrame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel animationLabel = new JLabel("");
-		animationLabel.setIcon(new ImageIcon(MainView.class.getResource("/prinsenkryssetmedium.png")));
-		animationLabel.setBounds(481, 11, 590, 425);
-		panel.add(animationLabel);
+		AnimationPanel animationPanel = new AnimationPanel();
+		animationPanel.setBounds(481, 11, 590, 425);
+		panel.add(animationPanel);
+		animationPanel.setLayout(null);
 		
 		JList messageList = new JList();
 		messageList.setBounds(10, 11, 461, 333);
