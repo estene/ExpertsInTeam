@@ -1,6 +1,9 @@
 package main;
 
 import java.awt.EventQueue;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,10 +17,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 
-public class MainView {
+public class MainView implements ActionListener {
 
 	private JFrame mainFrame;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private AnimationPanel animationPanel;
 
 	/**
 	 * Launch the application.
@@ -57,7 +61,7 @@ public class MainView {
 		mainFrame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		AnimationPanel animationPanel = new AnimationPanel();
+		animationPanel = new AnimationPanel();
 		animationPanel.setBounds(481, 11, 590, 425);
 		panel.add(animationPanel);
 		animationPanel.setLayout(null);
@@ -98,5 +102,15 @@ public class MainView {
 		
 		JMenu mnFint = new JMenu("Fint");
 		menuBar.add(mnFint);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		PointerInfo a = MouseInfo.getPointerInfo();
+		Point b = a.getLocation();
+		int x = (int)b.getX();
+		int y = (int)b.getY();
+		System.out.println(x+ " " +y);
+		
 	}
 }
