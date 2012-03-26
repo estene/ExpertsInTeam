@@ -25,6 +25,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 	private Image image2;
 	private Timer t;
 	private Person person;
+	private boolean animate = false;
 	
     public AnimationPanel() {                
     	image = new ImageIcon(this.getClass().getResource("/prinsenkryssetmedium.png"));
@@ -41,23 +42,31 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
         g.drawImage(image2, 0, 0, null); 
         person.draw(g);
     }
-
+    public void startAnimation() {
+    	animate = true;
+    }
+	public void stopAnimation() {
+		animate = false;
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-        person.move();
-        repaint();
+		if (animate == true) {
+			if (person.getY() >= 300 ) {
+				stopAnimation();
+			}
+	        person.move();   
+		}
+		repaint();
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		System.out.println("Location: " + e.getX()+ " "+ e.getY());
-		
 	}
 
 }

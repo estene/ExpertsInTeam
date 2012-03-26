@@ -20,6 +20,7 @@ import javax.swing.JMenu;
 public class MainView implements ActionListener {
 
 	private JFrame mainFrame;
+	private JPanel mainPanel;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private AnimationPanel animationPanel;
 
@@ -56,34 +57,42 @@ public class MainView implements ActionListener {
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 0, 1081, 447);
-		mainFrame.getContentPane().add(panel);
-		panel.setLayout(null);
+		mainPanel = new JPanel();
+		mainPanel.setBounds(10, 0, 1081, 447);
+		mainFrame.getContentPane().add(mainPanel);
+		mainPanel.setLayout(null);
 		
 		animationPanel = new AnimationPanel();
 		animationPanel.setBounds(481, 11, 590, 425);
-		panel.add(animationPanel);
+		mainPanel.add(animationPanel);
 		animationPanel.setLayout(null);
 		
 		JList messageList = new JList();
 		messageList.setBounds(10, 11, 461, 333);
-		panel.add(messageList);
+		mainPanel.add(messageList);
 		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon(MainView.class.getResource("/play2.png")));
-		buttonGroup.add(btnNewButton);
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton playButton = new JButton("");
+		playButton.setIcon(new ImageIcon(MainView.class.getResource("/play2.png")));
+		buttonGroup.add(playButton);
+		playButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				animationPanel.startAnimation();
+				System.out.println("play");
 			}
 		});
-		btnNewButton.setBounds(22, 355, 113, 81);
-		panel.add(btnNewButton);
+		playButton.setBounds(22, 355, 113, 81);
+		mainPanel.add(playButton);
 		
-		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(MainView.class.getResource("/stop2.png")));
-		button.setBounds(145, 355, 113, 81);
-		panel.add(button);
+		JButton stopButton = new JButton("");
+		stopButton.setIcon(new ImageIcon(MainView.class.getResource("/stop2.png")));
+		stopButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				animationPanel.stopAnimation();
+				System.out.println("stop");
+			}
+		});
+		stopButton.setBounds(145, 355, 113, 81);
+		mainPanel.add(stopButton);
 		
 		JMenuBar menuBar = new JMenuBar();
 		mainFrame.setJMenuBar(menuBar);
@@ -106,11 +115,6 @@ public class MainView implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		PointerInfo a = MouseInfo.getPointerInfo();
-		Point b = a.getLocation();
-		int x = (int)b.getX();
-		int y = (int)b.getY();
-		System.out.println(x+ " " +y);
-		
+		//TODO
 	}
 }
