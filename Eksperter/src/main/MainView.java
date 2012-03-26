@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.EventQueue;
+
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.PointerInfo;
@@ -16,8 +17,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
+import java.awt.Font;
 
-public class MainView implements ActionListener {
+/*
+ * MainView - containts frames,panels etc. 
+ */
+
+public class MainView {
 
 	private JFrame mainFrame;
 	private JPanel mainPanel;
@@ -50,7 +56,7 @@ public class MainView implements ActionListener {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
 		mainFrame = new JFrame();
 		mainFrame.setTitle("G6 Animation");
 		mainFrame.setBounds(100, 100, 1117, 517);
@@ -94,6 +100,17 @@ public class MainView implements ActionListener {
 		stopButton.setBounds(145, 355, 113, 81);
 		mainPanel.add(stopButton);
 		
+		JButton resetButton = new JButton("RESET");
+		resetButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		resetButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				animationPanel.resetAnimation();
+				System.out.println("reset");
+			}
+		});
+		resetButton.setBounds(268, 355, 104, 81);
+		mainPanel.add(resetButton);
+		
 		JMenuBar menuBar = new JMenuBar();
 		mainFrame.setJMenuBar(menuBar);
 		
@@ -111,10 +128,5 @@ public class MainView implements ActionListener {
 		
 		JMenu mnFint = new JMenu("Fint");
 		menuBar.add(mnFint);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		//TODO
 	}
 }

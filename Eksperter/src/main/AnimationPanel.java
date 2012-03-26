@@ -18,7 +18,7 @@ import javax.swing.Timer;
 public class AnimationPanel extends JPanel implements ActionListener, MouseMotionListener{
 
     /**
-	 * Class that animates on the intersection - Prinsenkrysset
+	 * Class that animates on the intersection - Prinsenkrysset. 
 	 */
 	private static final long serialVersionUID = 1L;
 	private ImageIcon image;
@@ -47,6 +47,10 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
     }
 	public void stopAnimation() {
 		animate = false;
+	}
+	public void resetAnimation() {
+		animate = false;
+		person.reset();
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
