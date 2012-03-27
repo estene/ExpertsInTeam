@@ -45,6 +45,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
         person.draw(g);
         bus.draw(g);
     }
+    
     public void startAnimation() {
     	animate = true;
     }
@@ -56,6 +57,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 		person.reset();
 		bus.reset();
 	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (animate == true) {

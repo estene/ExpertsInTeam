@@ -1,0 +1,3 @@
+TODO / Diverse:
+- Vil vi ha masse røde prikker, eller lar det seg best simulere med en prikk med en viss størrelse? 
+- Skal vi lage ulike scenarier vi kan velge mellom, eller kun et?
