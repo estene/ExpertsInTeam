@@ -4,7 +4,8 @@ public class TrafficLight extends Thread{
 	private TLSensor sensor;
 	private final int greenToRedSleepTime = 2500;	
 	private final int redToGreenSleepTime = 6000;
-		
+	
+	
 	protected LightColour fromSouthToNorth;
 	protected LightColour fromSouthToWest;
 	
