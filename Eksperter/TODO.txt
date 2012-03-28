@@ -1,9 +1,10 @@
-# TODO / Diverse:
+# TODO oppdatert 28/3:
 
-* Vil vi ha masse røde prikker, eller lar det seg best visualisere med en prikk med en viss størrelse som representerer "folkemengden" ? 
-Vi kan lage flere personer , kanskje basert på scenario og legge de til i en liste, for så å flytte alle elementene i lista. 
-* Skal vi lage ulike scenarier vi kan velge mellom, eller kun et?
-* Hvordan gjør vi det med animering av lys? Avhengig av scenarie eller skal alle lys være animert hele tiden?  
+Animasjon fungerer greit, flytte buss og runding med folk.
 
-## Busser:
-Kan være avhengig av scenario. Kjører til en holdeplass, kan "sove" der og fortsette når den blir vekt. Kan også legge inn delay i de ulike animasjonene bussene vil ha mulighet til å kjøre.
+TODO: 
+
+* Få bussanimasjon til å starte/stoppe avhengig av informasjon pollet fra lysregulering
+* Få menneskeanimasjon til å starte/stoppe avhengig av informasjon pollet fra lysregulering
+* Få lysreguleringer til å interagere med hverandre. Lys skal skifte farger avhengig av andre lys
+* En buss eller en "person/personrunding" skal få beskjed fra aktuelle lysreguleringer når de kan gå over/starte animasjonen.

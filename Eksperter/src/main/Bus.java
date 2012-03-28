@@ -34,10 +34,17 @@ public class Bus {
 	
 	//Move da BUZ
 	public void move() {
+		//Hardcode direction change in order to test bus movement/animation - make this universal 
+		if (coordinates.getxCoord() > 330 ) {
+			coordinates.setyDir(1);
+			if (coordinates.getxCoord() > 400) {
+				coordinates.setxDir(0);
+			}
+		}
 		x = coordinates.getxCoord();
 		y = coordinates.getyCoord();
 		x += coordinates.getxDir();
-		y += coordinates.getyDir();
+		y -= coordinates.getyDir();
 		coordinates.setxCoord(x);
 		coordinates.setyCoord(y);
 	}

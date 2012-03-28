@@ -20,11 +20,13 @@ public class Person {
 	private ClassLoader classLoader;
 	private Image image;
 	private Font font;
+	private String number;
 	
 	public Person(int x, int y){
 		font = new Font("Arial", Font.PLAIN, 20);
 		xDir = 0;
 		yDir = 1;
+		number = "20";
 		coordinates = new GPSCoordinates(x,y,xDir,yDir);
 		this.x = coordinates.getxCoord();
 		this.y = coordinates.getyCoord();
@@ -36,20 +38,25 @@ public class Person {
 	
 	// Move the men
 	public void move() {
-		x = coordinates.getxCoord();
-		y = coordinates.getyCoord();
-		x += coordinates.getxDir();
-		y += coordinates.getyDir();
-		coordinates.setxCoord(x);
-		coordinates.setyCoord(y);
+		if (coordinates.getyCoord() >= 300 ) {
+		// hardcoded to test busmovement
+		}
+		else {
+			x = coordinates.getxCoord();
+			y = coordinates.getyCoord();
+			x += coordinates.getxDir();
+			y += coordinates.getyDir();
+			coordinates.setxCoord(x);
+			coordinates.setyCoord(y);
+		}
 	}
 	
 	public void draw(Graphics g) {
-		g.setColor(Color.WHITE);
+		g.setColor(Color.RED);
 		g.fillOval(coordinates.getxCoord(), coordinates.getyCoord(), 30, 30);
 		g.setFont(font);
-		g.setColor(Color.GREEN);
-		g.drawString("20", coordinates.getxCoord() + 5, coordinates.getyCoord() + 20);
+		g.setColor(Color.WHITE);
+		g.drawString(number, coordinates.getxCoord() + 4, coordinates.getyCoord() + 22);
 	}
 	
 	//Getters and setters
