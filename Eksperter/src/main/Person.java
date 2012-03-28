@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
@@ -18,8 +19,10 @@ public class Person {
 	private int x,y,xDir,yDir;
 	private ClassLoader classLoader;
 	private Image image;
+	private Font font;
 	
 	public Person(int x, int y){
+		font = new Font("Arial", Font.PLAIN, 20);
 		xDir = 0;
 		yDir = 1;
 		coordinates = new GPSCoordinates(x,y,xDir,yDir);
@@ -42,8 +45,11 @@ public class Person {
 	}
 	
 	public void draw(Graphics g) {
-		g.setColor(Color.red);
-		g.fillOval(coordinates.getxCoord(), coordinates.getyCoord(), 20, 20);
+		g.setColor(Color.WHITE);
+		g.fillOval(coordinates.getxCoord(), coordinates.getyCoord(), 30, 30);
+		g.setFont(font);
+		g.setColor(Color.GREEN);
+		g.drawString("20", coordinates.getxCoord() + 5, coordinates.getyCoord() + 20);
 	}
 	
 	//Getters and setters
