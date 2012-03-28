@@ -3,34 +3,46 @@ package main;
 import java.awt.Color;
 import java.awt.Graphics;
 
-/*
+/**
  * Person class - Includes testmethods to perform animation, subject to change
+ * @author Even
  */
 
 public class Person {
+	private GPSCoordinates coordinates;
 	private int x,y,xDir,yDir;
 	
-	public Person(){
-    	x = 285;
-    	y = 85; 
-		yDir = 1;
+	public Person(int x, int y){
 		xDir = 0;
+		yDir = 1;
+		coordinates = new GPSCoordinates(x,y);
+		coordinates.setxDir(xDir);
+		coordinates.setyDir(yDir);
+		this.x = coordinates.getxCoord();
+		this.y = coordinates.getyCoord();
+
 	}
+	
 	// Move the men
 	public void move() {
-		x += xDir;
-		y += yDir;
+		System.out.println(coordinates.getxCoord() + " " + coordinates.getyCoord());
+		System.out.println(coordinates.getxDir() + " " + coordinates.getyDir());
+		x = coordinates.getxCoord();
+		y = coordinates.getyCoord();
+		x += coordinates.getxDir();
+		y += coordinates.getyDir();
+		coordinates.setxCoord(x);
+		coordinates.setyCoord(y);
 	}
 	
 	public void reset() {
-    	x = 285;
-    	y = 85; 
-		yDir = 1;
-		xDir = 0;
+		coordinates.reset();
+		coordinates.setxDir(xDir);
+		coordinates.setyDir(yDir);
 	}
 	public void draw(Graphics g) {
 		g.setColor(Color.red);
-		g.fillOval(x, y, 20, 20);
+		g.fillOval(coordinates.getxCoord(), coordinates.getyCoord(), 20, 20);
 	}
 	
 	//Getters and setters
@@ -41,14 +53,6 @@ public class Person {
 	
 	public int getY() {
 		return this.y;
-	}
-	
-	public void setX(int x) {
-		this.x = x;
-	}
-	
-	public void setY(int y) {
-		this.y = y;
 	}
 	
 }

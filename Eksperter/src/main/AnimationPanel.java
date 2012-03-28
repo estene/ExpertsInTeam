@@ -19,6 +19,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 
     /**
 	 * Class that animates on the intersection - Prinsenkrysset. 
+	 * @author Even
 	 */
 	private static final long serialVersionUID = 1L;
 	private ImageIcon image;
@@ -31,7 +32,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
     public AnimationPanel() {                
     	image = new ImageIcon(this.getClass().getResource("/prinsenkryssetmedium.png"));
     	image2 = image.getImage();
-    	person = new Person();
+    	person = new Person(285,85);
     	bus = new Bus();
 		t = new Timer(50, this);
 		t.start();
@@ -77,7 +78,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		System.out.println("Location: " + e.getX()+ " "+ e.getY());
+		//System.out.println("Location: " + e.getX()+ " "+ e.getY());
 	}
 
 }

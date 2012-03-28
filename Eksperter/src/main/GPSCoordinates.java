@@ -11,8 +11,17 @@ package main;
 public class GPSCoordinates {
 	private int xCoord;
 	private int yCoord;
+	private int xDir;
+	private int yDir;
+	private int x,y;
 	
-	public GPSCoordinates(){
+	public GPSCoordinates(int x, int y){
+		this.x = x;
+		this.y = y;
+		xCoord = x;
+		yCoord = y;
+		xDir = 0;
+		yDir = 0;
 		
 	}
 
@@ -31,7 +40,26 @@ public class GPSCoordinates {
 	public void setxCoord(int xCoord) {
 		this.xCoord = xCoord;
 	}
-	
+
+	public int getxDir() {
+		return xDir;
+	}
+
+	public void setxDir(int xDir) {
+		this.xDir = xDir;
+	}
+
+	public int getyDir() {
+		return yDir;
+	}
+
+	public void setyDir(int yDir) {
+		this.yDir = yDir;
+	}
+	public void reset() {
+		setxCoord(x);
+		setyCoord(y);
+	}
 	
 
 }

@@ -7,6 +7,11 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+/**
+ * Bus-class
+ * @author Even
+ *
+ */
 public class Bus {
 	private ArrayList<Person> persons;
 	private int minutesLate;

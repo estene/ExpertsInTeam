@@ -1,11 +1,6 @@
 package main;
 
 import java.awt.EventQueue;
-
-import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.PointerInfo;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JList;
@@ -19,8 +14,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import java.awt.Font;
 
-/*
+/**
  * MainView - containts frames,panels etc. 
+ * @author Even
  */
 
 public class MainView {
