@@ -13,34 +13,30 @@ import javax.swing.ImageIcon;
  *
  */
 public class Bus {
-	private ArrayList<Person> persons;
 	private int minutesLate;
-	private GPSCoordinates coords;
+	private GPSCoordinates coordinates;
 	private int x,y,xDir,yDir;
 	private ImageIcon image;
 	private Image image2;
 	
-	public Bus(){
-		x = 120;
-		y = 100;
+	public Bus(int x, int y){
 		xDir = 1;
 		yDir = 0;
+		coordinates = new GPSCoordinates(x,y,xDir,yDir);
+		this.x = coordinates.getxCoord();
+		this.y = coordinates.getyCoord();
     	image = new ImageIcon(this.getClass().getResource("/play2.png"));
     	image2 = image.getImage();
 	}
 	
 	//Move da BUZ
 	public void move() {
-		x += xDir;
-		y += yDir;
-	}
-	
-	public void reset() {
-    	x = 120;
-    	y = 100; 
-		xDir = 1;
-		yDir = 0;
-
+		x = coordinates.getxCoord();
+		y = coordinates.getyCoord();
+		x += coordinates.getxDir();
+		y += coordinates.getyDir();
+		coordinates.setxCoord(x);
+		coordinates.setyCoord(y);
 	}
 	
 	public void draw(Graphics g) {
@@ -59,12 +55,12 @@ public class Bus {
 
 
 	public GPSCoordinates getCoords() {
-		return coords;
+		return coordinates;
 	}
 
 
 	public void setCoords(GPSCoordinates coords) {
-		this.coords = coords;
+		this.coordinates = coords;
 	}
 
 	

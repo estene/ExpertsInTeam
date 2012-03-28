@@ -15,18 +15,15 @@ public class Person {
 	public Person(int x, int y){
 		xDir = 0;
 		yDir = 1;
-		coordinates = new GPSCoordinates(x,y);
-		coordinates.setxDir(xDir);
-		coordinates.setyDir(yDir);
+		coordinates = new GPSCoordinates(x,y,xDir,yDir);
 		this.x = coordinates.getxCoord();
 		this.y = coordinates.getyCoord();
+
 
 	}
 	
 	// Move the men
 	public void move() {
-		System.out.println(coordinates.getxCoord() + " " + coordinates.getyCoord());
-		System.out.println(coordinates.getxDir() + " " + coordinates.getyDir());
 		x = coordinates.getxCoord();
 		y = coordinates.getyCoord();
 		x += coordinates.getxDir();
@@ -35,11 +32,6 @@ public class Person {
 		coordinates.setyCoord(y);
 	}
 	
-	public void reset() {
-		coordinates.reset();
-		coordinates.setxDir(xDir);
-		coordinates.setyDir(yDir);
-	}
 	public void draw(Graphics g) {
 		g.setColor(Color.red);
 		g.fillOval(coordinates.getxCoord(), coordinates.getyCoord(), 20, 20);
@@ -54,5 +46,15 @@ public class Person {
 	public int getY() {
 		return this.y;
 	}
+	
+	public GPSCoordinates getCoords() {
+		return coordinates;
+	}
+
+
+	public void setCoords(GPSCoordinates coords) {
+		this.coordinates = coords;
+	}
+
 	
 }

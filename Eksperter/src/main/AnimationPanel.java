@@ -33,7 +33,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
     	image = new ImageIcon(this.getClass().getResource("/prinsenkryssetmedium.png"));
     	image2 = image.getImage();
     	person = new Person(285,85);
-    	bus = new Bus();
+    	bus = new Bus(120,100);
 		t = new Timer(50, this);
 		t.start();
 		addMouseMotionListener(this);
@@ -52,11 +52,6 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
     }
 	public void stopAnimation() {
 		animate = false;
-	}
-	public void resetAnimation() {
-		animate = false;
-		person.reset();
-		bus.reset();
 	}
 	
 	@Override

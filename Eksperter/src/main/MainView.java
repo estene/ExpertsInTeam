@@ -100,7 +100,12 @@ public class MainView {
 		resetButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		resetButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				animationPanel.resetAnimation();
+				animationPanel.setVisible(false);
+				animationPanel = new AnimationPanel();
+				animationPanel.setBounds(481, 11, 590, 425);
+				mainPanel.add(animationPanel);
+				animationPanel.setLayout(null);
+				animationPanel.setVisible(true);
 				System.out.println("reset");
 			}
 		});

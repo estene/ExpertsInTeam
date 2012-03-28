@@ -4,27 +4,21 @@ package main;
  * This is a simplified version of GPSCoordinates 
  * that uses x and y coordinates in the picture.
  * 
- * @author cato
+ * @author cato , Even
  *
  */
 
 public class GPSCoordinates {
-	private int xCoord;
-	private int yCoord;
-	private int xDir;
-	private int yDir;
-	private int x,y;
+	private int xCoord, yCoord, xDir, yDir;
 	
-	public GPSCoordinates(int x, int y){
-		this.x = x;
-		this.y = y;
+	public GPSCoordinates(int x, int y, int xDir, int yDir){
 		xCoord = x;
 		yCoord = y;
-		xDir = 0;
-		yDir = 0;
+		this.xDir = xDir;
+		this.yDir = yDir;
 		
 	}
-
+	
 	public int getyCoord() {
 		return yCoord;
 	}
@@ -56,10 +50,4 @@ public class GPSCoordinates {
 	public void setyDir(int yDir) {
 		this.yDir = yDir;
 	}
-	public void reset() {
-		setxCoord(x);
-		setyCoord(y);
-	}
-	
-
 }
