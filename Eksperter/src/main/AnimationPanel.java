@@ -10,7 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.io.IOException;
+import java.io.InputStream;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -19,20 +22,28 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 
     /**
 	 * Class that animates on the intersection - Prinsenkrysset. 
+	 * @author Even
 	 */
 	private static final long serialVersionUID = 1L;
-	private ImageIcon image;
-	private Image image2;
+	private Image image;
 	private Timer t;
 	private Person person;
 	private Bus bus;
 	private boolean animate = false;
+	private ClassLoader classLoader;
 	
-    public AnimationPanel() {                
-    	image = new ImageIcon(this.getClass().getResource("/prinsenkryssetmedium.png"));
-    	image2 = image.getImage();
-    	person = new Person();
-    	bus = new Bus();
+    public AnimationPanel() {   
+    	this.setBounds(481, 11, 590, 425);
+		classLoader = Thread.currentThread().getContextClassLoader();
+		InputStream input = classLoader.getResourceAsStream("prinsenkryssetmedium.png");
+		try {
+			image = ImageIO.read(input);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	person = new Person(285,85);
+    	bus = new Bus(120,115);
 		t = new Timer(50, this);
 		t.start();
 		addMouseMotionListener(this);
@@ -41,7 +52,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
     @Override
     public void paintComponent(Graphics g) {
     	super.paintComponent(g); // Clean up
-        g.drawImage(image2, 0, 0, null); 
+        g.drawImage(image, 0, 0, null); 
         person.draw(g);
         bus.draw(g);
     }
@@ -51,11 +62,6 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
     }
 	public void stopAnimation() {
 		animate = false;
-	}
-	public void resetAnimation() {
-		animate = false;
-		person.reset();
-		bus.reset();
 	}
 	
 	@Override
@@ -77,7 +83,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		System.out.println("Location: " + e.getX()+ " "+ e.getY());
+		//System.out.println("Location: " + e.getX()+ " "+ e.getY());
 	}
 
 }

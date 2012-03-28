@@ -1,11 +1,9 @@
 package main;
 
 import java.awt.EventQueue;
+import java.awt.Image;
 
-import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.PointerInfo;
-
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JList;
@@ -18,9 +16,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import java.awt.Font;
+import java.io.IOException;
+import java.io.InputStream;
 
-/*
+/**
  * MainView - containts frames,panels etc. 
+ * @author Even
  */
 
 public class MainView {
@@ -29,6 +30,8 @@ public class MainView {
 	private JPanel mainPanel;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private AnimationPanel animationPanel;
+	private ClassLoader classLoader;
+	Image image;
 
 	/**
 	 * Launch the application.
@@ -62,6 +65,7 @@ public class MainView {
 		mainFrame.setBounds(100, 100, 1117, 517);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.getContentPane().setLayout(null);
+		classLoader = Thread.currentThread().getContextClassLoader();
 		
 		mainPanel = new JPanel();
 		mainPanel.setBounds(10, 0, 1081, 447);
@@ -78,7 +82,8 @@ public class MainView {
 		mainPanel.add(messageList);
 		
 		JButton playButton = new JButton("");
-		playButton.setIcon(new ImageIcon(MainView.class.getResource("/play2.png")));
+		
+		playButton.setIcon(new ImageIcon(getImage("play2.png")));
 		buttonGroup.add(playButton);
 		playButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -90,7 +95,7 @@ public class MainView {
 		mainPanel.add(playButton);
 		
 		JButton stopButton = new JButton("");
-		stopButton.setIcon(new ImageIcon(MainView.class.getResource("/stop2.png")));
+		stopButton.setIcon(new ImageIcon(getImage("stop2.png")));
 		stopButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				animationPanel.stopAnimation();
@@ -104,7 +109,9 @@ public class MainView {
 		resetButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		resetButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				animationPanel.resetAnimation();
+				mainPanel.remove(animationPanel);
+				animationPanel = new AnimationPanel();
+				mainPanel.add(animationPanel);
 				System.out.println("reset");
 			}
 		});
@@ -128,5 +135,18 @@ public class MainView {
 		
 		JMenu mnFint = new JMenu("Fint");
 		menuBar.add(mnFint);
+	}
+	
+	// Method to retrieve a resource
+	public Image getImage(String imgName) {
+		InputStream input = classLoader.getResourceAsStream("" + imgName);
+		Image inputImage = null;
+		try {
+			inputImage = ImageIO.read(input);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return inputImage;
 	}
 }

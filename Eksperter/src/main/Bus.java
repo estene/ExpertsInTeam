@@ -1,45 +1,49 @@
 package main;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
+/**
+ * Bus-class
+ * @author Even
+ *
+ */
 public class Bus {
-	private ArrayList<Person> persons;
 	private int minutesLate;
-	private GPSCoordinates coords;
+	private GPSCoordinates coordinates;
 	private int x,y,xDir,yDir;
-	private ImageIcon image;
-	private Image image2;
+	private Image image;
+	private ClassLoader classLoader;
 	
-	public Bus(){
-		x = 120;
-		y = 100;
+	public Bus(int x, int y){
 		xDir = 1;
 		yDir = 0;
-    	image = new ImageIcon(this.getClass().getResource("/play2.png"));
-    	image2 = image.getImage();
+		coordinates = new GPSCoordinates(x,y,xDir,yDir);
+		this.x = coordinates.getxCoord();
+		this.y = coordinates.getyCoord();
+		
+		classLoader = Thread.currentThread().getContextClassLoader();
+		image = getImage("bussmall.png");
 	}
 	
 	//Move da BUZ
 	public void move() {
-		x += xDir;
-		y += yDir;
-	}
-	
-	public void reset() {
-    	x = 120;
-    	y = 100; 
-		xDir = 1;
-		yDir = 0;
-
+		x = coordinates.getxCoord();
+		y = coordinates.getyCoord();
+		x += coordinates.getxDir();
+		y += coordinates.getyDir();
+		coordinates.setxCoord(x);
+		coordinates.setyCoord(y);
 	}
 	
 	public void draw(Graphics g) {
-		g.drawImage(image2, x, y, null); 
+		g.drawImage(image, x, y, null); 
 	}
 
 
@@ -54,12 +58,12 @@ public class Bus {
 
 
 	public GPSCoordinates getCoords() {
-		return coords;
+		return coordinates;
 	}
 
 
 	public void setCoords(GPSCoordinates coords) {
-		this.coords = coords;
+		this.coordinates = coords;
 	}
 
 	
@@ -79,6 +83,19 @@ public class Bus {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+	
+	// Retrieve image from resource
+	public Image getImage(String imgName) {
+		InputStream input = classLoader.getResourceAsStream("" + imgName);
+		Image inputImage = null;
+		try {
+			inputImage = ImageIO.read(input);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return inputImage;
 	}
 	
 	
