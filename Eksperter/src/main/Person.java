@@ -2,6 +2,11 @@ package main;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.imageio.ImageIO;
 
 /**
  * Person class - Includes testmethods to perform animation, subject to change
@@ -11,6 +16,8 @@ import java.awt.Graphics;
 public class Person {
 	private GPSCoordinates coordinates;
 	private int x,y,xDir,yDir;
+	private ClassLoader classLoader;
+	private Image image;
 	
 	public Person(int x, int y){
 		xDir = 0;
@@ -18,8 +25,10 @@ public class Person {
 		coordinates = new GPSCoordinates(x,y,xDir,yDir);
 		this.x = coordinates.getxCoord();
 		this.y = coordinates.getyCoord();
-
-
+		
+		classLoader = Thread.currentThread().getContextClassLoader();
+		image = getImage("");
+		
 	}
 	
 	// Move the men
@@ -54,6 +63,19 @@ public class Person {
 
 	public void setCoords(GPSCoordinates coords) {
 		this.coordinates = coords;
+	}
+	
+	// Retrieve image from resource
+	public Image getImage(String imgName) {
+		InputStream input = classLoader.getResourceAsStream("" + imgName);
+		Image inputImage = null;
+		try {
+			inputImage = ImageIO.read(input);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return inputImage;
 	}
 
 	
