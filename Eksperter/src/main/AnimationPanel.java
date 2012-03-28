@@ -35,13 +35,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
     public AnimationPanel() {   
     	this.setBounds(481, 11, 590, 425);
 		classLoader = Thread.currentThread().getContextClassLoader();
-		InputStream input = classLoader.getResourceAsStream("prinsenkryssetmedium.png");
-		try {
-			image = ImageIO.read(input);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		image = getImage("prinsenkryssetmedium.png");
     	person = new Person(285,85);
     	bus = new Bus(120,115);
 		t = new Timer(50, this);
@@ -84,6 +78,19 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		//System.out.println("Location: " + e.getX()+ " "+ e.getY());
+	}
+	
+	// Retrieve image from resource
+	public Image getImage(String imgName) {
+		InputStream input = classLoader.getResourceAsStream("" + imgName);
+		Image inputImage = null;
+		try {
+			inputImage = ImageIO.read(input);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return inputImage;
 	}
 
 }
