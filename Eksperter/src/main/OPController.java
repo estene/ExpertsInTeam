@@ -20,5 +20,16 @@ public class OPController {
 		northEastLight.changeColour(dir);
 		northWestLight.changeColour(dir);
 	}
+	
+	/**
+	 * This method changes the overall traffic flow in the overpass.
+	 * 
+	 * Must find a better name for this method :-)
+	 * 
+	 */
+	
+	public void mustFindAName(Direction dir){
+		
+	}
  
 }

@@ -4,7 +4,8 @@ public class TrafficLight extends Thread{
 	private TLSensor sensor;
 	private final int greenToRedSleepTime = 2500;	
 	private final int redToGreenSleepTime = 6000;
-		
+	
+	
 	protected LightColour fromSouthToNorth;
 	protected LightColour fromSouthToWest;
 	
@@ -21,6 +22,17 @@ public class TrafficLight extends Thread{
 	
 	public TrafficLight(String placement){
 		this.placement = placement;
+		
+		
+		//initializes all the lights to green so that the underlying logic 
+		fromNorthToSouth = LightColour.GREEN;
+		fromNorthToWest = LightColour.GREEN;
+		
+		fromSouthToNorth = LightColour.GREEN;
+		fromSouthToWest = LightColour.GREEN;
+		
+		fromWestToNorth = LightColour.GREEN;
+		fromWestToSouth = LightColour.GREEN;
 	}
 	
 	public synchronized void changeColour(Direction dir){
