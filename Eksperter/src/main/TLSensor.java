@@ -10,7 +10,7 @@ public class TLSensor {
 		persons = new ArrayList<Person>();
 	}
 	
-	private void addPerson(Person p){
+	public void addPerson(Person p){
 		persons.add(p);
 	}
 	

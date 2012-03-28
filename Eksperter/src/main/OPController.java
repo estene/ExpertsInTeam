@@ -14,13 +14,11 @@ public class OPController {
 	private TrafficLight southWestLight;
 	private TrafficLight southEastLight;
 	
-	private void changeSouthLights(Direction dir){
-		southWestLight.changeColour(dir);
+	public void changeLights(Direction dir){
 		southEastLight.changeColour(dir);
-	}
-	
-	private void changeWestLights(Direction dir){
-		
+		southWestLight.changeColour(dir);
+		northEastLight.changeColour(dir);
+		northWestLight.changeColour(dir);
 	}
  
 }

@@ -25,7 +25,6 @@ public class TrafficLight extends Thread{
 	
 	public synchronized void changeColour(Direction dir){
 		switch (dir) {
-
 		case FROMSOUTHTONORTH:
 			this.fromSouthToNorth = LightColour.YELLOW;
 			if(this.fromSouthToNorth == LightColour.GREEN){
@@ -91,9 +90,7 @@ public class TrafficLight extends Thread{
 				this.fromNorthToWest = LightColour.RED;
 			}
 			break;
-
 		}
-
 	}
 	
 	protected void trySleep(LightColour colour){
@@ -118,7 +115,5 @@ public class TrafficLight extends Thread{
 
 	public void setSensor(TLSensor sensor) {
 		this.sensor = sensor;
-	}
-	
-	
+	}	
 }
