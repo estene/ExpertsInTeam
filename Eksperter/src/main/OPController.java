@@ -8,12 +8,19 @@ package main;
  */
 
 public class OPController {
-	private TrafficLight upperLeftLight;
-	private TrafficLight lowerLeftLight;
+	private TrafficLight northWestLight;
+	private TrafficLight northEastLight;
 	
-	private TrafficLight upperRightLight;
-	private TrafficLight lowerRightLight;
+	private TrafficLight southWestLight;
+	private TrafficLight southEastLight;
 	
+	private void changeSouthLights(Direction dir){
+		southWestLight.changeColour(dir);
+		southEastLight.changeColour(dir);
+	}
 	
+	private void changeWestLights(Direction dir){
+		
+	}
  
 }

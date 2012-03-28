@@ -19,6 +19,11 @@ public class GPSCoordinates {
 	public int getyCoord() {
 		return yCoord;
 	}
+	
+	public void setCoords(int dx, int dy){
+		this.xCoord = dx;
+		this.yCoord = dy;
+	}
 
 	public void setyCoord(int yCoord) {
 		this.yCoord = yCoord;
