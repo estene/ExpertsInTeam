@@ -53,8 +53,15 @@ public class OPController {
 	 * 
 	 */
 	
-	public void mustFindAName(Direction dir){
-		
+	public double whatToDoUtility(Direction d){
+		double utilityValue = 0.0;
+
+		for(Bus b : busQueue){
+			if(b.getHeadingDirection().equals(d) && b.isWaitingAtOverpass()){
+				utilityValue += b.getMinutesLate() + b.getPeopleAmount();
+			}
+		}
+		return utilityValue;
 	}
- 
+
 }

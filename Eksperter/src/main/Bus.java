@@ -11,7 +11,9 @@ import javax.swing.ImageIcon;
 
 /**
  * Bus-class
- * @author Even
+ * @author Even, Cato
+ * 
+ * Even -> Hvor skal det bestemmes hvor bussen kommer fra?
  *
  */
 public class Bus {
@@ -20,6 +22,9 @@ public class Bus {
 	private int x,y,xDir,yDir;
 	private Image image;
 	private ClassLoader classLoader;
+	private Direction myHeadingDirection;
+	private ArrayList<Person> personQueue;
+	private boolean waitingAtOverpass;
 	
 	public Bus(int x, int y){
 		xDir = 1;
@@ -27,9 +32,27 @@ public class Bus {
 		coordinates = new GPSCoordinates(x,y,xDir,yDir);
 		this.x = coordinates.getxCoord();
 		this.y = coordinates.getyCoord();
+		personQueue = new ArrayList<Person>();
+		waitingAtOverpass = false;
 		
 		classLoader = Thread.currentThread().getContextClassLoader();
 		image = getImage("bussmall.png");
+	}
+	
+	public boolean isWaitingAtOverpass(){
+		return waitingAtOverpass;
+	}
+	
+	public void setWaitingAtOverpass(boolean b){
+		waitingAtOverpass = b;
+	}
+	
+	public int getPeopleAmount(){
+		return personQueue.size();
+	}
+	
+	public Direction getHeadingDirection(){
+		return this.myHeadingDirection;
 	}
 	
 	//Move da BUZ
