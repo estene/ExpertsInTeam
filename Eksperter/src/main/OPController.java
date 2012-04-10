@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 /**
  * This is the overpass controller that controls what the trafficlights should do.
  * 
@@ -13,12 +15,35 @@ public class OPController {
 	
 	private TrafficLight southWestLight;
 	private TrafficLight southEastLight;
+	private ArrayList<Bus> busQueue;
 	
+	public OPController(){
+		northWestLight = new TrafficLight(Placement.NORTHWEST);
+		northEastLight = new TrafficLight(Placement.NORTHEAST);
+		southWestLight = new TrafficLight(Placement.SOUTHWEST);
+		southEastLight = new TrafficLight(Placement.SOUTHEAST);
+	
+		busQueue = new ArrayList<Bus>();
+	}
+	
+	
+	//Må se om dette er nødvendig
 	public void changeLights(Direction dir){
+			
 		southEastLight.changeColour(dir);
 		southWestLight.changeColour(dir);
 		northEastLight.changeColour(dir);
 		northWestLight.changeColour(dir);
+	}
+	
+	public void addBusToQueue(Bus bus){
+		this.busQueue.add(bus);
+	}
+	
+	public void removeBusFromQueue(Bus bus){
+		for(Bus b : busQueue){
+			if (b == bus) busQueue.remove(b);
+		}
 	}
 	
 	/**

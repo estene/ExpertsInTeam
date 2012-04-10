@@ -3,7 +3,7 @@ package main;
 public class NorthWestLight extends TrafficLight{
 	
 		
-	public NorthWestLight(String placement){
+	public NorthWestLight(Placement placement){
 		super(placement);
 	}
 	

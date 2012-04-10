@@ -2,15 +2,15 @@ package main;
 
 public enum Placement {
 
-	FROMNORTHTOSOUTH,
-	FROMNORTHTOWEST,
+	// For TrafficLights
+	SOUTHEAST,
+	SOUTHWEST,
+	NORTHWEST,
+	NORTHEAST,
 	
-	FROMSOUTHTONORTH,
-	FROMSOUTHTOWEST,
-	
-	FROMWESTTONORTH,
-	FROMWESTTOSOUTH;
-
-	
+	// For pedestrianlights
+	NORTH,
+	WEST,
+	SOUTH;	
 }
 

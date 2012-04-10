@@ -1,5 +1,13 @@
 package main;
 
+/**
+ * This class represents a single trafficlight in the overpass. Every light and placement is 
+ * based on that the road towards Studentersamfunnet is "South". 
+ * 
+ * @author cato
+ *
+ */
+
 public class TrafficLight extends Thread{
 	private TLSensor sensor;
 	private final int greenToRedSleepTime = 2500;	
@@ -16,13 +24,26 @@ public class TrafficLight extends Thread{
 	protected LightColour fromWestToSouth;
 	
 	private PedestrianLight pedLight1 = null;
-	private PedestrianLight pedLight2 = null;
-		
-	private final String placement;
+	private PedestrianLight pedLight2 = null; // pedLight2 will always be the crossing on the west road.
 	
-	public TrafficLight(String placement){
-		this.placement = placement;
 		
+	private final Placement placement;
+	
+	public TrafficLight(Placement placement){
+		this.placement = placement;		
+		
+		if(placement == Placement.SOUTHEAST) pedLight1 = new PedestrianLight(Placement.SOUTH);
+		else if(placement == Placement.SOUTHWEST){
+			pedLight1 = new PedestrianLight(Placement.SOUTH);
+			pedLight2 = new PedestrianLight(Placement.WEST);
+		}
+		else if(placement == Placement.NORTHWEST){
+			pedLight1 = new PedestrianLight(Placement.NORTH);
+			pedLight2 = new PedestrianLight(Placement.WEST);
+		}
+		else if(placement == Placement.NORTHEAST) pedLight1 = new PedestrianLight(Placement.NORTH);
+		
+		sensor = new TLSensor();
 		
 		//initializes all the lights to green so that the underlying logic 
 		fromNorthToSouth = LightColour.GREEN;
@@ -102,6 +123,27 @@ public class TrafficLight extends Thread{
 				this.fromNorthToWest = LightColour.RED;
 			}
 			break;
+		}
+	}
+	
+	public void changePedLight(Placement placement){
+		if(this.placement == Placement.NORTHEAST && placement == Placement.NORTH){
+			this.pedLight1.changeColour();
+		}else
+		if(this.placement == Placement.NORTHWEST && placement == Placement.NORTH){
+			this.pedLight1.changeColour();
+		}else
+		if(this.placement == Placement.NORTHWEST && placement == Placement.WEST){
+			this.pedLight2.changeColour();
+		}else
+		if(this.placement == Placement.SOUTHWEST && placement == Placement.WEST){
+			this.pedLight2.changeColour();
+		}else
+		if(this.placement == Placement.SOUTHWEST && placement == Placement.SOUTH){
+			this.pedLight1.changeColour();
+		}else
+		if(this.placement == Placement.SOUTHEAST && placement == Placement.SOUTH){
+			this.pedLight1.changeColour();
 		}
 	}
 	
