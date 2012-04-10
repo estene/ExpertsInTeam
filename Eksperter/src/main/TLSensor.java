@@ -20,5 +20,8 @@ public class TLSensor {
 		}
 	}
 	
+	public int getPersonQueueAmount(){
+		return personQueue.size();
+	}
 	
 }

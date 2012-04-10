@@ -9,10 +9,8 @@ package main;
  */
 
 public class TrafficLight extends Thread{
-	private TLSensor sensor;
-	private final int greenToRedSleepTime = 2500;	
-	private final int redToGreenSleepTime = 6000;
-	
+	private final int greenToRedSleepTime = 1000;	
+	private final int redToGreenSleepTime = 4000;	
 	
 	protected LightColour fromSouthToNorth;
 	protected LightColour fromSouthToWest;
@@ -42,85 +40,119 @@ public class TrafficLight extends Thread{
 			pedLight2 = new PedestrianLight(Placement.WEST);
 		}
 		else if(placement == Placement.NORTHEAST) pedLight1 = new PedestrianLight(Placement.NORTH);
-		
-		sensor = new TLSensor();
-		
+				
 		//initializes all the lights to green so that the underlying logic 
-		fromNorthToSouth = LightColour.GREEN;
-		fromNorthToWest = LightColour.GREEN;
+		fromNorthToSouth = LightColour.RED;
+		fromNorthToWest = LightColour.RED;
 		
-		fromSouthToNorth = LightColour.GREEN;
-		fromSouthToWest = LightColour.GREEN;
+		fromSouthToNorth = LightColour.RED;
+		fromSouthToWest = LightColour.RED;
 		
-		fromWestToNorth = LightColour.GREEN;
-		fromWestToSouth = LightColour.GREEN;
+		fromWestToNorth = LightColour.RED;
+		fromWestToSouth = LightColour.RED;
 	}
 	
-	public synchronized void changeColour(Direction dir){
+	public synchronized void changeColour(Direction dir, LightColour lC){
 		switch (dir) {
 		case FROMSOUTHTONORTH:
 			this.fromSouthToNorth = LightColour.YELLOW;
-			if(this.fromSouthToNorth == LightColour.GREEN){
-				trySleep(LightColour.GREEN);
-				this.fromSouthToNorth = LightColour.RED;
-			} else if(this.fromSouthToNorth == LightColour.RED){
-				trySleep(LightColour.RED);
-				this.fromSouthToNorth = LightColour.RED;
-			}			
+			this.fromNorthToSouth = LightColour.YELLOW;
+			if(this.fromSouthToNorth != lC){
+				if(lC == LightColour.GREEN){
+					trySleep(LightColour.GREEN);
+					this.fromSouthToNorth = LightColour.RED;
+					this.fromNorthToSouth = LightColour.RED;
+				}
+				else if(lC == LightColour.RED){
+					trySleep(LightColour.RED);
+					this.fromSouthToNorth = LightColour.GREEN;
+					this.fromNorthToSouth = LightColour.GREEN;
+				}
+			}
 			break;
 
 		case FROMSOUTHTOWEST:
 			this.fromSouthToWest = LightColour.YELLOW;
-			if(this.fromSouthToWest == LightColour.GREEN){
-				trySleep(LightColour.GREEN);
-				this.fromSouthToWest = LightColour.RED;
-			} else if(this.fromSouthToWest == LightColour.RED){
-				trySleep(LightColour.RED);
-				this.fromSouthToWest = LightColour.RED;
-			}			
+			this.fromWestToSouth = LightColour.YELLOW;
+			if(this.fromSouthToWest != lC){
+				if(lC == LightColour.GREEN){
+					trySleep(LightColour.GREEN);
+					this.fromSouthToWest = LightColour.RED;
+					this.fromWestToSouth = LightColour.RED;
+				}
+				else if(this.fromSouthToWest == LightColour.RED){
+					trySleep(LightColour.RED);
+					this.fromSouthToWest = LightColour.GREEN;
+					this.fromWestToSouth = LightColour.GREEN;
+				}			
+			}
 			break;
 
 		case FROMWESTTOSOUTH:
+			this.fromSouthToWest = LightColour.YELLOW;
 			this.fromWestToSouth = LightColour.YELLOW;
-			if(this.fromWestToSouth == LightColour.GREEN){
-				trySleep(LightColour.GREEN);
-				this.fromWestToSouth = LightColour.RED;
-			} else if(this.fromWestToSouth == LightColour.RED){
-				trySleep(LightColour.RED);
-				this.fromWestToSouth = LightColour.RED;
+			if(this.fromWestToSouth != lC){
+				if(lC == LightColour.GREEN){
+					trySleep(LightColour.GREEN);
+					this.fromWestToSouth = LightColour.RED;
+					this.fromSouthToWest = LightColour.RED;
+				}
+				else if(this.fromWestToSouth == LightColour.RED){
+					trySleep(LightColour.RED);
+					this.fromWestToSouth = LightColour.GREEN;
+					this.fromSouthToWest = LightColour.GREEN;
+				}
 			}
 			break;
 			
 		case FROMWESTTONORTH:
+			this.fromNorthToWest = LightColour.YELLOW;
 			this.fromWestToNorth = LightColour.YELLOW;
-			if(this.fromWestToNorth == LightColour.GREEN){
-				trySleep(LightColour.GREEN);
-				this.fromWestToNorth = LightColour.RED;
-			} else if(this.fromWestToNorth == LightColour.RED){
-				trySleep(LightColour.RED);
-				this.fromWestToNorth = LightColour.RED;
+			if(this.fromWestToNorth != lC){
+				if(lC == LightColour.GREEN){
+					trySleep(LightColour.GREEN);
+					this.fromWestToNorth = LightColour.RED;
+					this.fromNorthToWest = LightColour.RED;
+				}
+				else if(this.fromWestToNorth == LightColour.RED){
+					trySleep(LightColour.RED);
+					this.fromWestToNorth = LightColour.GREEN;
+					this.fromNorthToWest = LightColour.GREEN;
+				}
 			}
 			break;
 			
 		case FROMNORTHTOSOUTH:
+			this.fromSouthToNorth = LightColour.YELLOW;
 			this.fromNorthToSouth= LightColour.YELLOW;
-			if(this.fromNorthToSouth == LightColour.GREEN){
-				trySleep(LightColour.GREEN);
-				this.fromNorthToSouth = LightColour.RED;
-			} else if(this.fromNorthToSouth == LightColour.RED){
-				trySleep(LightColour.RED);
-				this.fromNorthToSouth = LightColour.RED;
+			if(this.fromNorthToSouth != lC){
+				if(lC == LightColour.GREEN){
+					trySleep(LightColour.GREEN);
+					this.fromNorthToSouth = LightColour.RED;
+					this.fromSouthToNorth = LightColour.RED;
+				}				
+				else if(this.fromNorthToSouth == LightColour.RED){
+					trySleep(LightColour.RED);
+					this.fromNorthToSouth = LightColour.GREEN;
+					this.fromSouthToNorth = LightColour.GREEN;
+				}
 			}
 			break;
-			
+
 		case FROMNORTHTOWEST:
+			this.fromWestToNorth = LightColour.YELLOW;
 			this.fromNorthToWest = LightColour.YELLOW;
-			if(this.fromNorthToWest == LightColour.GREEN){
-				trySleep(LightColour.GREEN);
-				this.fromNorthToWest = LightColour.RED;
-			} else if(this.fromNorthToWest == LightColour.RED){
-				trySleep(LightColour.RED);
-				this.fromNorthToWest = LightColour.RED;
+			if(this.fromNorthToWest != lC){
+				if(lC == LightColour.GREEN){
+					trySleep(LightColour.GREEN);
+					this.fromNorthToWest = LightColour.RED;
+					this.fromWestToNorth = LightColour.RED;
+				}				
+				else if(this.fromNorthToWest == LightColour.RED){
+					trySleep(LightColour.RED);
+					this.fromNorthToWest = LightColour.GREEN;
+					this.fromWestToNorth = LightColour.GREEN;
+				}
 			}
 			break;
 		}
@@ -163,11 +195,12 @@ public class TrafficLight extends Thread{
 		}
 	}
 	
-	public TLSensor getSensor() {
-		return sensor;
+	public PedestrianLight getPedLight1(){
+		return this.pedLight1;
 	}
-
-	public void setSensor(TLSensor sensor) {
-		this.sensor = sensor;
-	}	
+	
+	public PedestrianLight getPedLight2(){
+		return this.pedLight2;
+	}
+	
 }
