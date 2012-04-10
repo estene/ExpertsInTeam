@@ -54,24 +54,28 @@ public class TrafficLight extends Thread{
 	
 	public synchronized void changeColour(Direction dir, LightColour lC){
 		switch (dir) {
-		case FROMSOUTHTONORTH:
+		case FROMSOUTHTONORTH:									
 			this.fromSouthToNorth = LightColour.YELLOW;
 			this.fromNorthToSouth = LightColour.YELLOW;
+			this.fromNorthToWest = LightColour.YELLOW;
 			if(this.fromSouthToNorth != lC){
 				if(lC == LightColour.GREEN){
-					trySleep(LightColour.GREEN);
+					trySleep(lC);
 					this.fromSouthToNorth = LightColour.RED;
 					this.fromNorthToSouth = LightColour.RED;
+					this.fromNorthToWest = LightColour.RED;
 				}
 				else if(lC == LightColour.RED){
-					trySleep(LightColour.RED);
+					trySleep(lC);
 					this.fromSouthToNorth = LightColour.GREEN;
 					this.fromNorthToSouth = LightColour.GREEN;
+					this.fromNorthToWest = LightColour.GREEN;
 				}
 			}
 			break;
 
 		case FROMSOUTHTOWEST:
+			this.fromSouthToNorth = LightColour.YELLOW;
 			this.fromSouthToWest = LightColour.YELLOW;
 			this.fromWestToSouth = LightColour.YELLOW;
 			if(this.fromSouthToWest != lC){
@@ -79,16 +83,19 @@ public class TrafficLight extends Thread{
 					trySleep(LightColour.GREEN);
 					this.fromSouthToWest = LightColour.RED;
 					this.fromWestToSouth = LightColour.RED;
+					this.fromSouthToNorth = LightColour.RED;
 				}
 				else if(this.fromSouthToWest == LightColour.RED){
 					trySleep(LightColour.RED);
 					this.fromSouthToWest = LightColour.GREEN;
 					this.fromWestToSouth = LightColour.GREEN;
+					this.fromSouthToNorth = LightColour.GREEN;
 				}			
 			}
 			break;
 
 		case FROMWESTTOSOUTH:
+			this.fromSouthToNorth = LightColour.YELLOW;
 			this.fromSouthToWest = LightColour.YELLOW;
 			this.fromWestToSouth = LightColour.YELLOW;
 			if(this.fromWestToSouth != lC){
@@ -96,11 +103,13 @@ public class TrafficLight extends Thread{
 					trySleep(LightColour.GREEN);
 					this.fromWestToSouth = LightColour.RED;
 					this.fromSouthToWest = LightColour.RED;
+					this.fromSouthToNorth = LightColour.RED;
 				}
 				else if(this.fromWestToSouth == LightColour.RED){
 					trySleep(LightColour.RED);
 					this.fromWestToSouth = LightColour.GREEN;
 					this.fromSouthToWest = LightColour.GREEN;
+					this.fromSouthToNorth = LightColour.GREEN;
 				}
 			}
 			break;
@@ -123,6 +132,7 @@ public class TrafficLight extends Thread{
 			break;
 			
 		case FROMNORTHTOSOUTH:
+			this.fromNorthToWest = LightColour.YELLOW;
 			this.fromSouthToNorth = LightColour.YELLOW;
 			this.fromNorthToSouth= LightColour.YELLOW;
 			if(this.fromNorthToSouth != lC){
@@ -130,11 +140,13 @@ public class TrafficLight extends Thread{
 					trySleep(LightColour.GREEN);
 					this.fromNorthToSouth = LightColour.RED;
 					this.fromSouthToNorth = LightColour.RED;
+					this.fromNorthToWest = LightColour.RED;
 				}				
 				else if(this.fromNorthToSouth == LightColour.RED){
 					trySleep(LightColour.RED);
 					this.fromNorthToSouth = LightColour.GREEN;
 					this.fromSouthToNorth = LightColour.GREEN;
+					this.fromNorthToWest = LightColour.GREEN;
 				}
 			}
 			break;

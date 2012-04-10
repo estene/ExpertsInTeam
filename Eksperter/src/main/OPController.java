@@ -92,13 +92,14 @@ public class OPController extends Thread{
 		if(currentGreenDirection == null){
 			if(greenDirection != null){
 				currentGreenDirection = greenDirection;
-				
-				changeLights(greenDirection, LightColour.GREEN);
-				
+				changeLights(greenDirection, LightColour.GREEN);				
 			}
 		}else{
 			currentGreenDirection = greenDirection;
-			
+			if(greenDirection == Direction.FROMSOUTHTONORTH){
+				changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
+				changeLights(greenDirection, LightColour.GREEN);
+			}
 		}
 	}
 	
