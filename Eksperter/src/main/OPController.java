@@ -41,12 +41,15 @@ public class OPController{
 	}
 	
 	
-	//Må se om dette er nødvendig
 	private void changeLights(Direction dir, LightColour lC){			
 		southEastLight.changeColour(dir, lC);
 		southWestLight.changeColour(dir, lC);
 		northEastLight.changeColour(dir, lC);
 		northWestLight.changeColour(dir, lC);
+	}
+	
+	private void changePedLights(Direction dir, LightColour lC){
+		southEastLight.changePedLight(placement);
 	}
 	
 	public void addBusToQueue(Bus bus){
@@ -95,57 +98,69 @@ public class OPController{
 				changeLights(greenDirection, LightColour.GREEN);				
 			}
 		}else{
-			currentGreenDirection = greenDirection;
-			if(greenDirection == Direction.FROMSOUTHTONORTH){
-				changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
-				changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
-				changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
-				
-				changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
-				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.GREEN);
-				changeLights(greenDirection, LightColour.GREEN);
+			if(!pedPriority){
+				currentGreenDirection = greenDirection;
+				if(greenDirection == Direction.FROMSOUTHTONORTH){
+					changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
+					changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
+					changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
+					
+					changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
+					changeLights(Direction.FROMNORTHTOSOUTH, LightColour.GREEN);
+					changeLights(greenDirection, LightColour.GREEN);
+				}
+				else if(greenDirection == Direction.FROMSOUTHTOWEST){
+					changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
+					changeLights(Direction.FROMNORTHTOWEST, LightColour.RED);
+					
+					changeLights(Direction.FROMSOUTHTONORTH, LightColour.GREEN);
+					changeLights(Direction.FROMWESTTOSOUTH, LightColour.GREEN);
+					changeLights(greenDirection, LightColour.GREEN);
+				}
+				else if(greenDirection == Direction.FROMNORTHTOSOUTH){
+					changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
+					changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
+					changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
+					
+					changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
+					changeLights(Direction.FROMSOUTHTONORTH, LightColour.GREEN);
+					changeLights(greenDirection, LightColour.GREEN);
+				}
+				else if(greenDirection == Direction.FROMNORTHTOWEST){
+					changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
+					changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
+					
+					changeLights(Direction.FROMWESTTONORTH, LightColour.GREEN);
+					changeLights(Direction.FROMWESTTOSOUTH, LightColour.GREEN);
+					changeLights(greenDirection, LightColour.GREEN);
+				}
+				else if(greenDirection == Direction.FROMWESTTONORTH){
+					changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
+					changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
+					
+					changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
+					changeLights(Direction.FROMWESTTOSOUTH, LightColour.GREEN);
+					changeLights(greenDirection, LightColour.GREEN);
+				}
+				else if(greenDirection == Direction.FROMWESTTOSOUTH){
+					changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
+					changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
+					
+					changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
+					changeLights(Direction.FROMWESTTONORTH, LightColour.GREEN);
+					changeLights(greenDirection, LightColour.GREEN);
+				}
+			}else{
+				if(greenDirection == Direction.FROMSOUTHTONORTH){ //For pedestrians
+					changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
+					changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
+					changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
+					changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
+					
+					
+				}
 			}
-			else if(greenDirection == Direction.FROMSOUTHTOWEST){
-				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
-				changeLights(Direction.FROMNORTHTOWEST, LightColour.RED);
-				
-				changeLights(Direction.FROMSOUTHTONORTH, LightColour.GREEN);
-				changeLights(Direction.FROMWESTTOSOUTH, LightColour.GREEN);
-				changeLights(greenDirection, LightColour.GREEN);
-			}
-			else if(greenDirection == Direction.FROMNORTHTOSOUTH){
-				changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
-				changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
-				changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
-				
-				changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
-				changeLights(Direction.FROMSOUTHTONORTH, LightColour.GREEN);
-				changeLights(greenDirection, LightColour.GREEN);
-			}
-			else if(greenDirection == Direction.FROMNORTHTOWEST){
-				changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
-				changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
-				
-				changeLights(Direction.FROMWESTTONORTH, LightColour.GREEN);
-				changeLights(Direction.FROMWESTTOSOUTH, LightColour.GREEN);
-				changeLights(greenDirection, LightColour.GREEN);
-			}
-			else if(greenDirection == Direction.FROMWESTTONORTH){
-				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
-				changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
-				
-				changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
-				changeLights(Direction.FROMWESTTOSOUTH, LightColour.GREEN);
-				changeLights(greenDirection, LightColour.GREEN);
-			}
-			else if(greenDirection == Direction.FROMWESTTOSOUTH){
-				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
-				changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
-				
-				changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
-				changeLights(Direction.FROMWESTTONORTH, LightColour.GREEN);
-				changeLights(greenDirection, LightColour.GREEN);
-			}
+			
 			
 		}
 	}
