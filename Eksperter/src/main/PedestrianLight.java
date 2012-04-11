@@ -39,6 +39,10 @@ public class PedestrianLight {
 			image = getImage("redman.png");
 		}
 	}
+	
+	public boolean isGreen(){
+		return isGreen;
+	}
 
 	public int getPeopleAmount(){
 		return pedSensor.getPersonQueueAmount();
