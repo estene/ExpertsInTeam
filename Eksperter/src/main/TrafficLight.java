@@ -37,8 +37,7 @@ public class TrafficLight{
 	
 	private PedestrianLight pedLight1 = null;
 	private PedestrianLight pedLight2 = null; // pedLight2 will always be the crossing on the west road.
-	
-		
+			
 	private final Placement placement;
 	public TrafficLight(Placement placement){
 		timer = new Timer();
