@@ -39,7 +39,7 @@ public class Person {
 	// Move the men
 	public void move() {
 		if (coordinates.getyCoord() >= 300 ) {
-		// hardcoded to test busmovement
+			// hardcoded to test busmovement
 		}
 		else {
 			x = coordinates.getxCoord();
