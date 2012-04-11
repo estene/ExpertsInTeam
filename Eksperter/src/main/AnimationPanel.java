@@ -31,6 +31,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 	private Bus bus;
 	private boolean animate = false;
 	private ClassLoader classLoader;
+	private TrafficLight neLight;
 	
     public AnimationPanel() {   
     	this.setBounds(481, 11, 590, 425);
@@ -38,6 +39,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 		image = getImage("prinsenkryssetmedium.png");
     	person = new Person(285,85);
     	bus = new Bus(120,180);
+    	neLight = new TrafficLight(Placement.NORTHEAST);
 		t = new Timer(25, this);
 		t.start();
 		addMouseMotionListener(this);
@@ -49,6 +51,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
         g.drawImage(image, 0, 0, null); 
         person.draw(g);
         bus.draw(g);
+        neLight.draw(g);
     }
     
     public void startAnimation() {
@@ -57,7 +60,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 	public void stopAnimation() {
 		animate = false;
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (animate == true) {

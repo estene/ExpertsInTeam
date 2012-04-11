@@ -8,3 +8,9 @@ TODO:
 * Få menneskeanimasjon til å starte/stoppe avhengig av informasjon pollet fra lysregulering
 * Få lysreguleringer til å interagere med hverandre. Lys skal skifte farger avhengig av andre lys
 * En buss eller en "person/personrunding" skal få beskjed fra aktuelle lysreguleringer når de kan gå over/starte animasjonen.
+
+Koordinater
+southwest 275 x 75
+southeast 463 x 56
+northwest 262 x 296
+northeast 475 x 310

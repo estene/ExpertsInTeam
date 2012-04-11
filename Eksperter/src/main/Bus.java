@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+
 
 /**
  * Bus-class
