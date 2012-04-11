@@ -15,6 +15,10 @@ public class PedestrianLight {
 		this.placement = placement;
 		pedSensor = new TLSensor();
 	}
+	
+	public boolean isGreen(){
+		return isGreen;
+	}
 
 	public int getPeopleAmount(){
 		return pedSensor.getPersonQueueAmount();

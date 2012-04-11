@@ -103,16 +103,16 @@ public class OPController{
 		}else{
 			if(!pedPriority){
 				currentGreenDirection = greenDirection;
-				if(greenDirection == Direction.FROMSOUTHTONORTH){
+				if(greenDirection == Direction.FROMSOUTHTONORTH && !southEastLight.getPedLight1().isGreen()){
 					changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
 					changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
 					changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
 					
-					changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
-					changeLights(Direction.FROMNORTHTOSOUTH, LightColour.GREEN);
+					if(!southWestLight.getPedLight2().isGreen()) changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
+					if(!northEastLight.getPedLight1().isGreen()) changeLights(Direction.FROMNORTHTOSOUTH, LightColour.GREEN);
 					changeLights(greenDirection, LightColour.GREEN);
 				}
-				else if(greenDirection == Direction.FROMSOUTHTOWEST){
+				else if(greenDirection == Direction.FROMSOUTHTOWEST && !southEastLight.getPedLight1().isGreen() && !southWestLight.getPedLight2().isGreen()){
 					changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
 					changeLights(Direction.FROMNORTHTOWEST, LightColour.RED);
 					
@@ -120,36 +120,38 @@ public class OPController{
 					changeLights(Direction.FROMWESTTOSOUTH, LightColour.GREEN);
 					changeLights(greenDirection, LightColour.GREEN);
 				}
-				else if(greenDirection == Direction.FROMNORTHTOSOUTH){
+				else if(greenDirection == Direction.FROMNORTHTOSOUTH && !northEastLight.getPedLight1().isGreen() && !southEastLight.getPedLight1().isGreen()){
 					changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
 					changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
 					changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
 					
-					changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
+					if(!northWestLight.getPedLight2().isGreen()) changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
 					changeLights(Direction.FROMSOUTHTONORTH, LightColour.GREEN);
 					changeLights(greenDirection, LightColour.GREEN);
 				}
-				else if(greenDirection == Direction.FROMNORTHTOWEST){
+				else if(greenDirection == Direction.FROMNORTHTOWEST  && !northWestLight.getPedLight2().isGreen()){
 					changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
 					changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
 					
-					changeLights(Direction.FROMWESTTONORTH, LightColour.GREEN);
-					changeLights(Direction.FROMWESTTOSOUTH, LightColour.GREEN);
-					changeLights(greenDirection, LightColour.GREEN);
+					if(!southWestLight.getPedLight1().isGreen()) changeLights(Direction.FROMWESTTOSOUTH, LightColour.GREEN);
+					if(!northEastLight.getPedLight1().isGreen()){
+						changeLights(Direction.FROMWESTTONORTH, LightColour.GREEN);					
+						changeLights(greenDirection, LightColour.GREEN);
+					}
 				}
-				else if(greenDirection == Direction.FROMWESTTONORTH){
+				else if(greenDirection == Direction.FROMWESTTONORTH && !northWestLight.getPedLight2().isGreen()){
 					changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
 					changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
 					
-					changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
+					if(!northEastLight.getPedLight1().isGreen()) changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
 					changeLights(Direction.FROMWESTTOSOUTH, LightColour.GREEN);
 					changeLights(greenDirection, LightColour.GREEN);
 				}
-				else if(greenDirection == Direction.FROMWESTTOSOUTH){
+				else if(greenDirection == Direction.FROMWESTTOSOUTH && !southWestLight.getPedLight2().isGreen()){
 					changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
 					changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
 					
-					changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
+					if(!northWestLight.getPedLight2().isGreen()) changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
 					changeLights(Direction.FROMWESTTONORTH, LightColour.GREEN);
 					changeLights(greenDirection, LightColour.GREEN);
 				}
@@ -183,15 +185,6 @@ public class OPController{
 			
 		}
 	}
-	/**
-	private void trySleep(int time){
-		try{
-			sleep(time);
-		}catch(Exception e){
-			System.err.println("There was an error trying to sleep: " + e);
-		}
-	}
-	**/
 	
 	
 	/**
