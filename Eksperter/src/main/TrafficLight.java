@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,33 +40,38 @@ public class TrafficLight{
 	private PedestrianLight pedLight2 = null; // pedLight2 will always be the crossing on the west road.
 			
 	private final Placement placement;
+	
 	public TrafficLight(Placement placement){
 		timer = new Timer();
 		this.placement = placement;		
 		classLoader = Thread.currentThread().getContextClassLoader();
-		image = getImage("red24.png");
+		image = getImage("reddown.png");
 		
 		if(placement == Placement.SOUTHEAST) {
 			pedLight1 = new PedestrianLight(Placement.SOUTH);
-			x = 463;
-			y = 56;
+			image = getImage("redleft.png");
+			x = 487;
+			y = 48;
 		}
 		else if(placement == Placement.SOUTHWEST){
 			pedLight1 = new PedestrianLight(Placement.SOUTH);
 			pedLight2 = new PedestrianLight(Placement.WEST);
-			x = 275;
-			y = 75;
+			image = getImage("reddown.png");
+			x = 290;
+			y = 32;
 		}
 		else if(placement == Placement.NORTHWEST){
 			pedLight1 = new PedestrianLight(Placement.NORTH);
 			pedLight2 = new PedestrianLight(Placement.WEST);
-			x = 262;
-			y = 296;
+			image = getImage("redright.png");
+			x = 210;
+			y = 265;
 		}
 		else if(placement == Placement.NORTHEAST)  {
 			pedLight1 = new PedestrianLight(Placement.NORTH);
+			image = getImage("redup.png");
 			x = 475;
-			y = 310;
+			y = 315;
 		}
 				
 		//initializes all the lights to green so that the underlying logic asdfadsgsdfb
