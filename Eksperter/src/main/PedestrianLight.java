@@ -18,6 +18,7 @@ public class PedestrianLight {
 	private Image image;
 	private int x,y;
 	
+	// Takes x and y coordinates from traffic light to ease placement
 	public PedestrianLight(Placement placement, int x , int y){
 		this.myColour = LightColour.RED;
 		this.isGreen = false;
