@@ -48,8 +48,11 @@ public class OPController{
 		northWestLight.changeColour(dir, lC);
 	}
 	
-	private void changePedLights(Direction dir, LightColour lC){
-		southEastLight.changePedLight(placement);
+	private void changePedLights(Direction dir){
+		southEastLight.changePedLight(dir);
+		southWestLight.changePedLight(dir);
+		northWestLight.changePedLight(dir);
+		northEastLight.changePedLight(dir);
 	}
 	
 	public void addBusToQueue(Bus bus){
@@ -157,7 +160,23 @@ public class OPController{
 					changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
 					changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
 					
+					changePedLights(greenDirection);
+				}
+				else if(greenDirection == Direction.FROMNORTHTOSOUTH){ //For pedestrians
+					changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
+					changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
+					changeLights(Direction.FROMNORTHTOWEST, LightColour.RED);
+					changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
 					
+					changePedLights(greenDirection);
+				}
+				else if(greenDirection == Direction.FROMWESTTONORTH){ //For pedestrians
+					changeLights(Direction.FROMNORTHTOWEST, LightColour.RED);
+					changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
+					changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
+					changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
+					
+					changePedLights(greenDirection);
 				}
 			}
 			
