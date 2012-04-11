@@ -4,6 +4,9 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Future;
 
 import javax.imageio.ImageIO;
 
@@ -21,6 +24,7 @@ public class TrafficLight{
 	private Image image;
 	private ClassLoader classLoader;
 	private int x,y;
+	Timer timer;
 	
 	protected LightColour fromSouthToNorth;
 	protected LightColour fromSouthToWest;
@@ -36,6 +40,7 @@ public class TrafficLight{
 			
 	private final Placement placement;
 	public TrafficLight(Placement placement){
+		timer = new Timer();
 		this.placement = placement;		
 		classLoader = Thread.currentThread().getContextClassLoader();
 		image = getImage("red24.png");
@@ -77,22 +82,40 @@ public class TrafficLight{
 	public void draw(Graphics g) {
 		g.drawImage(image, x, y, null); 
 	}
-
+	
+    class GreenToRed extends TimerTask  {  
+        public void run (  )   {  
+            System.out.println ( "Change lights" ) ; 
+            image = getImage("red24.png");
+            timer.cancel (  ) ; //Terminate the timer thread 
+         }  
+     }  
+    
+    class RedToGreen extends TimerTask  {  
+        public void run (  )   {  
+            System.out.println ( "Change lights" ) ; 
+            image = getImage("green32.png");
+            timer.cancel (  ) ; //Terminate the timer thread 
+         }  
+     }  
+    
+	
 	public synchronized void changeColour(Direction dir, LightColour lC){
 		switch (dir) {
-		case FROMSOUTHTONORTH:									
+		case FROMSOUTHTONORTH:
 			this.fromSouthToNorth = LightColour.YELLOW;
+			image = getImage("yellow24.png");
 //			this.fromNorthToSouth = LightColour.YELLOW;
 //			this.fromNorthToWest = LightColour.YELLOW;
 			if(this.fromSouthToNorth != lC){
 				if(lC == LightColour.GREEN){
-//					trySleep(lC);
+					timer.schedule ( new RedToGreen() , 5000 ) ;
 					this.fromSouthToNorth = LightColour.RED;
 //					this.fromNorthToSouth = LightColour.RED;
 //					this.fromNorthToWest = LightColour.RED;
 				}
 				else if(lC == LightColour.RED){
-//					trySleep(lC);
+					timer.schedule ( new GreenToRed() , 5000 ) ;
 					this.fromSouthToNorth = LightColour.GREEN;
 //					this.fromNorthToSouth = LightColour.GREEN;
 //					this.fromNorthToWest = LightColour.GREEN;
@@ -216,23 +239,6 @@ public class TrafficLight{
 			this.pedLight1.changeColour();
 		}
 	}
-/**	
-	protected void trySleep(LightColour colour){
-		if(colour == LightColour.GREEN){
-			try{
-				sleep(greenToRedSleepTime);
-			}catch(Exception e){
-				System.err.println("There was an error trying to sleep: " + e);
-			}
-		}else if(colour == LightColour.RED){
-			try{
-				sleep(redToGreenSleepTime);
-			}catch(Exception e){
-				System.err.println("There was an error trying to sleep: " + e);
-			}
-		}
-	}
-**/
 	
 	public PedestrianLight getPedLight1(){
 		return this.pedLight1;

@@ -31,7 +31,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 	private Bus bus;
 	private boolean animate = false;
 	private ClassLoader classLoader;
-	private TrafficLight neLight;
+	private TrafficLight neLight, nwLight, seLight, swLight;
 	
     public AnimationPanel() {   
     	this.setBounds(481, 11, 590, 425);
@@ -40,6 +40,10 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
     	person = new Person(285,85);
     	bus = new Bus(120,180);
     	neLight = new TrafficLight(Placement.NORTHEAST);
+    	nwLight = new TrafficLight(Placement.NORTHWEST);
+    	seLight = new TrafficLight(Placement.SOUTHEAST);
+    	swLight = new TrafficLight(Placement.SOUTHWEST);
+    	//neLight.changeColour(Direction.FROMSOUTHTONORTH, LightColour.GREEN);
 		t = new Timer(25, this);
 		t.start();
 		addMouseMotionListener(this);
@@ -52,6 +56,9 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
         person.draw(g);
         bus.draw(g);
         neLight.draw(g);
+        nwLight.draw(g);
+        seLight.draw(g);
+        swLight.draw(g);
     }
     
     public void startAnimation() {
