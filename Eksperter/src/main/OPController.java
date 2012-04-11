@@ -98,8 +98,35 @@ public class OPController extends Thread{
 			currentGreenDirection = greenDirection;
 			if(greenDirection == Direction.FROMSOUTHTONORTH){
 				changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
+				changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
+				changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
+				
+				changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
+				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.GREEN);
 				changeLights(greenDirection, LightColour.GREEN);
 			}
+			else if(greenDirection == Direction.FROMSOUTHTOWEST){
+				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
+				changeLights(Direction.FROMNORTHTOWEST, LightColour.RED);
+				
+				changeLights(Direction.FROMSOUTHTONORTH, LightColour.GREEN);
+				changeLights(Direction.FROMSOUTHTOWEST, LightColour.GREEN);
+				changeLights(Direction.FROMWESTTOSOUTH, LightColour.GREEN);
+			}
+			else if(greenDirection == Direction.FROMNORTHTOSOUTH){
+				changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
+				changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
+				changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
+				
+				changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
+				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.GREEN);
+				changeLights(greenDirection, LightColour.GREEN);
+			}
+			else if(greenDirection == Direction.FROMNORTHTOWEST){
+				changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
+				changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
+			}
+			
 		}
 	}
 	
