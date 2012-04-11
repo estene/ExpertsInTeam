@@ -1,6 +1,12 @@
 package main;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 public class PedestrianLight {
 	
@@ -8,12 +14,30 @@ public class PedestrianLight {
 	private Placement placement;
 	private TLSensor pedSensor;
 	private boolean isGreen;
+	private ClassLoader classLoader;
+	private Image image;
+	private int x,y;
 	
-	public PedestrianLight(Placement placement){
+	public PedestrianLight(Placement placement, int x , int y){
 		this.myColour = LightColour.RED;
 		this.isGreen = false;
 		this.placement = placement;
+		classLoader = Thread.currentThread().getContextClassLoader();
 		pedSensor = new TLSensor();
+		image = getImage("");
+		this.x = x;
+		this.y = y;
+		
+		// Hvis vi trenger å gjøre noe spesielt med en av dem
+		if(placement == Placement.SOUTH) {
+			image = getImage("redman.png");
+		}
+		else if(placement == Placement.NORTH) {
+			image = getImage("redman.png");
+		}
+		else if(placement == Placement.WEST) {
+			image = getImage("redman.png");
+		}
 	}
 
 	public int getPeopleAmount(){
@@ -26,6 +50,10 @@ public class PedestrianLight {
 		}
 	}
 	
+	public void draw(Graphics g) {
+		g.drawImage(image, x, y, null); 
+	}
+	
 	public void changeColour(){
 		if(myColour == LightColour.RED){
 			this.myColour = LightColour.GREEN;
@@ -34,6 +62,19 @@ public class PedestrianLight {
 			this.myColour = LightColour.RED;
 			this.isGreen = false;
 		}
+	}
+	
+	// Retrieve image from resource
+	public Image getImage(String imgName) {
+		InputStream input = classLoader.getResourceAsStream("" + imgName);
+		Image inputImage = null;
+		try {
+			inputImage = ImageIO.read(input);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return inputImage;
 	}
 	
 }

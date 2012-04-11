@@ -38,7 +38,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
     	nwLight = new TrafficLight(Placement.NORTHWEST);
     	seLight = new TrafficLight(Placement.SOUTHEAST);
     	swLight = new TrafficLight(Placement.SOUTHWEST);
-    	//neLight.changeColour(Direction.FROMSOUTHTONORTH, LightColour.GREEN);
+    	seLight.changeColour(Direction.FROMSOUTHTONORTH, LightColour.GREEN);
 		t = new Timer(25, this);
 		t.start();
 		addMouseMotionListener(this);
