@@ -11,7 +11,7 @@ import javax.swing.text.ChangedCharSetException;
  *
  */
 
-public class OPController extends Thread{
+public class OPController{
 	private TrafficLight northWestLight;
 	private TrafficLight northEastLight;
 	
@@ -110,8 +110,8 @@ public class OPController extends Thread{
 				changeLights(Direction.FROMNORTHTOWEST, LightColour.RED);
 				
 				changeLights(Direction.FROMSOUTHTONORTH, LightColour.GREEN);
-				changeLights(Direction.FROMSOUTHTOWEST, LightColour.GREEN);
 				changeLights(Direction.FROMWESTTOSOUTH, LightColour.GREEN);
+				changeLights(greenDirection, LightColour.GREEN);
 			}
 			else if(greenDirection == Direction.FROMNORTHTOSOUTH){
 				changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
@@ -119,17 +119,24 @@ public class OPController extends Thread{
 				changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
 				
 				changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
-				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.GREEN);
+				changeLights(Direction.FROMSOUTHTONORTH, LightColour.GREEN);
 				changeLights(greenDirection, LightColour.GREEN);
 			}
 			else if(greenDirection == Direction.FROMNORTHTOWEST){
 				changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
-				changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
+				changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
+				
+				changeLights(Direction.FROMWESTTONORTH, LightColour.GREEN);
+				changeLights(Direction.FROMWESTTOSOUTH, LightColour.GREEN);
+				changeLights(greenDirection, LightColour.GREEN);
+			}
+			else if(greenDirection == Direction.FROMWESTTONORTH){
+				
 			}
 			
 		}
 	}
-	
+	/**
 	private void trySleep(int time){
 		try{
 			sleep(time);
@@ -137,6 +144,8 @@ public class OPController extends Thread{
 			System.err.println("There was an error trying to sleep: " + e);
 		}
 	}
+	**/
+	
 	
 	/**
 	 * This method calculates which light to set based on the values amount of pedestrians at a trafficlight, amount of people in the bus
