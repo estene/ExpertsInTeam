@@ -131,7 +131,20 @@ public class OPController{
 				changeLights(greenDirection, LightColour.GREEN);
 			}
 			else if(greenDirection == Direction.FROMWESTTONORTH){
+				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
+				changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
 				
+				changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
+				changeLights(Direction.FROMWESTTOSOUTH, LightColour.GREEN);
+				changeLights(greenDirection, LightColour.GREEN);
+			}
+			else if(greenDirection == Direction.FROMWESTTOSOUTH){
+				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
+				changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
+				
+				changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
+				changeLights(Direction.FROMWESTTONORTH, LightColour.GREEN);
+				changeLights(greenDirection, LightColour.GREEN);
 			}
 			
 		}
