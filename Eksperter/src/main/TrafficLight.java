@@ -219,23 +219,23 @@ public class TrafficLight{
 		}
 	}
 	
-	public void changePedLight(Placement placement){
-		if(this.placement == Placement.NORTHEAST && placement == Placement.NORTH){
+	public void changePedLight(Direction dir){
+		if(this.placement == Placement.NORTHEAST && dir == Direction.FROMNORTHTOSOUTH){
 			this.pedLight1.changeColour();
 		}else
-		if(this.placement == Placement.NORTHWEST && placement == Placement.NORTH){
+		if(this.placement == Placement.NORTHWEST && dir == Direction.FROMNORTHTOSOUTH){
 			this.pedLight1.changeColour();
 		}else
-		if(this.placement == Placement.NORTHWEST && placement == Placement.WEST){
+		if(this.placement == Placement.NORTHWEST && dir == Direction.FROMWESTTONORTH){
 			this.pedLight2.changeColour();
 		}else
-		if(this.placement == Placement.SOUTHWEST && placement == Placement.WEST){
+		if(this.placement == Placement.SOUTHWEST && dir == Direction.FROMWESTTONORTH){
 			this.pedLight2.changeColour();
 		}else
-		if(this.placement == Placement.SOUTHWEST && placement == Placement.SOUTH){
+		if(this.placement == Placement.SOUTHWEST && dir == Direction.FROMSOUTHTONORTH){
 			this.pedLight1.changeColour();
 		}else
-		if(this.placement == Placement.SOUTHEAST && placement == Placement.SOUTH){
+		if(this.placement == Placement.SOUTHEAST && dir == Direction.FROMSOUTHTONORTH){
 			this.pedLight1.changeColour();
 		}
 	}
