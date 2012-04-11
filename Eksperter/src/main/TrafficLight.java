@@ -56,22 +56,22 @@ public class TrafficLight{
 		else if(placement == Placement.SOUTHWEST){
 			pedLight1 = new PedestrianLight(Placement.SOUTH);
 			pedLight2 = new PedestrianLight(Placement.WEST);
-			image = getImage("reddown.png");
-			x = 290;
-			y = 32;
+			image = getImage("reddownright.png");
+			x = 235;
+			y = 300;
 		}
 		else if(placement == Placement.NORTHWEST){
 			pedLight1 = new PedestrianLight(Placement.NORTH);
 			pedLight2 = new PedestrianLight(Placement.WEST);
 			image = getImage("redright.png");
-			x = 210;
-			y = 265;
+			x = 235;
+			y = 268;
 		}
 		else if(placement == Placement.NORTHEAST)  {
 			pedLight1 = new PedestrianLight(Placement.NORTH);
-			image = getImage("redup.png");
-			x = 475;
-			y = 315;
+			image = getImage("redcurvedleft.png");
+			x = 465;
+			y = 300;
 		}
 				
 		//initializes all the lights to green so that the underlying logic asdfadsgsdfb
