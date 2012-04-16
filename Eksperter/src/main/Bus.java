@@ -23,20 +23,25 @@ public class Bus {
 	private Image image;
 	private ClassLoader classLoader;
 	private Direction myHeadingDirection;
-	private ArrayList<Person> personQueue;
+	private String personQueue;
 	private boolean waitingAtOverpass;
 	
-	public Bus(int x, int y){
+	public Bus(int x, int y, String numberPeople, Direction mHD){
 		xDir = 1;
 		yDir = 0;
 		coordinates = new GPSCoordinates(x,y,xDir,yDir);
 		this.x = coordinates.getxCoord();
 		this.y = coordinates.getyCoord();
-		personQueue = new ArrayList<Person>();
+		personQueue = numberPeople;
 		waitingAtOverpass = false;
+		myHeadingDirection = mHD;
 		
 		classLoader = Thread.currentThread().getContextClassLoader();
 		image = getImage("bussmall.png");
+	}
+	
+	public int getPeopleAmount(){
+		return Integer.valueOf(personQueue);
 	}
 	
 	public boolean isWaitingAtOverpass(){
@@ -46,11 +51,11 @@ public class Bus {
 	public void setWaitingAtOverpass(boolean b){
 		waitingAtOverpass = b;
 	}
-	
+	/**
 	public int getPeopleAmount(){
 		return personQueue.size();
 	}
-	
+	**/
 	public Direction getHeadingDirection(){
 		return this.myHeadingDirection;
 	}

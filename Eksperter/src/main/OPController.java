@@ -180,13 +180,10 @@ public class OPController{
 					
 					changePedLights(greenDirection);
 				}
-			}
-			
-			
+			}			
 		}
 	}
-	
-	
+		
 	/**
 	 * This method calculates which light to set based on the values amount of pedestrians at a trafficlight, amount of people in the bus
 	 * and how late the bus is according to schedule.

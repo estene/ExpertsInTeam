@@ -12,6 +12,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -27,18 +28,18 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 	private static final long serialVersionUID = 1L;
 	private Image image;
 	private Timer t;
-	private Person person;
-	private Bus bus;
 	private boolean animate = false;
 	private ClassLoader classLoader;
 	private TrafficLight neLight, nwLight, seLight, swLight;
+	private Scenario scen;
 	
     public AnimationPanel() {   
     	this.setBounds(481, 11, 590, 425);
 		classLoader = Thread.currentThread().getContextClassLoader();
 		image = getImage("prinsenkryssetmedium.png");
-    	person = new Person(285,85);
-    	bus = new Bus(120,180);
+    	
+		scen = new Scenario("scen1");
+		
     	neLight = new TrafficLight(Placement.NORTHEAST);
     	nwLight = new TrafficLight(Placement.NORTHWEST);
     	seLight = new TrafficLight(Placement.SOUTHEAST);
@@ -53,31 +54,29 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
     public void paintComponent(Graphics g) {
     	super.paintComponent(g); // Clean up
         g.drawImage(image, 0, 0, null); 
-        person.draw(g);
-        bus.draw(g);
+        
+        scen.draw(g);
+        
         neLight.draw(g);
         nwLight.draw(g);
         seLight.draw(g);
         swLight.draw(g);
     }
-    
-    public void startAnimation() {
-    	animate = true;
-    }
-	public void stopAnimation() {
-		animate = false;
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (animate == true) {
-			if (person.getY() >= 300 ) {
-				//stopAnimation();
-			}
-	        person.move();   
-	        bus.move();
+			scen.move();
 		}
 		repaint();
+	}
+	
+	public void startAnimation(){
+		this.animate = true;
+	}
+	
+	public void stopAnimation(){
+		this.animate = false;
 	}
 
 	@Override

@@ -21,15 +21,18 @@ public class Person {
 	private Image image;
 	private Font font;
 	private String number;
+	private Direction groupDirection;
 	
-	public Person(int x, int y){
+	public Person(int x, int y, String number, Direction dir){
 		font = new Font("Arial", Font.PLAIN, 20);
 		xDir = 0;
 		yDir = 1;
-		number = "20";
+		this.number = number;
 		coordinates = new GPSCoordinates(x,y,xDir,yDir);
 		this.x = coordinates.getxCoord();
 		this.y = coordinates.getyCoord();
+		
+		groupDirection = dir;
 		
 		classLoader = Thread.currentThread().getContextClassLoader();
 		image = getImage("");
@@ -38,10 +41,23 @@ public class Person {
 	
 	// Move the men
 	public void move() {
-		if (coordinates.getyCoord() >= 300 ) {
-			// hardcoded to test busmovement
-		}
-		else {
+		if (coordinates.getyCoord() <= 310 || coordinates.getyCoord() >= 60 || coordinates.getxCoord() <= 260 || coordinates.getxCoord() >= 500) {
+			if(groupDirection.equals(Direction.FROMWESTTOEASTSOUTH) || groupDirection.equals(Direction.FROMWESTTOEASTNORTH)){
+				xDir = 1;
+				yDir = 0;
+			}
+			else if(groupDirection.equals(Direction.FROMEASTTOWESTSOUTH) || groupDirection.equals(Direction.FROMEASTTOWESTNORTH)){
+				xDir = -1;
+				yDir = 0;
+			}
+			else if(groupDirection.equals(Direction.FROMNORTHTOSOUTH)){
+				xDir = 0;
+				yDir = -1;
+			}
+			else if(groupDirection.equals(Direction.FROMSOUTHTONORTH)){
+				xDir = 0;
+				yDir = 1;
+			}
 			x = coordinates.getxCoord();
 			y = coordinates.getyCoord();
 			x += coordinates.getxDir();
