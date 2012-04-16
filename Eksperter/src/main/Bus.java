@@ -63,12 +63,57 @@ public class Bus {
 	//Move da BUZ
 	public void move() {
 		//Hardcode direction change in order to test bus movement/animation - make this universal 
-		if (coordinates.getxCoord() > 330 ) {
-			coordinates.setyDir(1);
-			if (coordinates.getxCoord() > 400) {
-				coordinates.setxDir(0);
+		
+		if(myHeadingDirection.equals(Direction.FROMWESTTONORTH)){
+			coordinates.setxDir(1);
+			coordinates.setyDir(0);
+			if (coordinates.getxCoord() > 330 ) {
+				coordinates.setyDir(1);
+				if (coordinates.getxCoord() > 400) {
+					coordinates.setxDir(0);
+				}
 			}
 		}
+		else if(myHeadingDirection.equals(Direction.FROMSOUTHTOWEST)){
+			coordinates.setxDir(0);
+			coordinates.setyDir(-1);
+			if (coordinates.getyCoord() < 260) {
+				coordinates.setxDir(-1);
+				if (coordinates.getyCoord() < 130) {
+					coordinates.setyDir(0);
+				}
+			}
+		}
+		else if(myHeadingDirection.equals(Direction.FROMWESTTOSOUTH)){
+			coordinates.setyDir(0);
+			coordinates.setxDir(1);
+			if (coordinates.getxCoord() > 270) {
+				coordinates.setyDir(1);
+				if (coordinates.getyCoord() < 130) {
+					coordinates.setxDir(0);
+				}
+			}
+		}
+		else if(myHeadingDirection.equals(Direction.FROMNORTHTOWEST)){
+			coordinates.setyDir(1);
+			coordinates.setxDir(0);
+			if (coordinates.getyCoord() > 55) {
+				coordinates.setxDir(-1);
+				if (coordinates.getyCoord() > 130) {
+					coordinates.setxDir(-1);
+					coordinates.setyDir(0);
+				}
+			}
+		}
+		else if(myHeadingDirection.equals(Direction.FROMNORTHTOSOUTH)){
+			coordinates.setyDir(1);
+			coordinates.setxDir(0);
+		}
+		else if(myHeadingDirection.equals(Direction.FROMSOUTHTONORTH)){
+			coordinates.setyDir(-1);
+			coordinates.setxDir(0);
+		}
+		
 		x = coordinates.getxCoord();
 		y = coordinates.getyCoord();
 		x += coordinates.getxDir();
