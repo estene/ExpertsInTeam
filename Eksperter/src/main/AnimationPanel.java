@@ -18,7 +18,7 @@ import javax.swing.Timer;
 public class AnimationPanel extends JPanel implements ActionListener, MouseMotionListener{
 
     /**
-	 * Class that animates on the intersection - Prinsenkrysset. 
+	 * Class that animates scenarios in the intersection - Prinsenkrysset. 
 	 * @author Even
 	 */
 	private static final long serialVersionUID = 1L;
@@ -29,40 +29,49 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 	private TrafficLight neLight, nwLight, seLight, swLight;
 	private Scenario scen;
 	
+	/**
+	 * Constructor, initating the given scenario and other elements 
+	 */
     public AnimationPanel() {   
     	this.setBounds(481, 11, 590, 425);
 		classLoader = Thread.currentThread().getContextClassLoader();
 		image = getImage("prinsenkryssetmedium.png");
-    	
 		scen = new Scenario("scen1", this);
-		
     	neLight = new TrafficLight(Placement.NORTHEAST);
     	nwLight = new TrafficLight(Placement.NORTHWEST);
     	seLight = new TrafficLight(Placement.SOUTHEAST);
     	swLight = new TrafficLight(Placement.SOUTHWEST);
-    	//seLight.changeColour(Direction.FROMSOUTHTONORTH, LightColour.RED);
 		t = new Timer(25, this);
 		t.start();
 		addMouseMotionListener(this);
     }
     
+    /**
+     * 
+     * @return an arrayList of the type TrafficLight , containing all trafficlights in the intersection
+     */
     public ArrayList<TrafficLight> getTrafficLights(){
     	return new ArrayList<TrafficLight>(Arrays.asList(neLight, nwLight, seLight, swLight));
     }
 
+    
+    /**
+     * Paintcomponent method. Does all the draw calls for the scenarios and other elements in the animationPanel
+     */
     @Override
     public void paintComponent(Graphics g) {
     	super.paintComponent(g); // Clean up
         g.drawImage(image, 0, 0, null); 
-        
         scen.draw(g);
-        
         neLight.draw(g);
         nwLight.draw(g);
         seLight.draw(g);
         swLight.draw(g);
     }
 
+    /**
+     * actionPerformed method for the timer. This is called when the user presses the playbutton. 
+     */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (animate == true) {
@@ -89,7 +98,11 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 		System.out.println("Location: " + e.getX()+ " "+ e.getY());
 	}
 	
-	// Retrieve image from resource
+	/**
+	 * Method to create an image from the given filepath
+	 * @param imgName
+	 * @return inputImage , the loaded image from resource
+	 */
 	public Image getImage(String imgName) {
 		InputStream input = classLoader.getResourceAsStream("" + imgName);
 		Image inputImage = null;
