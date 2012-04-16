@@ -2,10 +2,6 @@ package main;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.PointerInfo;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -15,7 +11,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -44,7 +39,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
     	nwLight = new TrafficLight(Placement.NORTHWEST);
     	seLight = new TrafficLight(Placement.SOUTHEAST);
     	swLight = new TrafficLight(Placement.SOUTHWEST);
-    	//neLight.changeColour(Direction.FROMSOUTHTONORTH, LightColour.GREEN);
+    	seLight.changeColour(Direction.FROMSOUTHTONORTH, LightColour.GREEN);
 		t = new Timer(25, this);
 		t.start();
 		addMouseMotionListener(this);
