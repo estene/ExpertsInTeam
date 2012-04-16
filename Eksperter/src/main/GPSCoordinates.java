@@ -53,6 +53,7 @@ public class GPSCoordinates {
 	}
 
 	public void setyDir(int yDir) {
-		this.yDir = yDir;
+		this.yDir = -1*yDir;
+		
 	}
 }

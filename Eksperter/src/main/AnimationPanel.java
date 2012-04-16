@@ -9,6 +9,7 @@ import java.awt.event.MouseMotionListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -33,16 +34,20 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 		classLoader = Thread.currentThread().getContextClassLoader();
 		image = getImage("prinsenkryssetmedium.png");
     	
-		scen = new Scenario("scen1");
+		scen = new Scenario("scen1", this);
 		
     	neLight = new TrafficLight(Placement.NORTHEAST);
     	nwLight = new TrafficLight(Placement.NORTHWEST);
     	seLight = new TrafficLight(Placement.SOUTHEAST);
     	swLight = new TrafficLight(Placement.SOUTHWEST);
-    	seLight.changeColour(Direction.FROMSOUTHTONORTH, LightColour.GREEN);
+    	//seLight.changeColour(Direction.FROMSOUTHTONORTH, LightColour.RED);
 		t = new Timer(25, this);
 		t.start();
 		addMouseMotionListener(this);
+    }
+    
+    public ArrayList<TrafficLight> getTrafficLights(){
+    	return new ArrayList<TrafficLight>(Arrays.asList(neLight, nwLight, seLight, swLight));
     }
 
     @Override

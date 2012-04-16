@@ -67,8 +67,9 @@ public class Bus {
 		if(myHeadingDirection.equals(Direction.FROMWESTTONORTH)){
 			coordinates.setxDir(1);
 			coordinates.setyDir(0);
-			if (coordinates.getxCoord() > 330 ) {
-				coordinates.setyDir(1);
+			
+			if (coordinates.getxCoord() > 330) {
+				coordinates.setyDir(-1);
 				if (coordinates.getxCoord() > 400) {
 					coordinates.setxDir(0);
 				}
@@ -79,7 +80,7 @@ public class Bus {
 			coordinates.setyDir(-1);
 			if (coordinates.getyCoord() < 260) {
 				coordinates.setxDir(-1);
-				if (coordinates.getyCoord() < 130) {
+				if (coordinates.getyCoord() < 118) {
 					coordinates.setyDir(0);
 				}
 			}
@@ -99,7 +100,7 @@ public class Bus {
 			coordinates.setxDir(0);
 			if (coordinates.getyCoord() > 55) {
 				coordinates.setxDir(-1);
-				if (coordinates.getyCoord() > 130) {
+				if (coordinates.getyCoord() > 118) {
 					coordinates.setxDir(-1);
 					coordinates.setyDir(0);
 				}
@@ -112,6 +113,67 @@ public class Bus {
 		else if(myHeadingDirection.equals(Direction.FROMSOUTHTONORTH)){
 			coordinates.setyDir(-1);
 			coordinates.setxDir(0);
+		}
+		
+		x = coordinates.getxCoord();
+		y = coordinates.getyCoord();
+		x += coordinates.getxDir();
+		y -= coordinates.getyDir();
+		coordinates.setxCoord(x);
+		coordinates.setyCoord(y);
+	}
+	
+	public void stopForRed() {
+		//Hardcode direction change in order to test bus movement/animation - make this universal 
+		
+		if(myHeadingDirection.equals(Direction.FROMWESTTONORTH)){
+			coordinates.setxDir(1);
+			coordinates.setyDir(0);
+			
+			if (coordinates.getxCoord() > 240) {
+				coordinates.setyDir(0);
+				coordinates.setxDir(0);
+				}
+		}
+		else if(myHeadingDirection.equals(Direction.FROMSOUTHTOWEST)){
+			coordinates.setxDir(0);
+			coordinates.setyDir(-1);
+			if (coordinates.getyCoord() < 315) {
+				coordinates.setxDir(0);
+				coordinates.setyDir(0);
+			}
+		}
+		else if(myHeadingDirection.equals(Direction.FROMWESTTOSOUTH)){
+			coordinates.setyDir(0);
+			coordinates.setxDir(1);
+			if (coordinates.getxCoord() > 240) {
+				coordinates.setyDir(0);
+				coordinates.setxDir(0);
+			}
+		}
+		else if(myHeadingDirection.equals(Direction.FROMNORTHTOWEST)){
+			coordinates.setyDir(1);
+			coordinates.setxDir(0);
+			if (coordinates.getyCoord() > 25) {
+				coordinates.setxDir(0);
+				coordinates.setyDir(0);
+			}
+		}
+		else if(myHeadingDirection.equals(Direction.FROMNORTHTOSOUTH)){
+			coordinates.setyDir(1);
+			coordinates.setxDir(0);
+			if (coordinates.getyCoord() > 25) {
+				coordinates.setxDir(0);
+				coordinates.setyDir(0);
+			}
+		}
+		else if(myHeadingDirection.equals(Direction.FROMSOUTHTONORTH)){
+			coordinates.setyDir(-1);
+			coordinates.setxDir(0);
+			if (coordinates.getyCoord() < 315) {
+				coordinates.setxDir(0);
+				coordinates.setyDir(0);
+			}
 		}
 		
 		x = coordinates.getxCoord();

@@ -126,6 +126,9 @@ public class TrafficLight{
     
 	
 	public synchronized void changeColour(Direction dir, LightColour lC){
+		
+		System.out.println("Nå blir changeColour kalt..");
+		
 		switch (dir) {
 		case FROMSOUTHTONORTH:
 			this.fromSouthToNorth = LightColour.YELLOW;

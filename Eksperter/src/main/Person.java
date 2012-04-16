@@ -43,20 +43,21 @@ public class Person {
 	public void move() {
 		if (coordinates.getyCoord() <= 310 || coordinates.getyCoord() >= 60 || coordinates.getxCoord() <= 260 || coordinates.getxCoord() >= 500) {
 			if(groupDirection.equals(Direction.FROMWESTTOEASTSOUTH) || groupDirection.equals(Direction.FROMWESTTOEASTNORTH)){
-				xDir = 1;
-				yDir = 0;
+				coordinates.setxDir(1);
+				coordinates.setyDir(0);
 			}
 			else if(groupDirection.equals(Direction.FROMEASTTOWESTSOUTH) || groupDirection.equals(Direction.FROMEASTTOWESTNORTH)){
-				xDir = -1;
-				yDir = 0;
+				coordinates.setxDir(-1);
+				coordinates.setyDir(0);
 			}
 			else if(groupDirection.equals(Direction.FROMNORTHTOSOUTH)){
-				xDir = 0;
-				yDir = -1;
+				coordinates.setxDir(0);
+				coordinates.setyDir(-1);
+				
 			}
 			else if(groupDirection.equals(Direction.FROMSOUTHTONORTH)){
-				xDir = 0;
-				yDir = 1;
+				coordinates.setxDir(0);
+				coordinates.setyDir(1);
 			}
 			x = coordinates.getxCoord();
 			y = coordinates.getyCoord();
@@ -89,6 +90,9 @@ public class Person {
 		return coordinates;
 	}
 
+	public Direction getGroupDirection(){
+		return this.groupDirection;
+	}
 
 	public void setCoords(GPSCoordinates coords) {
 		this.coordinates = coords;
