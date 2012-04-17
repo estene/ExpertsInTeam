@@ -67,7 +67,10 @@ public class Person {
 			coordinates.setyCoord(y);
 		}
 	}
-	
+	/**
+	 * Person-class draw method. Draws a circle and a number inside, which represents the number of people at that crossing
+	 * @param g
+	 */
 	public void draw(Graphics g) {
 		g.setColor(Color.RED);
 		g.fillOval(coordinates.getxCoord(), coordinates.getyCoord(), 30, 30);
@@ -98,7 +101,11 @@ public class Person {
 		this.coordinates = coords;
 	}
 	
-	// Retrieve image from resource
+	/**
+	 * Method to create an image from the given filepath
+	 * @param imgName
+	 * @return inputImage , the loaded image from resource
+	 */
 	public Image getImage(String imgName) {
 		InputStream input = classLoader.getResourceAsStream("" + imgName);
 		Image inputImage = null;

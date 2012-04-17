@@ -13,7 +13,7 @@ import javax.imageio.ImageIO;
  * Bus-class
  * @author Even, Cato
  * 
- * Even -> Hvor skal det bestemmes hvor bussen kommer fra?
+ * The bus class is responsible for creating the bus objects
  *
  */
 public class Bus {
@@ -26,6 +26,13 @@ public class Bus {
 	private String personQueue;
 	private boolean waitingAtOverpass;
 	
+	/**
+	 * Constructor
+	 * @param x - x coordinate of bus
+	 * @param y - y coordinate of bus
+	 * @param numberPeople - number of people on bus
+	 * @param mHD - the bus' heading direction
+	 */
 	public Bus(int x, int y, String numberPeople, Direction mHD){
 		xDir = 1;
 		yDir = 0;
@@ -60,9 +67,10 @@ public class Bus {
 		return this.myHeadingDirection;
 	}
 	
-	//Move da BUZ
+	/**
+	 * The bus' move method . checks which direction the bus is headed and adjusts x-direction , y-direction and sets the x and y coordinates.
+	 */
 	public void move() {
-		//Hardcode direction change in order to test bus movement/animation - make this universal 
 		
 		if(myHeadingDirection.equals(Direction.FROMWESTTONORTH)){
 			coordinates.setxDir(1);
@@ -123,8 +131,11 @@ public class Bus {
 		coordinates.setyCoord(y);
 	}
 	
+	/**
+	 * If there is a red light the bus should move to the light and stop
+	 */
 	public void stopForRed() {
-		//Hardcode direction change in order to test bus movement/animation - make this universal 
+		
 		
 		if(myHeadingDirection.equals(Direction.FROMWESTTONORTH)){
 			coordinates.setxDir(1);
@@ -184,6 +195,10 @@ public class Bus {
 		coordinates.setyCoord(y);
 	}
 	
+	/**
+	 * Bus' draw method, simply draws the bus at x and y coords.
+	 * @param g
+	 */
 	public void draw(Graphics g) {
 		g.drawImage(image, x, y, null); 
 	}
@@ -227,7 +242,11 @@ public class Bus {
 		this.y = y;
 	}
 	
-	// Retrieve image from resource
+	/**
+	 * Method to create an image from the given filepath
+	 * @param imgName
+	 * @return inputImage , the loaded image from resource
+	 */
 	public Image getImage(String imgName) {
 		InputStream input = classLoader.getResourceAsStream("" + imgName);
 		Image inputImage = null;
