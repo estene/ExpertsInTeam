@@ -8,6 +8,12 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+
+/**
+ * Class for the Pedestrian lights. 
+ * @author even, cato
+ *
+ */
 public class PedestrianLight {
 	
 	private LightColour myColour;
@@ -18,6 +24,12 @@ public class PedestrianLight {
 	private Image image;
 	private int x,y;
 	
+	/**
+	 * Constructor 
+	 * @param placement - what crossing is it located at
+	 * @param x - x position to place light
+	 * @param y - y position to place light
+	 */
 	// Takes x and y coordinates from traffic light to ease placement
 	public PedestrianLight(Placement placement, int x , int y){
 		this.myColour = LightColour.RED;

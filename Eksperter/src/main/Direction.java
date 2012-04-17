@@ -1,5 +1,11 @@
 package main;
 
+
+/**
+ * Enum class for bus and pedestrian directions
+ * @author even, cato
+ *
+ */
 public enum Direction {
 
 	FROMNORTHTOSOUTH,
