@@ -34,20 +34,21 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 	 * Constructor, initating the given scenario and other elements 
 	 */
     public AnimationPanel() {   
+
+		overpassController = new OPController();
     	this.setBounds(481, 11, 590, 425);
 		classLoader = Thread.currentThread().getContextClassLoader();
 		image = getImage("prinsenkryssetmedium.png");
 		scen = new Scenario("scen1", this);
-		
-		overpassController = new OPController();
-
+				
 		t = new Timer(25, this);
 		t.start();
 		addMouseMotionListener(this);
+		
     }
     
     public void addBusToQueue(Bus b){
-    	overpassController.addBusToQueue(b);
+    	System.out.println(overpassController);
     }
     
     public void removeBusFromQueue(Bus b){
@@ -87,6 +88,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (animate == true) {
+			overpassController.calculateNextAction();
 			scen.move();
 		}
 		repaint();
