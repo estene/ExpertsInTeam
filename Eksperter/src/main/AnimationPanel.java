@@ -28,6 +28,8 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 	private ClassLoader classLoader;
 	private TrafficLight neLight, nwLight, seLight, swLight;
 	private Scenario scen;
+	private OPController overpassController;
+	
 	
 	/**
 	 * Constructor, initating the given scenario and other elements 
@@ -37,10 +39,18 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 		classLoader = Thread.currentThread().getContextClassLoader();
 		image = getImage("prinsenkryssetmedium.png");
 		scen = new Scenario("scen1", this);
+		
+		overpassController = new OPController();
+		
     	neLight = new TrafficLight(Placement.NORTHEAST);
     	nwLight = new TrafficLight(Placement.NORTHWEST);
     	seLight = new TrafficLight(Placement.SOUTHEAST);
     	swLight = new TrafficLight(Placement.SOUTHWEST);
+
+    	swLight.changeColour(Direction.FROMSOUTHTOWEST, LightColour.RED);
+    	neLight.changeColour(Direction.FROMSOUTHTOWEST, LightColour.RED);
+    	//seLight.changeColour(Direction.FROMSOUTHTONORTH, LightColour.RED);
+
 		t = new Timer(25, this);
 		t.start();
 		addMouseMotionListener(this);

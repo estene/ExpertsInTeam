@@ -48,6 +48,8 @@ public class TrafficLight{
 		image = getImage("");
 		image2 = getImage("");
 		
+		
+		
 		if(placement == Placement.SOUTHEAST) {
 			image = getImage("redup.png");
 			image2 = getImage("redcurvedleft.png");
@@ -84,7 +86,7 @@ public class TrafficLight{
 			pedLight1 = new PedestrianLight(Placement.NORTH, 450, 55);
 		}
 				
-		//initializes all the lights to green so that the underlying logic asdfadsgsdfb
+		//initializes all the lights to red so that the underlying logic asdfadsgsdfb
 		fromNorthToSouth = LightColour.RED;
 		fromNorthToWest = LightColour.RED;
 		
@@ -159,12 +161,14 @@ public class TrafficLight{
 				if(lC == LightColour.GREEN){
 //					trySleep(LightColour.GREEN);
 					this.fromSouthToWest = LightColour.RED;
+					System.out.println("FROMSOUTHTOWEST KALT OM TIL RØD!");
 //					this.fromWestToSouth = LightColour.RED;
 //					this.fromSouthToNorth = LightColour.RED;
 				}
-				else if(this.fromSouthToWest == LightColour.RED){
+				else {
 //					trySleep(LightColour.RED);
 					this.fromSouthToWest = LightColour.GREEN;
+					System.out.println("FROMSOUTHTOWEST KALT OM TIL GRØNN!");
 //					this.fromWestToSouth = LightColour.GREEN;
 //					this.fromSouthToNorth = LightColour.GREEN;
 				}			
