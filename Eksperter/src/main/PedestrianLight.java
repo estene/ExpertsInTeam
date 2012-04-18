@@ -41,7 +41,7 @@ public class PedestrianLight {
 		this.x = x;
 		this.y = y;
 		
-		// Hvis vi trenger å gjøre noe spesielt med en av dem
+		// Hvis vi trenger ï¿½ gjï¿½re noe spesielt med en av dem
 		if(placement == Placement.SOUTH) {
 			image = getImage("redman.png");
 		}
@@ -56,9 +56,17 @@ public class PedestrianLight {
 	public boolean isGreen(){
 		return isGreen;
 	}
+	
+	public TLSensor getTLS(){
+		return pedSensor;
+	}
 
 	public int getPeopleAmount(){
 		return pedSensor.getPersonQueueAmount();
+	}
+	
+	public Person getPeople(){
+		return pedSensor.getPeople();
 	}
 	
 	public void buttonPushed(){

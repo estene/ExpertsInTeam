@@ -4,24 +4,27 @@ import java.util.ArrayList;
 
 public class TLSensor {
 
-	private ArrayList<Person> personQueue;
+	private Person personQueue;
 	
 	public TLSensor(){
-		personQueue = new ArrayList<Person>();
+		personQueue = null;
 	}
 	
 	public void addPerson(Person p){
-		personQueue.add(p);
+		personQueue = p;
 	}
 	
 	public void removePerson(Person p){
-		for(Person pQ : personQueue){
-			if(pQ == p) personQueue.remove(pQ);
-		}
+		
+	}
+	
+	public Person getPeople(){
+		return personQueue;
 	}
 	
 	public int getPersonQueueAmount(){
-		return personQueue.size();
+		if(personQueue != null)	return personQueue.getNumber();
+		return 0;
 	}
 	
 }
