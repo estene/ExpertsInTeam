@@ -66,7 +66,13 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
     public ArrayList<TrafficLight> getTrafficLights(){
     	return overpassController.getTrafficLights();
     }
-
+    /**
+     * Method is called from MainView when a user selects a scenario from the dropdown menu
+     * @param scenario
+     */
+    public void setScenario(String scenario) {
+    	scen = new Scenario(scenario, this);
+    }
     
     /**
      * Paintcomponent method. Does all the draw calls for the scenarios and other elements in the animationPanel

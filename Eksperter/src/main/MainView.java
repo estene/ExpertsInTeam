@@ -18,6 +18,8 @@ import javax.swing.JMenu;
 import java.awt.Font;
 import java.io.IOException;
 import java.io.InputStream;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  * MainView - containts frames,panels etc. 
@@ -62,17 +64,19 @@ public class MainView {
 	public void initialize() {
 		mainFrame = new JFrame();
 		mainFrame.setTitle("G6 Animation");
-		mainFrame.setBounds(100, 100, 1117, 517);
+		mainFrame.setBounds(100, 100, 1117, 545);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.getContentPane().setLayout(null);
 		classLoader = Thread.currentThread().getContextClassLoader();
 		
 		mainPanel = new JPanel();
-		mainPanel.setBounds(10, 0, 1081, 447);
+		mainPanel.setBounds(10, 0, 1081, 479);
 		mainFrame.getContentPane().add(mainPanel);
 		mainPanel.setLayout(null);
+
 		
 		animationPanel = new AnimationPanel();
+		animationPanel.setScenario("scen1");
 		animationPanel.setBounds(481, 11, 590, 425);
 		mainPanel.add(animationPanel);
 		animationPanel.setLayout(null);
@@ -117,6 +121,28 @@ public class MainView {
 		});
 		resetButton.setBounds(268, 355, 104, 81);
 		mainPanel.add(resetButton);
+		
+		final JComboBox scenarioBox = new JComboBox();
+		String[] scenarioString = {"Scenario 1", "Scenario 2", "Scenario 3"};
+		scenarioBox.setModel(new DefaultComboBoxModel(scenarioString));
+		scenarioBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (scenarioBox.getSelectedIndex() == 0) {
+					animationPanel.setScenario("scen1");
+				}
+				else if (scenarioBox.getSelectedIndex() == 1) {
+					animationPanel.setScenario("scen2");
+				}
+				else if (scenarioBox.getSelectedIndex() == 2) {
+					animationPanel.setScenario("scen3");
+				}
+			}
+		});
+
+		
+		scenarioBox.setToolTipText("Select scenario");
+		scenarioBox.setBounds(22, 448, 236, 20);
+		mainPanel.add(scenarioBox);
 		
 		JMenuBar menuBar = new JMenuBar();
 		mainFrame.setJMenuBar(menuBar);
