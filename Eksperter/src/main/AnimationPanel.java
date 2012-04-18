@@ -48,7 +48,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
     }
     
     public void addBusToQueue(Bus b){
-    	System.out.println(overpassController);
+    	overpassController.addBusToQueue(b);
     }
     
     public void removeBusFromQueue(Bus b){
