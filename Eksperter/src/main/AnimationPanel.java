@@ -38,7 +38,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
     	this.setBounds(481, 11, 590, 425);
 		classLoader = Thread.currentThread().getContextClassLoader();
 		image = getImage("prinsenkryssetmedium.png");
-		scen = new Scenario("scen1", this);
+//		scen = new Scenario("scen1", this);
 		
 		overpassController = new OPController();
 		
@@ -63,7 +63,13 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
     public ArrayList<TrafficLight> getTrafficLights(){
     	return new ArrayList<TrafficLight>(Arrays.asList(neLight, nwLight, seLight, swLight));
     }
-
+    /**
+     * Method is called from MainView when a user selects a scenario from the dropdown menu
+     * @param scenario
+     */
+    public void setScenario(String scenario) {
+    	scen = new Scenario(scenario, this);
+    }
     
     /**
      * Paintcomponent method. Does all the draw calls for the scenarios and other elements in the animationPanel
