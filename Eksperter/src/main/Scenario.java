@@ -71,6 +71,7 @@ public class Scenario {
 			}
 		}
 		for(Bus b : buses){
+			boolean isWaiting = b.isWaitingAtOverpass();
 			if(b.getHeadingDirection().equals(Direction.FROMSOUTHTOWEST)){
 				if(aP.getTrafficLights().get(0).fromSouthToWest.equals(LightColour.GREEN)){
 					b.setWaitingAtOverpass(false);
@@ -117,7 +118,7 @@ public class Scenario {
 				}
 			}
 			else if(b.getHeadingDirection().equals(Direction.FROMNORTHTOWEST)){
-				if(aP.getTrafficLights().get(0).fromNorthToWest.equals(LightColour.GREEN)){
+				if(aP.getTrafficLights().get(0).fromNorthToWest.equals(LightColour.GREEN)){					
 					b.setWaitingAtOverpass(false);
 					b.move();
 				}else{

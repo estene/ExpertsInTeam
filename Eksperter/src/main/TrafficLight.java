@@ -137,13 +137,13 @@ public class TrafficLight{
 //			this.fromNorthToWest = LightColour.YELLOW;
 			if(this.fromSouthToNorth != lC){
 				if(lC == LightColour.GREEN){
-					//timer.schedule ( new RedToGreen() , 1000 ) ;
+//					timer.schedule ( new RedToGreen() , 1000 ) ;
 					this.fromSouthToNorth = LightColour.GREEN;
 //					this.fromNorthToSouth = LightColour.RED;
 //					this.fromNorthToWest = LightColour.RED;
 				}
 				else{
-					//timer.schedule ( new GreenToRed() , 1000 ) ;
+//					timer.schedule ( new GreenToRed() , 1000 ) ;
 					this.fromSouthToNorth = LightColour.RED;
 //					this.fromNorthToSouth = LightColour.GREEN;
 //					this.fromNorthToWest = LightColour.GREEN;

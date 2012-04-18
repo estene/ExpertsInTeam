@@ -28,13 +28,14 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 	private ClassLoader classLoader;
 	private Scenario scen;
 	private OPController overpassController;
+	private int timer;
 	
 	
 	/**
 	 * Constructor, initating the given scenario and other elements 
 	 */
     public AnimationPanel() {   
-
+    	timer = 301;
 		overpassController = new OPController();
     	this.setBounds(481, 11, 590, 425);
 		classLoader = Thread.currentThread().getContextClassLoader();
@@ -94,7 +95,13 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (animate == true) {
-			overpassController.calculateNextAction();
+			if(timer > 300){
+				overpassController.calculateNextAction();
+				System.out.println("Timer: " + timer);
+				timer = 0;				
+			}else{
+				timer++;
+			}
 			scen.move();
 		}
 		repaint();
