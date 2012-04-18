@@ -46,6 +46,18 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 		addMouseMotionListener(this);
     }
     
+    public void addBusToQueue(Bus b){
+    	overpassController.addBusToQueue(b);
+    }
+    
+    public void removeBusFromQueue(Bus b){
+    	overpassController.removeBusFromQueue(b);
+    }
+    
+    public void opcAction(){
+    	overpassController.calculateNextAction();
+    }
+    
     /**
      * 
      * @return an arrayList of the type TrafficLight , containing all trafficlights in the intersection

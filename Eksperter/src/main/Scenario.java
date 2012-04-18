@@ -19,12 +19,16 @@ public class Scenario {
 		
 		if(scenario.equals("scen1")){
 			people.add(new Person(507, 280, "4", Direction.FROMEASTTOWESTSOUTH));
-			people.add(new Person(268, 280, "2", Direction.FROMWESTTOEASTSOUTH));
+			people.add(new Person(268, 280, "5", Direction.FROMWESTTOEASTSOUTH));
 			
 			buses.add(new Bus(390, 420, "30", Direction.FROMSOUTHTOWEST));
-			buses.add(new Bus(390, 320, "10", Direction.FROMSOUTHTOWEST));
+			buses.get(0).setMinutesLate(10);
 			buses.add(new Bus(23, 190, "15", Direction.FROMWESTTONORTH));
 			buses.add(new Bus(330, 0, "20", Direction.FROMNORTHTOWEST));
+			
+			for(Bus b : buses){
+				aP.addBusToQueue(b);
+			}
 		}
 		else if(scenario.equals("scen2")){
 			// TODO
@@ -49,6 +53,7 @@ public class Scenario {
 	}
 	
 	public void move(){
+		aP.opcAction();
 		for(Person p : people){
 			if(p.getGroupDirection().equals(Direction.FROMEASTTOWESTSOUTH) || p.getGroupDirection().equals(Direction.FROMWESTTOEASTSOUTH)){
 				if(aP.getTrafficLights().get(2).getPedLight1().isGreen()){
