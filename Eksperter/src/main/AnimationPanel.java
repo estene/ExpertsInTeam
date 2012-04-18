@@ -26,7 +26,6 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 	private Timer t;
 	private boolean animate = false;
 	private ClassLoader classLoader;
-	private TrafficLight neLight, nwLight, seLight, swLight;
 	private Scenario scen;
 	private OPController overpassController;
 	
@@ -35,25 +34,29 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 	 * Constructor, initating the given scenario and other elements 
 	 */
     public AnimationPanel() {   
+
+		overpassController = new OPController();
     	this.setBounds(481, 11, 590, 425);
 		classLoader = Thread.currentThread().getContextClassLoader();
 		image = getImage("prinsenkryssetmedium.png");
-//		scen = new Scenario("scen1", this);
-		
-		overpassController = new OPController();
-		
-    	neLight = new TrafficLight(Placement.NORTHEAST);
-    	nwLight = new TrafficLight(Placement.NORTHWEST);
-    	seLight = new TrafficLight(Placement.SOUTHEAST);
-    	swLight = new TrafficLight(Placement.SOUTHWEST);
-
-    	swLight.changeColour(Direction.FROMSOUTHTOWEST, LightColour.RED);
-    	neLight.changeColour(Direction.FROMSOUTHTOWEST, LightColour.RED);
-    	//seLight.changeColour(Direction.FROMSOUTHTONORTH, LightColour.RED);
-
+		scen = new Scenario("scen1", this);
+				
 		t = new Timer(25, this);
 		t.start();
 		addMouseMotionListener(this);
+		
+    }
+    
+    public void addBusToQueue(Bus b){
+    	System.out.println(overpassController);
+    }
+    
+    public void removeBusFromQueue(Bus b){
+    	overpassController.removeBusFromQueue(b);
+    }
+    
+    public void opcAction(){
+    	overpassController.calculateNextAction();
     }
     
     /**
@@ -61,7 +64,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
      * @return an arrayList of the type TrafficLight , containing all trafficlights in the intersection
      */
     public ArrayList<TrafficLight> getTrafficLights(){
-    	return new ArrayList<TrafficLight>(Arrays.asList(neLight, nwLight, seLight, swLight));
+    	return overpassController.getTrafficLights();
     }
     /**
      * Method is called from MainView when a user selects a scenario from the dropdown menu
@@ -79,10 +82,10 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
     	super.paintComponent(g); // Clean up
         g.drawImage(image, 0, 0, null); 
         scen.draw(g);
-        neLight.draw(g);
-        nwLight.draw(g);
-        seLight.draw(g);
-        swLight.draw(g);
+        
+        for(TrafficLight tl : getTrafficLights()){
+        	tl.draw(g);
+        }
     }
 
     /**
@@ -91,6 +94,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (animate == true) {
+			overpassController.calculateNextAction();
 			scen.move();
 		}
 		repaint();

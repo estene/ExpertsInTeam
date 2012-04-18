@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.text.ChangedCharSetException;
 
@@ -55,6 +56,10 @@ public class OPController{
 		northEastLight.changePedLight(dir);
 	}
 	
+	public ArrayList<TrafficLight> getTrafficLights(){
+		return new ArrayList<TrafficLight>(Arrays.asList(northWestLight, northEastLight, southEastLight, southWestLight));
+	}
+	
 	public void addBusToQueue(Bus bus){
 		busQueue.add(bus);
 	}
@@ -66,6 +71,7 @@ public class OPController{
 	}
 	
 	public void calculateNextAction(){
+		System.out.println("CalculateNextAction kalt...");
 		Direction greenDirection = null;
 		boolean pedPriority = false;
 		double highestValue = Double.MIN_VALUE;

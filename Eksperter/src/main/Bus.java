@@ -42,6 +42,7 @@ public class Bus {
 		personQueue = numberPeople;
 		waitingAtOverpass = false;
 		myHeadingDirection = mHD;
+		minutesLate = 0;
 		
 		classLoader = Thread.currentThread().getContextClassLoader();
 		image = getImage("bussmall.png");
