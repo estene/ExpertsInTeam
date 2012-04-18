@@ -17,7 +17,6 @@ public class Scenario {
 		
 		this.aP = aP;
 		
-		
 		if(scenario.equals("scen1")){
 			System.out.println("Changed to Scenario 1");
 			people.add(new Person(507, 280, "4", Direction.FROMEASTTOWESTSOUTH));
@@ -55,8 +54,7 @@ public class Scenario {
 			for(Bus b : buses){
 				aP.addBusToQueue(b);
 			}
-		}
-		
+		}		
 	}
 	
 	public ArrayList<Person> getPeople(){

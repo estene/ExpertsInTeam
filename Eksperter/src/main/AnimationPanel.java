@@ -39,8 +39,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 		overpassController = new OPController();
     	this.setBounds(481, 11, 590, 425);
 		classLoader = Thread.currentThread().getContextClassLoader();
-		image = getImage("prinsenkryssetmedium.png");
-				
+		image = getImage("prinsenkryssetmedium.png");	
 		t = new Timer(25, this);
 		t.start();
 		addMouseMotionListener(this);

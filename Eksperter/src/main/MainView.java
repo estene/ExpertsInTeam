@@ -115,6 +115,7 @@ public class MainView {
 		resetButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		resetButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				animationPanel.removeAll();
 				mainPanel.remove(animationPanel);
 				animationPanel = new AnimationPanel();
 				animationPanel.setScenario(getSelectedScenario());
@@ -129,6 +130,8 @@ public class MainView {
 		final JComboBox scenarioBox = new JComboBox();
 		String[] scenarioString = {"Scenario 1", "Scenario 2", "Scenario 3"};
 		scenarioBox.setModel(new DefaultComboBoxModel(scenarioString));
+		scenarioBox.setSelectedIndex(0);
+		setSelectedScenario("scen1");
 		scenarioBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (scenarioBox.getSelectedIndex() == 0) {
