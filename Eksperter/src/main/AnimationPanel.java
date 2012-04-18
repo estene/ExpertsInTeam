@@ -40,12 +40,15 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
     	this.setBounds(481, 11, 590, 425);
 		classLoader = Thread.currentThread().getContextClassLoader();
 		image = getImage("prinsenkryssetmedium.png");
-		scen = new Scenario("scen1", this);
 				
 		t = new Timer(25, this);
 		t.start();
 		addMouseMotionListener(this);
 		
+    }
+    
+    public OPController getOPC(){
+    	return this.overpassController;
     }
     
     public void addBusToQueue(Bus b){
@@ -72,6 +75,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
      * @param scenario
      */
     public void setScenario(String scenario) {
+    	
     	scen = new Scenario(scenario, this);
     }
     

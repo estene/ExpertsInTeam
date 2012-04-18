@@ -22,6 +22,7 @@ public class Person {
 	private Font font;
 	private String number;
 	private Direction groupDirection;
+	private boolean isWaitingForGreen;
 	
 	public Person(int x, int y, String number, Direction dir){
 		font = new Font("Arial", Font.PLAIN, 20);
@@ -33,10 +34,23 @@ public class Person {
 		this.y = coordinates.getyCoord();
 		
 		groupDirection = dir;
+		isWaitingForGreen = true;
 		
 		classLoader = Thread.currentThread().getContextClassLoader();
 		image = getImage("");
 		
+	}
+	
+	public int getNumber(){
+		return Integer.valueOf(number);
+	}
+	
+	public void setWaitingForGreen(boolean b){
+		isWaitingForGreen = b;
+	}
+	
+	public boolean isWaitingForGreen(){
+		return isWaitingForGreen;
 	}
 	
 	// Move the men

@@ -276,6 +276,22 @@ public class TrafficLight{
 		return this.pedLight2;
 	}
 	
+	public TLSensor getPedL1S(){
+		return this.pedLight1.getTLS();
+	}
+	
+	public TLSensor getPedL2S(){
+		return this.pedLight2.getTLS();
+	}
+	
+	public Person getPeopleFromPedL1S(){
+		return this.pedLight1.getPeople();
+	}
+	
+	public Person getPeopleFromPedL2S(){
+		return this.pedLight2.getPeople();
+	}
+	
 	// Retrieve image from resource
 	public Image getImage(String imgName) {
 		InputStream input = classLoader.getResourceAsStream("" + imgName);

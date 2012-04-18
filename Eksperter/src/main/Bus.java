@@ -40,7 +40,7 @@ public class Bus {
 		this.x = coordinates.getxCoord();
 		this.y = coordinates.getyCoord();
 		personQueue = numberPeople;
-		waitingAtOverpass = false;
+		waitingAtOverpass = true;
 		myHeadingDirection = mHD;
 		minutesLate = 0;
 		
