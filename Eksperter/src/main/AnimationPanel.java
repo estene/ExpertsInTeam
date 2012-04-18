@@ -40,7 +40,6 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
     	this.setBounds(481, 11, 590, 425);
 		classLoader = Thread.currentThread().getContextClassLoader();
 		image = getImage("prinsenkryssetmedium.png");
-		scen = new Scenario("scen1", this);
 				
 		t = new Timer(25, this);
 		t.start();

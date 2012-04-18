@@ -33,6 +33,7 @@ public class MainView {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private AnimationPanel animationPanel;
 	private ClassLoader classLoader;
+	private String scenario;
 	Image image;
 
 	/**
@@ -80,6 +81,7 @@ public class MainView {
 		animationPanel.setBounds(481, 11, 590, 425);
 		mainPanel.add(animationPanel);
 		animationPanel.setLayout(null);
+		scenario = "";
 		
 		JList messageList = new JList();
 		messageList.setBounds(10, 11, 461, 333);
@@ -115,13 +117,15 @@ public class MainView {
 			public void actionPerformed(ActionEvent arg0) {
 				mainPanel.remove(animationPanel);
 				animationPanel = new AnimationPanel();
+				animationPanel.setScenario(getSelectedScenario());
 				mainPanel.add(animationPanel);
 				System.out.println("reset");
 			}
 		});
+	
+		
 		resetButton.setBounds(268, 355, 104, 81);
 		mainPanel.add(resetButton);
-		
 		final JComboBox scenarioBox = new JComboBox();
 		String[] scenarioString = {"Scenario 1", "Scenario 2", "Scenario 3"};
 		scenarioBox.setModel(new DefaultComboBoxModel(scenarioString));
@@ -130,17 +134,22 @@ public class MainView {
 				if (scenarioBox.getSelectedIndex() == 0) {
 					animationPanel.stopAnimation();
 					animationPanel.setScenario("scen1");
+					setSelectedScenario("scen1");
 				}
 				else if (scenarioBox.getSelectedIndex() == 1) {
 					animationPanel.stopAnimation();
 					animationPanel.setScenario("scen2");
+					setSelectedScenario("scen2");
 				}
 				else if (scenarioBox.getSelectedIndex() == 2) {
 					animationPanel.stopAnimation();
 					animationPanel.setScenario("scen3");
+					setSelectedScenario("scen3");
 				}
 			}
 		});
+		
+
 
 		
 		scenarioBox.setToolTipText("Select scenario");
@@ -164,6 +173,14 @@ public class MainView {
 		
 		JMenu mnFint = new JMenu("Fint");
 		menuBar.add(mnFint);
+	}
+	
+	public String getSelectedScenario() {
+		return scenario;
+	}
+	
+	public void setSelectedScenario(String scen) {
+		scenario = scen;
 	}
 	
 	/**

@@ -17,13 +17,15 @@ public class Scenario {
 		
 		this.aP = aP;
 		
+		
 		if(scenario.equals("scen1")){
+			System.out.println("Changed to Scenario 1");
 			people.add(new Person(507, 280, "4", Direction.FROMEASTTOWESTSOUTH));
-			people.add(new Person(268, 280, "5", Direction.FROMWESTTOEASTSOUTH));
+			people.add(new Person(268, 280, "2", Direction.FROMWESTTOEASTSOUTH));
 			
 			buses.add(new Bus(390, 420, "30", Direction.FROMSOUTHTOWEST));
-			buses.get(0).setMinutesLate(10);
-			buses.add(new Bus(23, 190, "15", Direction.FROMWESTTONORTH));
+			//buses.get(0).setMinutesLate(10);
+			buses.add(new Bus(23, 190, "10", Direction.FROMWESTTONORTH));
 			buses.add(new Bus(330, 0, "20", Direction.FROMNORTHTOWEST));
 			
 			for(Bus b : buses){
@@ -31,8 +33,30 @@ public class Scenario {
 			}
 		}
 		else if(scenario.equals("scen2")){
-			// TODO
+			System.out.println("Changed to Scenario 2");
+			buses.add(new Bus(23, 190, "10", Direction.FROMWESTTONORTH));
+			buses.add(new Bus(390, 420, "10", Direction.FROMSOUTHTOWEST));
+			//buses.get(1).setMinutesLate(3);
+			buses.add(new Bus(0, 190, "10", Direction.FROMWESTTOSOUTH));
+			
+			for(Bus b : buses){
+				aP.addBusToQueue(b);
+			}
 		}
+		else if(scenario.equals("scen3")) {
+			System.out.println("Changed to Scenario 3");
+			people.add(new Person(507, 280, "20", Direction.FROMNORTHTOSOUTH));
+			people.add(new Person(268, 280, "25", Direction.FROMSOUTHTONORTH));
+			
+			buses.add(new Bus(390, 420, "20", Direction.FROMSOUTHTOWEST));
+			buses.add(new Bus(330, 0, "20", Direction.FROMWESTTOSOUTH));
+			buses.add(new Bus(23, 190, "15", Direction.FROMNORTHTOWEST));
+			
+			for(Bus b : buses){
+				aP.addBusToQueue(b);
+			}
+		}
+		
 	}
 	
 	public ArrayList<Person> getPeople(){
