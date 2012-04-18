@@ -128,12 +128,15 @@ public class MainView {
 		scenarioBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (scenarioBox.getSelectedIndex() == 0) {
+					animationPanel.stopAnimation();
 					animationPanel.setScenario("scen1");
 				}
 				else if (scenarioBox.getSelectedIndex() == 1) {
+					animationPanel.stopAnimation();
 					animationPanel.setScenario("scen2");
 				}
 				else if (scenarioBox.getSelectedIndex() == 2) {
+					animationPanel.stopAnimation();
 					animationPanel.setScenario("scen3");
 				}
 			}
