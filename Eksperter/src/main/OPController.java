@@ -71,7 +71,6 @@ public class OPController{
 	}
 	
 	public void calculateNextAction(){
-		System.out.println("CalculateNextAction kalt...");
 		Direction greenDirection = null;
 		boolean pedPriority = false;
 		double highestValue = Double.MIN_VALUE;
@@ -203,6 +202,7 @@ public class OPController{
 			for(Bus b : busQueue){
 				if(b.getHeadingDirection().equals(d) && b.isWaitingAtOverpass()){
 					utilityValue += b.getMinutesLate() + b.getPeopleAmount();
+					
 				}
 			}
 		} else{
