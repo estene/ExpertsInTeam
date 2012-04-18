@@ -137,14 +137,17 @@ public class MainView {
 		menuBar.add(mnFint);
 	}
 	
-	// Method to retrieve a resource
+	/**
+	 * Method to create an image from the given filepath
+	 * @param imgName
+	 * @return inputImage , the loaded image from resource
+	 */
 	public Image getImage(String imgName) {
 		InputStream input = classLoader.getResourceAsStream("" + imgName);
 		Image inputImage = null;
 		try {
 			inputImage = ImageIO.read(input);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return inputImage;

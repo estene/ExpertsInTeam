@@ -18,7 +18,7 @@ import javax.swing.Timer;
 public class AnimationPanel extends JPanel implements ActionListener, MouseMotionListener{
 
     /**
-	 * Class that animates scenarios in the intersection - Prinsenkrysset. 
+	 * Class that animates scenarios in the intersection - Prinsenkrysset
 	 * @author Even
 	 */
 	private static final long serialVersionUID = 1L;
