@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.text.ChangedCharSetException;
 
@@ -53,6 +54,10 @@ public class OPController{
 		southWestLight.changePedLight(dir);
 		northWestLight.changePedLight(dir);
 		northEastLight.changePedLight(dir);
+	}
+	
+	public ArrayList<TrafficLight> getTrafficLights(){
+		return new ArrayList<TrafficLight>(Arrays.asList(northWestLight, northEastLight, southEastLight, southWestLight));
 	}
 	
 	public void addBusToQueue(Bus bus){
