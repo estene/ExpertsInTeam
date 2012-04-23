@@ -67,8 +67,8 @@ public class TrafficLight{
 			y = 268;
 			x2 = 235;
 			y2 = 300;
-			pedLight1 = new PedestrianLight(Placement.SOUTH, 260,275);
-			pedLight2 = new PedestrianLight(Placement.WEST, 280, 288);
+			pedLight1 = new PedestrianLight(Placement.SOUTH, 280, 288);
+			pedLight2 = new PedestrianLight(Placement.WEST, 260,275);
 		}
 		else if(placement == Placement.NORTHWEST){
 
@@ -330,7 +330,11 @@ public class TrafficLight{
 		return this.pedLight2.getPeople();
 	}
 	
-	// Retrieve image from resource
+	/**
+	 * 
+	 * @param imgName
+	 * @return image 
+	 */
 	public Image getImage(String imgName) {
 		InputStream input = classLoader.getResourceAsStream("" + imgName);
 		Image inputImage = null;

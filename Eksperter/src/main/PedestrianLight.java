@@ -5,8 +5,12 @@ import java.awt.Image;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.imageio.ImageIO;
+
+import main.TrafficLight.RedToGreen;
 
 
 /**
@@ -23,6 +27,8 @@ public class PedestrianLight {
 	private ClassLoader classLoader;
 	private Image image;
 	private int x,y;
+	Timer timer;
+	
 	
 	/**
 	 * Constructor 
@@ -39,6 +45,7 @@ public class PedestrianLight {
 		pedSensor = new TLSensor();
 		this.x = x;
 		this.y = y;
+		timer = new Timer();
 		image = getImage("redman.png");
 	}
 	
@@ -58,27 +65,34 @@ public class PedestrianLight {
 		return pedSensor.getPeople();
 	}
 	
-	public void buttonPushed(){
-		if(myColour == LightColour.RED){
-			// Request colour change from OPController
-		}
-	}
-	
 	public void draw(Graphics g) {
 		g.drawImage(image, x, y, null); 
 	}
-	
-	public void changeColour(){
-		if(myColour == LightColour.RED && this.placement.equals(Placement.SOUTH)){
-			this.image = getImage("greenman.png");
-			this.myColour = LightColour.GREEN;
-			this.isGreen = true;
-		} else {
-			this.image = getImage("redman.png");
-			this.myColour = LightColour.RED;
-			this.isGreen = false;
+	class RedToGreen extends TimerTask {
+		public void run() {
+			image = getImage("greenman.png");
+			myColour = LightColour.GREEN;
+			isGreen = true;
 		}
 	}
+	class GreenToRed extends TimerTask {
+		public void run() {
+			image = getImage("redman.png");
+			myColour = LightColour.RED;
+			isGreen = false;
+		}
+	}
+	
+	
+	public void changeColour(){
+		if(myColour == LightColour.RED){
+			timer.schedule ( new RedToGreen() , 1000 ) ;
+		} else {
+			timer.schedule ( new GreenToRed() , 1000 ) ;
+		}
+	}
+	
+	
 	
 	// Retrieve image from resource
 	public Image getImage(String imgName) {
