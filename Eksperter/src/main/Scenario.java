@@ -44,7 +44,7 @@ public class Scenario {
 			System.out.println("Changed to Scenario 2");
 			buses.add(new Bus(23, 190, "10", Direction.FROMWESTTONORTH));
 			buses.add(new Bus(390, 420, "10", Direction.FROMSOUTHTOWEST));
-			//buses.get(1).setMinutesLate(3);
+			buses.get(1).setMinutesLate(3);
 			buses.add(new Bus(0, 190, "10", Direction.FROMWESTTOSOUTH));
 			
 			for(Bus b : buses){
@@ -53,12 +53,12 @@ public class Scenario {
 		}
 		else if(scenario.equals("scen3")) {
 			System.out.println("Changed to Scenario 3");
-			people.add(new Person(507, 280, "20", Direction.FROMNORTHTOSOUTH));
-			people.add(new Person(268, 280, "25", Direction.FROMSOUTHTONORTH));
+			people.add(new Person(507, 280, "5", Direction.FROMSOUTHTONORTHWEST));
+			people.add(new Person(268, 280, "10", Direction.FROMNORTHTOSOUTHWEST));
 			
 			buses.add(new Bus(390, 420, "20", Direction.FROMSOUTHTOWEST));
-			buses.add(new Bus(330, 0, "20", Direction.FROMWESTTOSOUTH));
-			buses.add(new Bus(23, 190, "15", Direction.FROMNORTHTOWEST));
+			buses.add(new Bus(20, 190, "20", Direction.FROMWESTTOSOUTH));
+			buses.add(new Bus(330, 0, "15", Direction.FROMNORTHTOWEST));
 			
 			for(Bus b : buses){
 				aP.addBusToQueue(b);
