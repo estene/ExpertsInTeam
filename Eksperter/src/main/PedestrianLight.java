@@ -69,7 +69,7 @@ public class PedestrianLight {
 	public void draw(Graphics g) {
 		g.drawImage(image, x, y, null);
 		greenTimer++;
-		if(greenTimer % 100 == 0 && pedSensor.getPeople().isWaitingForGreen()){
+		if(greenTimer % 200 == 0 && pedSensor.getPeople().isWaitingForGreen()){
 			pedSensor.getPeople().increaseWaitTime(1);
 		}
 	}

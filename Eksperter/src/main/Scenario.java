@@ -52,6 +52,7 @@ public class Scenario {
 			people.add(new Person(268, 69, "10", Direction.FROMNORTHTOSOUTHWEST));
 			
 			buses.add(new Bus(390, 420, "20", Direction.FROMSOUTHTOWEST));
+			buses.get(0).setMinutesLate(10);
 			buses.add(new Bus(20, 190, "20", Direction.FROMWESTTOSOUTH));
 			buses.add(new Bus(330, 0, "15", Direction.FROMNORTHTOWEST));
 			

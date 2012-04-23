@@ -98,6 +98,7 @@ public class OPController{
 	}
 
 	public void calculateNextAction(){
+		boolean allowed = true;
 		for(Bus b : busQueue){
 			if(iS.amIInsideYou(b.getX(), b.getY())) {
 				b.setWaitingAtOverpass(false);
@@ -106,8 +107,7 @@ public class OPController{
 		}
 		for(Person p : personQueue){
 			if(pB.amIOnYou(p.getX(), p.getY())){
-				System.out.println("Folk er på linja!");
-				p.isWaitingForGreen();
+				allowed = false;
 				return;
 			}
 		}
@@ -230,41 +230,6 @@ public class OPController{
 				changeLights(Direction.FROMWESTTONORTH, LightColour.GREEN);
 				changeLights(greenDirection, LightColour.GREEN);
 			}
-			/**
-			for(Bus b : busQueue){
-				if(northWestLight.fromNorthToSouth.equals(LightColour.GREEN)){
-					if(b.getHeadingDirection().equals(Direction.FROMNORTHTOSOUTH)) {
-						b.setWaitingAtOverpass(false);
-					}
-				}
-				if(northWestLight.fromNorthToWest.equals(LightColour.GREEN)) {
-					if(b.getHeadingDirection().equals(Direction.FROMNORTHTOWEST)){
-						b.setWaitingAtOverpass(false);
-					}
-				}
-				if(northWestLight.fromSouthToNorth.equals(LightColour.GREEN)) {
-					if(b.getHeadingDirection().equals(Direction.FROMSOUTHTONORTH)){
-						b.setWaitingAtOverpass(false);
-					}								
-				}
-				if(northWestLight.fromSouthToWest.equals(LightColour.GREEN)){
-					if(b.getHeadingDirection().equals(Direction.FROMSOUTHTOWEST)){
-						b.setWaitingAtOverpass(false);
-					}
-				}
-				if(northWestLight.fromWestToNorth.equals(LightColour.GREEN)){
-					if(b.getHeadingDirection().equals(Direction.FROMWESTTONORTH)){
-						b.setWaitingAtOverpass(false);
-					}				
-				}
-				if(northWestLight.fromWestToSouth.equals(LightColour.GREEN)){
-					if(b.getHeadingDirection().equals(Direction.FROMWESTTOSOUTH)){
-						b.setWaitingAtOverpass(false);
-					}				
-				}
-				
-			}
-			**/
 		}else{
 			if(greenDirection == Direction.FROMSOUTHTONORTH){ //For pedestrians
 				changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);

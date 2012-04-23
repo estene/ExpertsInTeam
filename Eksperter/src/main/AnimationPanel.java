@@ -99,7 +99,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (animate == true) {
-			if(timer > 40){
+			if(timer > 90){
 				overpassController.calculateNextAction();
 				System.out.println("Timer: " + timer);
 				timer = 0;				
