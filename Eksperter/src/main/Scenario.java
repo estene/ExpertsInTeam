@@ -18,10 +18,7 @@ public class Scenario {
 		this.aP = aP;
 		
 		if(scenario.equals("scen1")){
-
-			people.add(new Person(507, 280, "30", Direction.FROMEASTTOWESTSOUTH));
-			people.add(new Person(268, 280, "30", Direction.FROMWESTTOEASTSOUTH));
-
+			
 			System.out.println("Changed to Scenario 1");
 			people.add(new Person(507, 280, "4", Direction.FROMEASTTOWESTSOUTH));
 			people.add(new Person(268, 280, "2", Direction.FROMWESTTOEASTSOUTH));
