@@ -25,6 +25,10 @@ public class Person {
 	private boolean isWaitingForGreen;
 	private int waitTime;
 	
+	public Person(){
+		
+	}
+	
 	public Person(int x, int y, String number, Direction dir){
 		font = new Font("Arial", Font.PLAIN, 20);
 		xDir = 0;
@@ -43,12 +47,20 @@ public class Person {
 		
 	}
 	
+	public void setNumber(String number){
+		this.number = number;
+	}
+	
 	public void increaseWaitTime(int waitTime){
 		this.waitTime += waitTime;
 	}
 	
 	public int getWaitTime(){
 		return this.waitTime;
+	}
+	
+	public void resetWaitTime(){
+		this.waitTime = 0;
 	}
 	
 	public int getNumber(){

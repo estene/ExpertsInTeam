@@ -7,7 +7,8 @@ public class TLSensor {
 	private Person personQueue;
 	
 	public TLSensor(){
-		personQueue = null;
+		personQueue = new Person();
+		personQueue.setNumber("0");
 	}
 	
 	public void addPerson(Person p){
@@ -15,7 +16,8 @@ public class TLSensor {
 	}
 	
 	public void removePerson(){
-		personQueue = null;
+		personQueue = new Person();
+		personQueue.setNumber("0");
 	}
 	
 	public Person getPeople(){

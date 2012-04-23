@@ -292,10 +292,10 @@ public class TrafficLight{
 		if(this.placement == Placement.NORTHWEST && dir == Direction.FROMNORTHTOSOUTH){
 			this.pedLight1.changeColour();
 		}else
-		if(this.placement == Placement.NORTHWEST && dir == Direction.FROMWESTTONORTH){
+		if(this.placement == Placement.NORTHWEST && dir == Direction.FROMSOUTHTONORTHWEST){
 			this.pedLight2.changeColour();
 		}else
-		if(this.placement == Placement.SOUTHWEST && dir == Direction.FROMWESTTONORTH){
+		if(this.placement == Placement.SOUTHWEST && dir == Direction.FROMSOUTHTONORTHWEST){
 			this.pedLight2.changeColour();
 		}else
 		if(this.placement == Placement.SOUTHWEST && dir == Direction.FROMSOUTHTONORTH){

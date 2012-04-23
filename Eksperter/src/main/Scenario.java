@@ -63,6 +63,13 @@ public class Scenario {
 			for(Bus b : buses){
 				aP.addBusToQueue(b);
 			}
+			
+			
+			System.out.println("Jeg blir kalt!");
+			
+			aP.getOPC().getSWL().getPedL2S().addPerson(people.get(0));
+			aP.getOPC().getNWL().getPedL2S().addPerson(people.get(1));
+			
 		}		
 	}
 	

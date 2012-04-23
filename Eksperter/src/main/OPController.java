@@ -141,10 +141,10 @@ public class OPController{
 			greenDirection = Direction.FROMSOUTHTONORTH;
 			highestValue = whatToDoUtility(Direction.FROMSOUTHTONORTH, false);
 		}
-		else if(highestValue < whatToDoUtility(Direction.FROMWESTTONORTH, false)){
+		else if(highestValue < whatToDoUtility(Direction.FROMSOUTHTONORTHWEST, false)){
 			pedPriority = true;
-			greenDirection = Direction.FROMWESTTONORTH;
-			highestValue = whatToDoUtility(Direction.FROMWESTTONORTH, false);
+			greenDirection = Direction.FROMSOUTHTONORTHWEST;
+			highestValue = whatToDoUtility(Direction.FROMSOUTHTONORTHWEST, false);
 		}
 		else if(highestValue < whatToDoUtility(Direction.FROMNORTHTOSOUTH, false)){
 			pedPriority = true;
@@ -211,53 +211,7 @@ public class OPController{
 				changeLights(Direction.FROMWESTTONORTH, LightColour.GREEN);
 				changeLights(greenDirection, LightColour.GREEN);
 			}
-		}else{
-			if(greenDirection == Direction.FROMSOUTHTONORTH){ //For pedestrians
-				changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
-				changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
-				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
-				changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
-				
-				changePedLights(greenDirection);
-			}
-			else if(greenDirection == Direction.FROMNORTHTOSOUTH){ //For pedestrians
-				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
-				changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
-				changeLights(Direction.FROMNORTHTOWEST, LightColour.RED);
-				changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
-
-				changePedLights(greenDirection);
-			}
-			else if(greenDirection == Direction.FROMWESTTONORTH){ //For pedestrians
-				changeLights(Direction.FROMNORTHTOWEST, LightColour.RED);
-				changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
-				changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
-				changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
-
-				changePedLights(greenDirection);
-			}
-		}			
-
-		if(pedPriority){
-			for(Person p : personQueue){
-				if(southWestLight.getPedLight1().isGreen()){
-					if(p.getGroupDirection().equals(Direction.FROMEASTTOWESTSOUTH) || p.getGroupDirection().equals(Direction.FROMWESTTOEASTSOUTH)){
-						p.setWaitingForGreen(false);
-					}
-				}
-				if(southWestLight.getPedLight2().isGreen()){
-					if(p.getGroupDirection().equals(Direction.FROMNORTHTOSOUTHWEST) || p.getGroupDirection().equals(Direction.FROMSOUTHTONORTHWEST)){
-						p.setWaitingForGreen(false);
-					}
-				}
-				if(northEastLight.getPedLight1().isGreen()){
-					if(p.getGroupDirection().equals(Direction.FROMEASTTOWESTNORTH) || p.getGroupDirection().equals(Direction.FROMEASTTOWESTNORTH)){
-						p.setWaitingForGreen(false);
-					}
-				}
-			}
-		}
-		else{
+			
 			for(Bus b : busQueue){
 				if(northWestLight.fromNorthToSouth.equals(LightColour.GREEN)){
 					if(b.getHeadingDirection().equals(Direction.FROMNORTHTOSOUTH)) {
@@ -290,6 +244,59 @@ public class OPController{
 					}				
 				}
 			}
+		}else{
+			if(greenDirection == Direction.FROMSOUTHTONORTH){ //For pedestrians
+				changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
+				changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
+				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
+				changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
+				
+				changePedLights(greenDirection);
+			}
+			else if(greenDirection == Direction.FROMNORTHTOSOUTH){ //For pedestrians
+				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
+				changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
+				changeLights(Direction.FROMNORTHTOWEST, LightColour.RED);
+				changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
+
+				changePedLights(greenDirection);
+			}
+			else if(greenDirection == Direction.FROMSOUTHTONORTHWEST){ //For pedestrians
+				changeLights(Direction.FROMNORTHTOWEST, LightColour.RED);
+				changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
+				changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
+				changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
+				
+				changePedLights(greenDirection);
+			}
+			
+			for(Person p : personQueue){
+				if(southWestLight.getPedLight1().isGreen()){
+					if(p.getGroupDirection().equals(Direction.FROMEASTTOWESTSOUTH) || p.getGroupDirection().equals(Direction.FROMWESTTOEASTSOUTH)){
+						p.setWaitingForGreen(false);
+						p.resetWaitTime();
+					}
+				}
+				if(southWestLight.getPedLight2().isGreen()){
+					if(p.getGroupDirection().equals(Direction.FROMNORTHTOSOUTHWEST) || p.getGroupDirection().equals(Direction.FROMSOUTHTONORTHWEST)){
+						p.setWaitingForGreen(false);
+						p.resetWaitTime();
+					}
+				}
+				if(northEastLight.getPedLight1().isGreen()){
+					if(p.getGroupDirection().equals(Direction.FROMEASTTOWESTNORTH) || p.getGroupDirection().equals(Direction.FROMEASTTOWESTNORTH)){
+						p.setWaitingForGreen(false);
+						p.resetWaitTime();
+					}
+				}
+			}
+		}			
+
+		if(pedPriority){
+			
+		}
+		else{
+			
 		}
 
 	}
@@ -312,9 +319,10 @@ public class OPController{
 		} else{
 			for(Person p : personQueue){
 				if(d.equals(Direction.FROMSOUTHTONORTH) && p.isWaitingForGreen()){
+					
 					utilityValue += this.southEastLight.getPedLight1().getPeopleAmount() + this.southEastLight.getPeopleFromPedL1S().getWaitTime() + this.southWestLight.getPedLight1().getPeopleAmount() + this.southWestLight.getPeopleFromPedL1S().getWaitTime();
 				}
-				else if (d.equals(Direction.FROMWESTTONORTH) || d.equals(Direction.FROMWESTTOSOUTH) && p.isWaitingForGreen()){
+				else if (d.equals(Direction.FROMSOUTHTONORTHWEST) && p.isWaitingForGreen()){
 					utilityValue += this.southWestLight.getPedLight2().getPeopleAmount() + this.southWestLight.getPeopleFromPedL2S().getWaitTime() + this.northWestLight.getPedLight2().getPeopleAmount() + this.northWestLight.getPeopleFromPedL2S().getWaitTime();
 				}
 				else if (d.equals(Direction.FROMNORTHTOSOUTH) && p.isWaitingForGreen()){
@@ -322,6 +330,7 @@ public class OPController{
 				}
 			}			
 		}
+				
 		return utilityValue;
 	}
 
