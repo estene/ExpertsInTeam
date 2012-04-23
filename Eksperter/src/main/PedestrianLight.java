@@ -37,20 +37,9 @@ public class PedestrianLight {
 		this.placement = placement;
 		classLoader = Thread.currentThread().getContextClassLoader();
 		pedSensor = new TLSensor();
-		image = getImage("");
 		this.x = x;
 		this.y = y;
-		
-		// Hvis vi trenger � gj�re noe spesielt med en av dem
-		if(placement == Placement.SOUTH) {
-			image = getImage("redman.png");
-		}
-		else if(placement == Placement.NORTH) {
-			image = getImage("redman.png");
-		}
-		else if(placement == Placement.WEST) {
-			image = getImage("redman.png");
-		}
+		image = getImage("redman.png");
 	}
 	
 	public boolean isGreen(){
@@ -80,10 +69,12 @@ public class PedestrianLight {
 	}
 	
 	public void changeColour(){
-		if(myColour == LightColour.RED){
+		if(myColour == LightColour.RED && this.placement.equals(Placement.SOUTH)){
+			this.image = getImage("greenman.png");
 			this.myColour = LightColour.GREEN;
 			this.isGreen = true;
 		} else {
+			this.image = getImage("redman.png");
 			this.myColour = LightColour.RED;
 			this.isGreen = false;
 		}

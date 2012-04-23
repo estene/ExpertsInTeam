@@ -35,7 +35,6 @@ public class TrafficLight{
 
 	protected LightColour fromWestToNorth;
 	protected LightColour fromWestToSouth;
-	protected LightColour temp;
 	
 	private PedestrianLight pedLight1 = null;
 	private PedestrianLight pedLight2 = null; // pedLight2 will always be the crossing on the west road.
@@ -136,13 +135,8 @@ public class TrafficLight{
     
     class RedToGreen extends TimerTask  {  
         public void run ( )   {  
-        	System.out.println(fromSouthToNorth);
-        	System.out.println(fromSouthToWest);
-        	System.out.println(fromWestToSouth);
         	if (fromSouthToWest.equals(LightColour.GREEN) && placement.equals(Placement.SOUTHEAST)) {
-        			System.out.println("kom inn hit");
         			image2 = getImage("greencurvedleft.png");
-        		
         	}
         	if (fromSouthToNorth.equals(LightColour.GREEN) && placement.equals(Placement.SOUTHEAST)) {
         		image = getImage("greenup.png");
@@ -151,7 +145,6 @@ public class TrafficLight{
         		image = getImage("greendownleft.png");
         	}
         	if (fromWestToSouth.equals(LightColour.GREEN) && placement.equals(Placement.SOUTHWEST)) {
-        			System.out.println("kom inn hit også");
         			image2 = getImage("greendownright.png");
         	}
         	if (fromNorthToSouth.equals(LightColour.GREEN) && placement.equals(Placement.NORTHWEST)) {
@@ -275,7 +268,6 @@ public class TrafficLight{
 				this.fromNorthToWest = LightColour.YELLOW;
 				toYellow();
 				if(lC == LightColour.GREEN){
-					System.out.println("changecolour");
 					this.fromNorthToWest = LightColour.GREEN;
 					timer.schedule ( new RedToGreen() , 1000 ) ;
 				}				
@@ -287,8 +279,13 @@ public class TrafficLight{
 			break;
 		}
 	}
+	/**
+	 * Something weird here!
+	 * @param dir
+	 */
 	
 	public void changePedLight(Direction dir){
+		System.out.println(dir);
 		if(this.placement == Placement.NORTHEAST && dir == Direction.FROMNORTHTOSOUTH){
 			this.pedLight1.changeColour();
 		}else
