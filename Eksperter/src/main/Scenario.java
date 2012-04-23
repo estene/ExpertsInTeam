@@ -18,12 +18,12 @@ public class Scenario {
 		this.aP = aP;
 		
 		if(scenario.equals("scen1")){
-			people.add(new Person(507, 280, "4", Direction.FROMEASTTOWESTSOUTH));
-			people.add(new Person(268, 280, "5", Direction.FROMWESTTOEASTSOUTH));
+			people.add(new Person(507, 280, "30", Direction.FROMEASTTOWESTSOUTH));
+			people.add(new Person(268, 280, "30", Direction.FROMWESTTOEASTSOUTH));
 			
-			buses.add(new Bus(390, 420, "20", Direction.FROMSOUTHTOWEST));
+			buses.add(new Bus(390, 420, "60", Direction.FROMSOUTHTOWEST));
 			buses.add(new Bus(23, 190, "60", Direction.FROMWESTTONORTH));
-			buses.add(new Bus(330, 0, "30", Direction.FROMNORTHTOWEST));
+			buses.add(new Bus(330, 0, "60", Direction.FROMNORTHTOWEST));
 			
 			for(Bus b : buses){
 				aP.addBusToQueue(b);
