@@ -14,8 +14,8 @@ public class TLSensor {
 		personQueue = p;
 	}
 	
-	public void removePerson(Person p){
-		
+	public void removePerson(){
+		personQueue = null;
 	}
 	
 	public Person getPeople(){

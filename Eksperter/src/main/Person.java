@@ -23,6 +23,7 @@ public class Person {
 	private String number;
 	private Direction groupDirection;
 	private boolean isWaitingForGreen;
+	private int waitTime;
 	
 	public Person(int x, int y, String number, Direction dir){
 		font = new Font("Arial", Font.PLAIN, 20);
@@ -35,10 +36,19 @@ public class Person {
 		
 		groupDirection = dir;
 		isWaitingForGreen = true;
+		waitTime = 0;		
 		
 		classLoader = Thread.currentThread().getContextClassLoader();
 		image = getImage("");
 		
+	}
+	
+	public void increaseWaitTime(int waitTime){
+		this.waitTime += waitTime;
+	}
+	
+	public int getWaitTime(){
+		return this.waitTime;
 	}
 	
 	public int getNumber(){

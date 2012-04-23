@@ -246,7 +246,7 @@ public class OPController{
 					}
 				}
 				if(southWestLight.getPedLight2().isGreen()){
-					if(p.getGroupDirection().equals(Direction.FROMNORTHTOSOUTH) || p.getGroupDirection().equals(Direction.FROMSOUTHTONORTH)){
+					if(p.getGroupDirection().equals(Direction.FROMNORTHTOSOUTHWEST) || p.getGroupDirection().equals(Direction.FROMSOUTHTONORTHWEST)){
 						p.setWaitingForGreen(false);
 					}
 				}
@@ -312,13 +312,13 @@ public class OPController{
 		} else{
 			for(Person p : personQueue){
 				if(d.equals(Direction.FROMSOUTHTONORTH) && p.isWaitingForGreen()){
-					utilityValue += this.southEastLight.getPedLight1().getPeopleAmount() + this.southWestLight.getPedLight1().getPeopleAmount();
+					utilityValue += this.southEastLight.getPedLight1().getPeopleAmount() + this.southEastLight.getPeopleFromPedL1S().getWaitTime() + this.southWestLight.getPedLight1().getPeopleAmount() + this.southWestLight.getPeopleFromPedL1S().getWaitTime();
 				}
 				else if (d.equals(Direction.FROMWESTTONORTH) || d.equals(Direction.FROMWESTTOSOUTH) && p.isWaitingForGreen()){
-					utilityValue += this.southWestLight.getPedLight2().getPeopleAmount() + this.northWestLight.getPedLight2().getPeopleAmount();
+					utilityValue += this.southWestLight.getPedLight2().getPeopleAmount() + this.southWestLight.getPeopleFromPedL2S().getWaitTime() + this.northWestLight.getPedLight2().getPeopleAmount() + this.northWestLight.getPeopleFromPedL2S().getWaitTime();
 				}
 				else if (d.equals(Direction.FROMNORTHTOSOUTH) && p.isWaitingForGreen()){
-					utilityValue += this.northEastLight.getPedLight1().getPeopleAmount() + this.northWestLight.getPedLight1().getPeopleAmount();
+					utilityValue += this.northEastLight.getPedLight1().getPeopleAmount() + this.northEastLight.getPeopleFromPedL1S().getWaitTime() + this.northWestLight.getPedLight1().getPeopleAmount() + this.northWestLight.getPeopleFromPedL1S().getWaitTime();
 				}
 			}			
 		}
