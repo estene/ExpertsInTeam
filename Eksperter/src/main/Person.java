@@ -30,7 +30,7 @@ public class Person {
 	}
 	
 	public Person(int x, int y, String number, Direction dir){
-		font = new Font("Arial", Font.PLAIN, 20);
+		font = new Font("Arial", Font.BOLD, 20);
 		xDir = 0;
 		yDir = 1;
 		this.number = number;
@@ -111,8 +111,8 @@ public class Person {
 		g.setColor(Color.BLUE);
 		g.fillOval(coordinates.getxCoord(), coordinates.getyCoord(), 30, 30);
 		g.setFont(font);
-		g.setColor(Color.WHITE);
-		g.drawString(number, coordinates.getxCoord() + 6, coordinates.getyCoord() + 22);
+		g.setColor(Color.YELLOW);
+		g.drawString(number, coordinates.getxCoord() + 9, coordinates.getyCoord() + 22);
 	}
 	
 	//Getters and setters

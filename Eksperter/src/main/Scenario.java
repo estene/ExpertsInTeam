@@ -20,8 +20,8 @@ public class Scenario {
 		if(scenario.equals("scen1")){
 			
 			System.out.println("Changed to Scenario 1");
-			people.add(new Person(511, 280, "4", Direction.FROMEASTTOWESTSOUTH));
-			people.add(new Person(254, 280, "2", Direction.FROMWESTTOEASTSOUTH));
+			people.add(new Person(506, 280, "4", Direction.FROMEASTTOWESTSOUTH));
+			people.add(new Person(254, 285, "2", Direction.FROMWESTTOEASTSOUTH));
 
 			buses.add(new Bus(390, 420, "30", Direction.FROMSOUTHTOWEST));
 			buses.add(new Bus(23, 190, "10", Direction.FROMWESTTONORTH));

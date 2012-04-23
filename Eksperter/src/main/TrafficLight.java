@@ -68,7 +68,7 @@ public class TrafficLight{
 			x2 = 235;
 			y2 = 300;
 			pedLight1 = new PedestrianLight(Placement.SOUTH, 280, 288);
-			pedLight2 = new PedestrianLight(Placement.WEST, 260,275);
+			pedLight2 = new PedestrianLight(Placement.WEST, 258,268);
 		}
 		else if(placement == Placement.NORTHWEST){
 

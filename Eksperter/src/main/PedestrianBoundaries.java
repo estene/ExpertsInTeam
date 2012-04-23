@@ -12,7 +12,7 @@ public class PedestrianBoundaries {
 		southY = 315;
 		northY = 70;
 		westX = 255;
-		eastX = 510;
+		eastX = 506;
 	}
 	
 	public boolean amIOnYou(int x, int y){
