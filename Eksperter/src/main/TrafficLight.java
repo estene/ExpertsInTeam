@@ -111,143 +111,181 @@ public class TrafficLight{
 	}
 	
     class GreenToRed extends TimerTask  {  
-        public void run (  )   {  
-            System.out.println ( "Change lights" ) ; 
-            image = getImage("redup.png");
-            timer.cancel (  ) ; //Terminate the timer thread 
+        public void run ( )   {  
+        	if (fromSouthToWest.equals(LightColour.RED) && placement.equals(Placement.SOUTHEAST)) {
+        		image2 = getImage("redcurvedleft.png");
+        	}
+        	if (fromSouthToNorth.equals(LightColour.RED) && placement.equals(Placement.SOUTHEAST)) {
+        		image = getImage("redup.png");
+        	}
+        	if (fromWestToNorth.equals(LightColour.RED) && placement.equals(Placement.SOUTHWEST)) {
+        		image = getImage("reddownleft.png");
+        	}
+        	if (fromWestToSouth.equals(LightColour.RED) && placement.equals(Placement.SOUTHWEST)) {
+        		image2 = getImage("reddownright.png");
+        	}
+        	if (fromNorthToSouth.equals(LightColour.RED) && placement.equals(Placement.NORTHWEST)) {
+        		image = getImage("reddown.png");
+        	}
+        	if (fromNorthToWest.equals(LightColour.RED) && placement.equals(Placement.NORTHWEST)) {
+        		image2 = getImage("redleftdown.png");
+        	}
          }  
      }  
     
     class RedToGreen extends TimerTask  {  
-        public void run (  )   {  
-            System.out.println ( "Change lights" ) ; 
-            image = getImage("greenup.png");
-            timer.cancel (  ) ; //Terminate the timer thread 
+        public void run ( )   {  
+        	if (fromSouthToWest.equals(LightColour.GREEN) && placement.equals(Placement.SOUTHEAST)) {
+        			image2 = getImage("greencurvedleft.png");
+        	}
+        	if (fromSouthToNorth.equals(LightColour.GREEN) && placement.equals(Placement.SOUTHEAST)) {
+        		image = getImage("greenup.png");
+        	}
+        	if (fromWestToNorth.equals(LightColour.GREEN) && placement.equals(Placement.SOUTHWEST)) {
+        		image = getImage("greendownleft.png");
+        	}
+        	if (fromWestToSouth.equals(LightColour.GREEN) && placement.equals(Placement.SOUTHWEST)) {
+        			image2 = getImage("greendownright.png");
+        	}
+        	if (fromNorthToSouth.equals(LightColour.GREEN) && placement.equals(Placement.NORTHWEST)) {
+        		image = getImage("greendown.png");
+        	}
+        	if (fromNorthToWest.equals(LightColour.GREEN) && placement.equals(Placement.NORTHWEST)) {
+        		image2 = getImage("greenleftdown.png");
+        	}
          }  
      }  
     
-	
+    /**
+     * To Yellow method - Is called whenever a light changes to yellow
+     */
+    public void toYellow() {
+    	if (fromSouthToWest.equals(LightColour.YELLOW) && placement.equals(Placement.SOUTHEAST)) {
+			image2 = getImage("yellowcurvedleft.png");
+		}
+		if (fromSouthToNorth.equals(LightColour.YELLOW)  && placement.equals(Placement.SOUTHEAST)) {
+			image = getImage("yellowup.png");
+		}
+		if (fromWestToNorth.equals(LightColour.YELLOW)  && placement.equals(Placement.SOUTHWEST)) {
+			image = getImage("yellowdownleft.png");
+		}
+		if (fromWestToSouth.equals(LightColour.YELLOW)  && placement.equals(Placement.SOUTHWEST)) {
+			image2 = getImage("yellowdownright.png");
+		}
+		if (fromNorthToSouth.equals(LightColour.YELLOW)  && placement.equals(Placement.NORTHWEST)) {
+			image = getImage("yellowdown.png");
+		}
+		if (fromNorthToWest.equals(LightColour.YELLOW)  && placement.equals(Placement.NORTHWEST)) {
+			image2 = getImage("yellowleftdown.png");
+	    }
+    }
+    /**
+     * Method that changes colour of the lights according to:
+     * @param dir - Direction of the bus
+     * @param lC - What lightcolour the light should change to
+     */
+    
 	public synchronized void changeColour(Direction dir, LightColour lC){
-		
 		switch (dir) {
 		case FROMSOUTHTONORTH:
-			this.fromSouthToNorth = LightColour.YELLOW;
-			image = getImage("yellowup.png");
-//			this.fromNorthToSouth = LightColour.YELLOW;
-//			this.fromNorthToWest = LightColour.YELLOW;
 			if(this.fromSouthToNorth != lC){
+				this.fromSouthToNorth = LightColour.YELLOW;
+				toYellow();
 				if(lC == LightColour.GREEN){
-//					timer.schedule ( new RedToGreen() , 1000 ) ;
 					this.fromSouthToNorth = LightColour.GREEN;
-//					this.fromNorthToSouth = LightColour.RED;
-//					this.fromNorthToWest = LightColour.RED;
+					timer.schedule ( new RedToGreen() , 1000 ) ;
 				}
-				else{
-//					timer.schedule ( new GreenToRed() , 1000 ) ;
+				else {
 					this.fromSouthToNorth = LightColour.RED;
-//					this.fromNorthToSouth = LightColour.GREEN;
-//					this.fromNorthToWest = LightColour.GREEN;
+					timer.schedule ( new GreenToRed() , 1000 ) ;
 				}
 			}
 			break;
 
 		case FROMSOUTHTOWEST:
-//			this.fromSouthToNorth = LightColour.YELLOW;
-			this.fromSouthToWest = LightColour.YELLOW;
-//			this.fromWestToSouth = LightColour.YELLOW;
 			if(this.fromSouthToWest != lC){
+				this.fromSouthToWest = LightColour.YELLOW;
+				toYellow();
 				if(lC == LightColour.GREEN){
-//					trySleep(LightColour.GREEN);
 					this.fromSouthToWest = LightColour.GREEN;
-//					this.fromWestToSouth = LightColour.RED;
-//					this.fromSouthToNorth = LightColour.RED;
+					timer.schedule ( new RedToGreen() , 1000 ) ;
+
 				}
 				else {
-//					trySleep(LightColour.RED);
 					this.fromSouthToWest = LightColour.RED;
-//					this.fromWestToSouth = LightColour.GREEN;
-//					this.fromSouthToNorth = LightColour.GREEN;
+					timer.schedule ( new GreenToRed() , 1000 ) ;
 				}			
 			}
 			break;
 
 		case FROMWESTTOSOUTH:
-//			this.fromSouthToNorth = LightColour.YELLOW;
-//			this.fromSouthToWest = LightColour.YELLOW;
-			this.fromWestToSouth = LightColour.YELLOW;
 			if(this.fromWestToSouth != lC){
+				this.fromWestToSouth = LightColour.YELLOW;
+				toYellow();
 				if(lC == LightColour.GREEN){
-//					trySleep(LightColour.GREEN);
 					this.fromWestToSouth = LightColour.GREEN;
-//					this.fromSouthToWest = LightColour.RED;
-//					this.fromSouthToNorth = LightColour.RED;
+					timer.schedule ( new RedToGreen() , 1000 ) ;
 				}
 				else{
-//					trySleep(LightColour.RED);
 					this.fromWestToSouth = LightColour.RED;
-//					this.fromSouthToWest = LightColour.GREEN;
-//					this.fromSouthToNorth = LightColour.GREEN;
+					timer.schedule ( new GreenToRed() , 1000 ) ;
 				}
 			}
 			break;
 			
 		case FROMWESTTONORTH:
-//			this.fromNorthToWest = LightColour.YELLOW;
-			this.fromWestToNorth = LightColour.YELLOW;
 			if(this.fromWestToNorth != lC){
+				this.fromWestToNorth = LightColour.YELLOW;
+				toYellow();
 				if(lC == LightColour.GREEN){
-//					trySleep(LightColour.GREEN);
 					this.fromWestToNorth = LightColour.GREEN;
-//					this.fromNorthToWest = LightColour.RED;
+					timer.schedule ( new RedToGreen() , 1000 ) ;
 				}
 				else{
-//					trySleep(LightColour.RED);
 					this.fromWestToNorth = LightColour.RED;
-//					this.fromNorthToWest = LightColour.GREEN;
+					timer.schedule ( new GreenToRed() , 1000 ) ;
 				}
 			}
 			break;
 			
 		case FROMNORTHTOSOUTH:
-//			this.fromNorthToWest = LightColour.YELLOW;
-//			this.fromSouthToNorth = LightColour.YELLOW;
-			this.fromNorthToSouth= LightColour.YELLOW;
 			if(this.fromNorthToSouth != lC){
+				this.fromNorthToSouth= LightColour.YELLOW;
+				toYellow();
 				if(lC == LightColour.GREEN){
-//					trySleep(LightColour.GREEN);
 					this.fromNorthToSouth = LightColour.GREEN;
-//					this.fromSouthToNorth = LightColour.RED;
-//					this.fromNorthToWest = LightColour.RED;
+					timer.schedule ( new RedToGreen() , 1000 ) ;
 				}				
 				else{
-//					trySleep(LightColour.RED);
 					this.fromNorthToSouth = LightColour.RED;
-//					this.fromSouthToNorth = LightColour.GREEN;
-//					this.fromNorthToWest = LightColour.GREEN;
+					timer.schedule ( new GreenToRed() , 1000 ) ;
 				}
 			}
 			break;
 
 		case FROMNORTHTOWEST:
-//			this.fromWestToNorth = LightColour.YELLOW;
-			this.fromNorthToWest = LightColour.YELLOW;
 			if(this.fromNorthToWest != lC){
+				this.fromNorthToWest = LightColour.YELLOW;
+				toYellow();
 				if(lC == LightColour.GREEN){
-//					trySleep(LightColour.GREEN);
 					this.fromNorthToWest = LightColour.GREEN;
-//					this.fromWestToNorth = LightColour.RED;
+					timer.schedule ( new RedToGreen() , 1000 ) ;
 				}				
 				else{
-//					trySleep(LightColour.RED);
 					this.fromNorthToWest = LightColour.RED;
-//					this.fromWestToNorth = LightColour.GREEN;
+					timer.schedule ( new GreenToRed() , 1000 ) ;
 				}
 			}
 			break;
 		}
 	}
+	/**
+	 * Something weird here!
+	 * @param dir
+	 */
 	
 	public void changePedLight(Direction dir){
+		System.out.println(dir);
 		if(this.placement == Placement.NORTHEAST && dir == Direction.FROMNORTHTOSOUTH){
 			this.pedLight1.changeColour();
 		}else

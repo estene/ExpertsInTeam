@@ -86,11 +86,11 @@ public class Person {
 	 * @param g
 	 */
 	public void draw(Graphics g) {
-		g.setColor(Color.RED);
+		g.setColor(Color.BLUE);
 		g.fillOval(coordinates.getxCoord(), coordinates.getyCoord(), 30, 30);
 		g.setFont(font);
 		g.setColor(Color.WHITE);
-		g.drawString(number, coordinates.getxCoord() + 4, coordinates.getyCoord() + 22);
+		g.drawString(number, coordinates.getxCoord() + 6, coordinates.getyCoord() + 22);
 	}
 	
 	//Getters and setters

@@ -97,9 +97,9 @@ public class Bus {
 		else if(myHeadingDirection.equals(Direction.FROMWESTTOSOUTH)){
 			coordinates.setyDir(0);
 			coordinates.setxDir(1);
-			if (coordinates.getxCoord() > 270) {
+			if (coordinates.getxCoord() > 260) {
 				coordinates.setyDir(1);
-				if (coordinates.getyCoord() < 130) {
+				if (coordinates.getxCoord() > 330) {
 					coordinates.setxDir(0);
 				}
 			}

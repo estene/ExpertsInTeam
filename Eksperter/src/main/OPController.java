@@ -202,6 +202,7 @@ public class OPController{
 			changeLights(greenDirection, LightColour.GREEN);
 		}
 		else if(greenDirection == Direction.FROMWESTTOSOUTH && !southWestLight.getPedLight2().isGreen()){
+
 			changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
 			changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
 			changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
