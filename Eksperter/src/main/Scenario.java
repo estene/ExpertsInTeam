@@ -53,8 +53,8 @@ public class Scenario {
 		}
 		else if(scenario.equals("scen3")) {
 			System.out.println("Changed to Scenario 3");
-			people.add(new Person(507, 280, "5", Direction.FROMSOUTHTONORTHWEST));
-			people.add(new Person(268, 280, "10", Direction.FROMNORTHTOSOUTHWEST));
+			people.add(new Person(268, 300, "5", Direction.FROMSOUTHTONORTHWEST));
+			people.add(new Person(268, 70, "10", Direction.FROMNORTHTOSOUTHWEST));
 			
 			buses.add(new Bus(390, 420, "20", Direction.FROMSOUTHTOWEST));
 			buses.add(new Bus(20, 190, "20", Direction.FROMWESTTOSOUTH));
