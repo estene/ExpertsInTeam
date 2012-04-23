@@ -28,7 +28,8 @@ public class PedestrianLight {
 	private Image image;
 	private int x,y;
 	Timer timer;
-	
+	private int timeSinceLastGreen;
+	private int greenTimer;	
 	
 	/**
 	 * Constructor 
@@ -38,6 +39,8 @@ public class PedestrianLight {
 	 */
 	// Takes x and y coordinates from traffic light to ease placement
 	public PedestrianLight(Placement placement, int x , int y){
+		timeSinceLastGreen = 0;
+		greenTimer = 0;
 		this.myColour = LightColour.RED;
 		this.isGreen = false;
 		this.placement = placement;
@@ -66,8 +69,11 @@ public class PedestrianLight {
 	}
 	
 	public void draw(Graphics g) {
-		g.drawImage(image, x, y, null); 
+		g.drawImage(image, x, y, null);
+		greenTimer++;
+		if(greenTimer % 100 == 0) pedSensor.getPeople().increaseWaitTime(1);
 	}
+	
 	class RedToGreen extends TimerTask {
 		public void run() {
 			image = getImage("greenman.png");

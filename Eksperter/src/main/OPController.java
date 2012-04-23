@@ -123,206 +123,206 @@ public class OPController{
 				personQueue.add(southWestLight.getPedLight2().getPeople());	
 			}
 		}
-	
-	if(southEastLight.getPedLight1().getPeopleAmount() > 0){
-		personQueue.add(southWestLight.getPedLight1().getPeople());
-	}
 
-	for(Direction d : availableDirections){
-		double value = whatToDoUtility(d, true);
-		if(value > highestValue){
-			highestValue = value;
-			greenDirection = d;
+		if(southEastLight.getPedLight1().getPeopleAmount() > 0){
+			personQueue.add(southWestLight.getPedLight1().getPeople());
 		}
-	}		
 
-	if(highestValue < whatToDoUtility(Direction.FROMSOUTHTONORTH, false)){
-		pedPriority = true;
-		greenDirection = Direction.FROMSOUTHTONORTH;
-		highestValue = whatToDoUtility(Direction.FROMSOUTHTONORTH, false);
-	}
-	else if(highestValue < whatToDoUtility(Direction.FROMWESTTONORTH, false)){
-		pedPriority = true;
-		greenDirection = Direction.FROMWESTTONORTH;
-		highestValue = whatToDoUtility(Direction.FROMWESTTONORTH, false);
-	}
-	else if(highestValue < whatToDoUtility(Direction.FROMNORTHTOSOUTH, false)){
-		pedPriority = true;
-		greenDirection = Direction.FROMNORTHTOSOUTH;
-		highestValue = whatToDoUtility(Direction.FROMNORTHTOSOUTH, false);
-	}		
+		for(Direction d : availableDirections){
+			double value = whatToDoUtility(d, true);
+			if(value > highestValue){
+				highestValue = value;
+				greenDirection = d;
+			}
+		}		
 
-	if(!pedPriority){
-		currentGreenDirection = greenDirection;
-		if(greenDirection == Direction.FROMSOUTHTONORTH && !southEastLight.getPedLight1().isGreen()){
-			changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
-			changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
-			changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
-
-			if(!southWestLight.getPedLight2().isGreen()) changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
-			if(!northEastLight.getPedLight1().isGreen()) changeLights(Direction.FROMNORTHTOSOUTH, LightColour.GREEN);
-			changeLights(greenDirection, LightColour.GREEN);
+		if(highestValue < whatToDoUtility(Direction.FROMSOUTHTONORTH, false)){
+			pedPriority = true;
+			greenDirection = Direction.FROMSOUTHTONORTH;
+			highestValue = whatToDoUtility(Direction.FROMSOUTHTONORTH, false);
 		}
-		else if(greenDirection == Direction.FROMSOUTHTOWEST && !southEastLight.getPedLight1().isGreen() && !southWestLight.getPedLight2().isGreen()){
-			changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
-			changeLights(Direction.FROMNORTHTOWEST, LightColour.RED);
-			changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
-
-			changeLights(Direction.FROMSOUTHTONORTH, LightColour.GREEN);
-			changeLights(Direction.FROMWESTTOSOUTH, LightColour.GREEN);
-			changeLights(greenDirection, LightColour.GREEN);
+		else if(highestValue < whatToDoUtility(Direction.FROMWESTTONORTH, false)){
+			pedPriority = true;
+			greenDirection = Direction.FROMWESTTONORTH;
+			highestValue = whatToDoUtility(Direction.FROMWESTTONORTH, false);
 		}
-		else if(greenDirection == Direction.FROMNORTHTOSOUTH && !northEastLight.getPedLight1().isGreen() && !southEastLight.getPedLight1().isGreen()){
-			changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
-			changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
-			changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
+		else if(highestValue < whatToDoUtility(Direction.FROMNORTHTOSOUTH, false)){
+			pedPriority = true;
+			greenDirection = Direction.FROMNORTHTOSOUTH;
+			highestValue = whatToDoUtility(Direction.FROMNORTHTOSOUTH, false);
+		}		
 
-			if(!northWestLight.getPedLight2().isGreen()) changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
-			changeLights(Direction.FROMSOUTHTONORTH, LightColour.GREEN);
-			changeLights(greenDirection, LightColour.GREEN);
-		}
-		else if(greenDirection == Direction.FROMNORTHTOWEST  && !northWestLight.getPedLight2().isGreen()){
-			changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
-			changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
-			changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
+		if(!pedPriority){
+			currentGreenDirection = greenDirection;
+			if(greenDirection == Direction.FROMSOUTHTONORTH && !southEastLight.getPedLight1().isGreen()){
+				changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
+				changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
+				changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
 
-			if(!southWestLight.getPedLight1().isGreen()) changeLights(Direction.FROMWESTTOSOUTH, LightColour.GREEN);
-			if(!northEastLight.getPedLight1().isGreen()){
-				changeLights(Direction.FROMWESTTONORTH, LightColour.GREEN);					
+				if(!southWestLight.getPedLight2().isGreen()) changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
+				if(!northEastLight.getPedLight1().isGreen()) changeLights(Direction.FROMNORTHTOSOUTH, LightColour.GREEN);
 				changeLights(greenDirection, LightColour.GREEN);
 			}
-		}
-		else if(greenDirection == Direction.FROMWESTTONORTH && !northWestLight.getPedLight2().isGreen()){
-			changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
-			changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
-			changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
+			else if(greenDirection == Direction.FROMSOUTHTOWEST && !southEastLight.getPedLight1().isGreen() && !southWestLight.getPedLight2().isGreen()){
+				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
+				changeLights(Direction.FROMNORTHTOWEST, LightColour.RED);
+				changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
 
-			if(!northEastLight.getPedLight1().isGreen()) changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
-			changeLights(Direction.FROMWESTTOSOUTH, LightColour.GREEN);
-			changeLights(greenDirection, LightColour.GREEN);
-		}
-		else if(greenDirection == Direction.FROMWESTTOSOUTH && !southWestLight.getPedLight2().isGreen()){
+				changeLights(Direction.FROMSOUTHTONORTH, LightColour.GREEN);
+				changeLights(Direction.FROMWESTTOSOUTH, LightColour.GREEN);
+				changeLights(greenDirection, LightColour.GREEN);
+			}
+			else if(greenDirection == Direction.FROMNORTHTOSOUTH && !northEastLight.getPedLight1().isGreen() && !southEastLight.getPedLight1().isGreen()){
+				changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
+				changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
+				changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
 
-			changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
-			changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
-			changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
+				if(!northWestLight.getPedLight2().isGreen()) changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
+				changeLights(Direction.FROMSOUTHTONORTH, LightColour.GREEN);
+				changeLights(greenDirection, LightColour.GREEN);
+			}
+			else if(greenDirection == Direction.FROMNORTHTOWEST  && !northWestLight.getPedLight2().isGreen()){
+				changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
+				changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
+				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
 
-			if(!northWestLight.getPedLight2().isGreen()) changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
-			changeLights(Direction.FROMWESTTONORTH, LightColour.GREEN);
-			changeLights(greenDirection, LightColour.GREEN);
-		}
-	}else{
-		if(greenDirection == Direction.FROMSOUTHTONORTH){ //For pedestrians
-			changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
-		changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
-		changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
-		changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
-
-		changePedLights(greenDirection);
-		}
-		else if(greenDirection == Direction.FROMNORTHTOSOUTH){ //For pedestrians
-			changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
-			changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
-			changeLights(Direction.FROMNORTHTOWEST, LightColour.RED);
-			changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
-
-			changePedLights(greenDirection);
-		}
-		else if(greenDirection == Direction.FROMWESTTONORTH){ //For pedestrians
-			changeLights(Direction.FROMNORTHTOWEST, LightColour.RED);
-			changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
-			changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
-			changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
-
-			changePedLights(greenDirection);
-		}
-	}			
-
-	if(pedPriority){
-		for(Person p : personQueue){
-			if(southWestLight.getPedLight1().isGreen()){
-				if(p.getGroupDirection().equals(Direction.FROMEASTTOWESTSOUTH) || p.getGroupDirection().equals(Direction.FROMWESTTOEASTSOUTH)){
-					p.setWaitingForGreen(false);
+				if(!southWestLight.getPedLight1().isGreen()) changeLights(Direction.FROMWESTTOSOUTH, LightColour.GREEN);
+				if(!northEastLight.getPedLight1().isGreen()){
+					changeLights(Direction.FROMWESTTONORTH, LightColour.GREEN);					
+					changeLights(greenDirection, LightColour.GREEN);
 				}
 			}
-			if(southWestLight.getPedLight2().isGreen()){
-				if(p.getGroupDirection().equals(Direction.FROMNORTHTOSOUTH) || p.getGroupDirection().equals(Direction.FROMSOUTHTONORTH)){
-					p.setWaitingForGreen(false);
-				}
-			}
-			if(northEastLight.getPedLight1().isGreen()){
-				if(p.getGroupDirection().equals(Direction.FROMEASTTOWESTNORTH) || p.getGroupDirection().equals(Direction.FROMEASTTOWESTNORTH)){
-					p.setWaitingForGreen(false);
-				}
-			}
-		}
-	}
-	else{
-		for(Bus b : busQueue){
-			if(northWestLight.fromNorthToSouth.equals(LightColour.GREEN)){
-				if(b.getHeadingDirection().equals(Direction.FROMNORTHTOSOUTH)) {
-					b.setWaitingAtOverpass(false);
-				}
-			}
-			if(northWestLight.fromNorthToWest.equals(LightColour.GREEN)) {
-				if(b.getHeadingDirection().equals(Direction.FROMNORTHTOWEST)){
-					b.setWaitingAtOverpass(false);
-				}
-			}
-			if(northWestLight.fromSouthToNorth.equals(LightColour.GREEN)) {
-				if(b.getHeadingDirection().equals(Direction.FROMSOUTHTONORTH)){
-					b.setWaitingAtOverpass(false);
-				}								
-			}
-			if(northWestLight.fromSouthToWest.equals(LightColour.GREEN)){
-				if(b.getHeadingDirection().equals(Direction.FROMSOUTHTOWEST)){
-					b.setWaitingAtOverpass(false);
-				}
-			}
-			if(northWestLight.fromWestToNorth.equals(LightColour.GREEN)){
-				if(b.getHeadingDirection().equals(Direction.FROMWESTTONORTH)){
-					b.setWaitingAtOverpass(false);
-				}				
-			}
-			if(northWestLight.fromWestToSouth.equals(LightColour.GREEN)){
-				if(b.getHeadingDirection().equals(Direction.FROMWESTTOSOUTH)){
-					b.setWaitingAtOverpass(false);
-				}				
-			}
-		}
-	}
+			else if(greenDirection == Direction.FROMWESTTONORTH && !northWestLight.getPedLight2().isGreen()){
+				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
+				changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
+				changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
 
-}
-
-/**
- * This method calculates which light to set based on the values amount of pedestrians at a trafficlight, amount of people in the bus
- * and how late the bus is according to schedule.
- *  
- */
-
-private double whatToDoUtility(Direction d, boolean bus){
-	double utilityValue = 0.0;
-
-	if(bus){
-		for(Bus b : busQueue){
-			if(b.getHeadingDirection().equals(d) && b.isWaitingAtOverpass()){
-				utilityValue += b.getMinutesLate() + b.getPeopleAmount();
+				if(!northEastLight.getPedLight1().isGreen()) changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
+				changeLights(Direction.FROMWESTTOSOUTH, LightColour.GREEN);
+				changeLights(greenDirection, LightColour.GREEN);
 			}
-		}
-	} else{
-		for(Person p : personQueue){
-			if(d.equals(Direction.FROMSOUTHTONORTH) && p.isWaitingForGreen()){
-				utilityValue += this.southEastLight.getPedLight1().getPeopleAmount() + this.southWestLight.getPedLight1().getPeopleAmount();
+			else if(greenDirection == Direction.FROMWESTTOSOUTH && !southWestLight.getPedLight2().isGreen()){
+
+				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
+				changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
+				changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
+
+				if(!northWestLight.getPedLight2().isGreen()) changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
+				changeLights(Direction.FROMWESTTONORTH, LightColour.GREEN);
+				changeLights(greenDirection, LightColour.GREEN);
 			}
-			else if (d.equals(Direction.FROMWESTTONORTH) || d.equals(Direction.FROMWESTTOSOUTH) && p.isWaitingForGreen()){
-				utilityValue += this.southWestLight.getPedLight2().getPeopleAmount() + this.northWestLight.getPedLight2().getPeopleAmount();
+		}else{
+			if(greenDirection == Direction.FROMSOUTHTONORTH){ //For pedestrians
+				changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
+				changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
+				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
+				changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
+				
+				changePedLights(greenDirection);
 			}
-			else if (d.equals(Direction.FROMNORTHTOSOUTH) && p.isWaitingForGreen()){
-				utilityValue += this.northEastLight.getPedLight1().getPeopleAmount() + this.northWestLight.getPedLight1().getPeopleAmount();
+			else if(greenDirection == Direction.FROMNORTHTOSOUTH){ //For pedestrians
+				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
+				changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
+				changeLights(Direction.FROMNORTHTOWEST, LightColour.RED);
+				changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
+
+				changePedLights(greenDirection);
+			}
+			else if(greenDirection == Direction.FROMWESTTONORTH){ //For pedestrians
+				changeLights(Direction.FROMNORTHTOWEST, LightColour.RED);
+				changeLights(Direction.FROMSOUTHTOWEST, LightColour.RED);
+				changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
+				changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
+
+				changePedLights(greenDirection);
 			}
 		}			
+
+		if(pedPriority){
+			for(Person p : personQueue){
+				if(southWestLight.getPedLight1().isGreen()){
+					if(p.getGroupDirection().equals(Direction.FROMEASTTOWESTSOUTH) || p.getGroupDirection().equals(Direction.FROMWESTTOEASTSOUTH)){
+						p.setWaitingForGreen(false);
+					}
+				}
+				if(southWestLight.getPedLight2().isGreen()){
+					if(p.getGroupDirection().equals(Direction.FROMNORTHTOSOUTHWEST) || p.getGroupDirection().equals(Direction.FROMSOUTHTONORTHWEST)){
+						p.setWaitingForGreen(false);
+					}
+				}
+				if(northEastLight.getPedLight1().isGreen()){
+					if(p.getGroupDirection().equals(Direction.FROMEASTTOWESTNORTH) || p.getGroupDirection().equals(Direction.FROMEASTTOWESTNORTH)){
+						p.setWaitingForGreen(false);
+					}
+				}
+			}
+		}
+		else{
+			for(Bus b : busQueue){
+				if(northWestLight.fromNorthToSouth.equals(LightColour.GREEN)){
+					if(b.getHeadingDirection().equals(Direction.FROMNORTHTOSOUTH)) {
+						b.setWaitingAtOverpass(false);
+					}
+				}
+				if(northWestLight.fromNorthToWest.equals(LightColour.GREEN)) {
+					if(b.getHeadingDirection().equals(Direction.FROMNORTHTOWEST)){
+						b.setWaitingAtOverpass(false);
+					}
+				}
+				if(northWestLight.fromSouthToNorth.equals(LightColour.GREEN)) {
+					if(b.getHeadingDirection().equals(Direction.FROMSOUTHTONORTH)){
+						b.setWaitingAtOverpass(false);
+					}								
+				}
+				if(northWestLight.fromSouthToWest.equals(LightColour.GREEN)){
+					if(b.getHeadingDirection().equals(Direction.FROMSOUTHTOWEST)){
+						b.setWaitingAtOverpass(false);
+					}
+				}
+				if(northWestLight.fromWestToNorth.equals(LightColour.GREEN)){
+					if(b.getHeadingDirection().equals(Direction.FROMWESTTONORTH)){
+						b.setWaitingAtOverpass(false);
+					}				
+				}
+				if(northWestLight.fromWestToSouth.equals(LightColour.GREEN)){
+					if(b.getHeadingDirection().equals(Direction.FROMWESTTOSOUTH)){
+						b.setWaitingAtOverpass(false);
+					}				
+				}
+			}
+		}
+
 	}
-	return utilityValue;
-}
+
+	/**
+	 * This method calculates which light to set based on the values amount of pedestrians at a trafficlight, amount of people in the bus
+	 * and how late the bus is according to schedule.
+	 *  
+	 */
+
+	private double whatToDoUtility(Direction d, boolean bus){
+		double utilityValue = 0.0;
+
+		if(bus){
+			for(Bus b : busQueue){
+				if(b.getHeadingDirection().equals(d) && b.isWaitingAtOverpass()){
+					utilityValue += b.getMinutesLate() + b.getPeopleAmount();
+				}
+			}
+		} else{
+			for(Person p : personQueue){
+				if(d.equals(Direction.FROMSOUTHTONORTH) && p.isWaitingForGreen()){
+					utilityValue += this.southEastLight.getPedLight1().getPeopleAmount() + this.southEastLight.getPeopleFromPedL1S().getWaitTime() + this.southWestLight.getPedLight1().getPeopleAmount() + this.southWestLight.getPeopleFromPedL1S().getWaitTime();
+				}
+				else if (d.equals(Direction.FROMWESTTONORTH) || d.equals(Direction.FROMWESTTOSOUTH) && p.isWaitingForGreen()){
+					utilityValue += this.southWestLight.getPedLight2().getPeopleAmount() + this.southWestLight.getPeopleFromPedL2S().getWaitTime() + this.northWestLight.getPedLight2().getPeopleAmount() + this.northWestLight.getPeopleFromPedL2S().getWaitTime();
+				}
+				else if (d.equals(Direction.FROMNORTHTOSOUTH) && p.isWaitingForGreen()){
+					utilityValue += this.northEastLight.getPedLight1().getPeopleAmount() + this.northEastLight.getPeopleFromPedL1S().getWaitTime() + this.northWestLight.getPedLight1().getPeopleAmount() + this.northWestLight.getPeopleFromPedL1S().getWaitTime();
+				}
+			}			
+		}
+		return utilityValue;
+	}
 
 }
