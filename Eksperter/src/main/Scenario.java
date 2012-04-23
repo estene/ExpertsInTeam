@@ -20,13 +20,8 @@ public class Scenario {
 		if(scenario.equals("scen1")){
 			
 			System.out.println("Changed to Scenario 1");
-			people.add(new Person(507, 280, "4", Direction.FROMEASTTOWESTSOUTH));
-			people.add(new Person(268, 280, "2", Direction.FROMWESTTOEASTSOUTH));
-
-			buses.add(new Bus(390, 420, "60", Direction.FROMSOUTHTOWEST));
-			buses.add(new Bus(23, 190, "60", Direction.FROMWESTTONORTH));
-			buses.add(new Bus(330, 0, "60", Direction.FROMNORTHTOWEST));
-			
+			people.add(new Person(511, 280, "4", Direction.FROMEASTTOWESTSOUTH));
+			people.add(new Person(254, 280, "2", Direction.FROMWESTTOEASTSOUTH));
 
 			buses.add(new Bus(390, 420, "30", Direction.FROMSOUTHTOWEST));
 			buses.add(new Bus(23, 190, "10", Direction.FROMWESTTONORTH));
@@ -53,8 +48,8 @@ public class Scenario {
 		}
 		else if(scenario.equals("scen3")) {
 			System.out.println("Changed to Scenario 3");
-			people.add(new Person(268, 300, "5", Direction.FROMSOUTHTONORTHWEST));
-			people.add(new Person(268, 70, "10", Direction.FROMNORTHTOSOUTHWEST));
+			people.add(new Person(268, 316, "5", Direction.FROMSOUTHTONORTHWEST));
+			people.add(new Person(268, 69, "10", Direction.FROMNORTHTOSOUTHWEST));
 			
 			buses.add(new Bus(390, 420, "20", Direction.FROMSOUTHTOWEST));
 			buses.add(new Bus(20, 190, "20", Direction.FROMWESTTOSOUTH));
@@ -62,10 +57,7 @@ public class Scenario {
 			
 			for(Bus b : buses){
 				aP.addBusToQueue(b);
-			}
-			
-			
-			System.out.println("Jeg blir kalt!");
+			}			
 			
 			aP.getOPC().getSWL().getPedL2S().addPerson(people.get(0));
 			aP.getOPC().getNWL().getPedL2S().addPerson(people.get(1));
@@ -102,7 +94,7 @@ public class Scenario {
 					p.move();
 				}
 			}
-			else if(p.getGroupDirection().equals(Direction.FROMSOUTHTONORTH) || p.getGroupDirection().equals(Direction.FROMNORTHTOSOUTH)){
+			else if(p.getGroupDirection().equals(Direction.FROMSOUTHTONORTHWEST) || p.getGroupDirection().equals(Direction.FROMNORTHTOSOUTHWEST)){
 				if(aP.getTrafficLights().get(3).getPedLight2().isGreen()){
 					p.move();
 				}

@@ -86,12 +86,12 @@ public class Person {
 				coordinates.setxDir(-1);
 				coordinates.setyDir(0);
 			}
-			else if(groupDirection.equals(Direction.FROMNORTHTOSOUTH)){
+			else if(groupDirection.equals(Direction.FROMNORTHTOSOUTHWEST)){
 				coordinates.setxDir(0);
 				coordinates.setyDir(-1);
 				
 			}
-			else if(groupDirection.equals(Direction.FROMSOUTHTONORTH)){
+			else if(groupDirection.equals(Direction.FROMSOUTHTONORTHWEST)){
 				coordinates.setxDir(0);
 				coordinates.setyDir(1);
 			}
@@ -118,11 +118,11 @@ public class Person {
 	//Getters and setters
 	
 	public int getX() {
-		return this.x;
+		return coordinates.getxCoord();
 	}
 	
 	public int getY() {
-		return this.y;
+		return coordinates.getyCoord();
 	}
 	
 	public GPSCoordinates getCoords() {

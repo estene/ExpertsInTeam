@@ -23,6 +23,8 @@ public class OPController{
 	private ArrayList<Bus> busQueue;
 	private ArrayList<Direction> availableDirections;
 	private Direction currentGreenDirection = null;
+	private BusBoundaries iS;
+	private PedestrianBoundaries pB;
 
 	public TrafficLight getNWL(){
 		return northWestLight;
@@ -58,6 +60,9 @@ public class OPController{
 
 		availableDirections.add(Direction.FROMWESTTONORTH);
 		availableDirections.add(Direction.FROMWESTTOSOUTH);
+		
+		this.iS = new BusBoundaries();
+		this.pB = new PedestrianBoundaries();
 	}
 
 	private void changeLights(Direction dir, LightColour lC){			
@@ -93,6 +98,20 @@ public class OPController{
 	}
 
 	public void calculateNextAction(){
+		for(Bus b : busQueue){
+			if(iS.amIInsideYou(b.getX(), b.getY())) {
+				b.setWaitingAtOverpass(false);
+				return;
+			}
+		}
+		for(Person p : personQueue){
+			if(pB.amIOnYou(p.getX(), p.getY())){
+				System.out.println("Folk er på linja!");
+				p.isWaitingForGreen();
+				return;
+			}
+		}
+		
 		Direction greenDirection = null;
 		boolean pedPriority = false;
 		double highestValue = Double.MIN_VALUE;
@@ -211,7 +230,7 @@ public class OPController{
 				changeLights(Direction.FROMWESTTONORTH, LightColour.GREEN);
 				changeLights(greenDirection, LightColour.GREEN);
 			}
-			
+			/**
 			for(Bus b : busQueue){
 				if(northWestLight.fromNorthToSouth.equals(LightColour.GREEN)){
 					if(b.getHeadingDirection().equals(Direction.FROMNORTHTOSOUTH)) {
@@ -243,7 +262,9 @@ public class OPController{
 						b.setWaitingAtOverpass(false);
 					}				
 				}
+				
 			}
+			**/
 		}else{
 			if(greenDirection == Direction.FROMSOUTHTONORTH){ //For pedestrians
 				changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
@@ -292,13 +313,7 @@ public class OPController{
 			}
 		}			
 
-		if(pedPriority){
-			
-		}
-		else{
-			
-		}
-
+		
 	}
 
 	/**
@@ -313,7 +328,7 @@ public class OPController{
 		if(bus){
 			for(Bus b : busQueue){
 				if(b.getHeadingDirection().equals(d) && b.isWaitingAtOverpass()){
-					utilityValue += b.getMinutesLate() + b.getPeopleAmount();
+					utilityValue += b.getMinutesLate() + b.getPeopleAmount();					
 				}
 			}
 		} else{

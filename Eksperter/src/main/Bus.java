@@ -46,6 +46,8 @@ public class Bus {
 		
 		classLoader = Thread.currentThread().getContextClassLoader();
 		image = getImage("bussmall.png");
+		
+		System.out.println("Jeg er en ny buss!");
 	}
 	
 	public int getPeopleAmount(){
@@ -228,7 +230,7 @@ public class Bus {
 	// Setters and getters 
 	
 	public int getX() {
-		return x;
+		return coordinates.getxCoord();
 	}
 
 	public void setX(int x) {
@@ -236,7 +238,7 @@ public class Bus {
 	}
 
 	public int getY() {
-		return y;
+		return coordinates.getyCoord();
 	}
 
 	public void setY(int y) {
