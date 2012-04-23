@@ -35,6 +35,7 @@ public class TrafficLight{
 
 	protected LightColour fromWestToNorth;
 	protected LightColour fromWestToSouth;
+	protected LightColour temp;
 	
 	private PedestrianLight pedLight1 = null;
 	private PedestrianLight pedLight2 = null; // pedLight2 will always be the crossing on the west road.
@@ -161,17 +162,42 @@ public class TrafficLight{
         	}
          }  
      }  
+    
+    /**
+     * To Yellow method - Is called whenever a light changes to yellow
+     */
     public void toYellow() {
-    	// TODO Same if's as above to check for what image to use
-    	//image = getImage("yellowup.png");
+    	if (fromSouthToWest.equals(LightColour.YELLOW) && placement.equals(Placement.SOUTHEAST)) {
+			image2 = getImage("yellowcurvedleft.png");
+		}
+		if (fromSouthToNorth.equals(LightColour.YELLOW)  && placement.equals(Placement.SOUTHEAST)) {
+			image = getImage("yellowup.png");
+		}
+		if (fromWestToNorth.equals(LightColour.YELLOW)  && placement.equals(Placement.SOUTHWEST)) {
+			image = getImage("yellowdownleft.png");
+		}
+		if (fromWestToSouth.equals(LightColour.YELLOW)  && placement.equals(Placement.SOUTHWEST)) {
+			image2 = getImage("yellowdownright.png");
+		}
+		if (fromNorthToSouth.equals(LightColour.YELLOW)  && placement.equals(Placement.NORTHWEST)) {
+			image = getImage("yellowdown.png");
+		}
+		if (fromNorthToWest.equals(LightColour.YELLOW)  && placement.equals(Placement.NORTHWEST)) {
+			image2 = getImage("yellowleftdown.png");
+	    }
     }
+    /**
+     * Method that changes colour of the lights according to:
+     * @param dir - Direction of the bus
+     * @param lC - What lightcolour the light should change to
+     */
     
 	public synchronized void changeColour(Direction dir, LightColour lC){
 		switch (dir) {
 		case FROMSOUTHTONORTH:
-			System.out.println("fromsouthtonorth");
-			this.fromSouthToNorth = LightColour.YELLOW;
 			if(this.fromSouthToNorth != lC){
+				this.fromSouthToNorth = LightColour.YELLOW;
+				toYellow();
 				if(lC == LightColour.GREEN){
 					this.fromSouthToNorth = LightColour.GREEN;
 					timer.schedule ( new RedToGreen() , 1000 ) ;
@@ -184,8 +210,9 @@ public class TrafficLight{
 			break;
 
 		case FROMSOUTHTOWEST:
-			this.fromSouthToWest = LightColour.YELLOW;
 			if(this.fromSouthToWest != lC){
+				this.fromSouthToWest = LightColour.YELLOW;
+				toYellow();
 				if(lC == LightColour.GREEN){
 					this.fromSouthToWest = LightColour.GREEN;
 					timer.schedule ( new RedToGreen() , 1000 ) ;
@@ -199,8 +226,9 @@ public class TrafficLight{
 			break;
 
 		case FROMWESTTOSOUTH:
-			this.fromWestToSouth = LightColour.YELLOW;
 			if(this.fromWestToSouth != lC){
+				this.fromWestToSouth = LightColour.YELLOW;
+				toYellow();
 				if(lC == LightColour.GREEN){
 					this.fromWestToSouth = LightColour.GREEN;
 					timer.schedule ( new RedToGreen() , 1000 ) ;
@@ -213,8 +241,9 @@ public class TrafficLight{
 			break;
 			
 		case FROMWESTTONORTH:
-			this.fromWestToNorth = LightColour.YELLOW;
 			if(this.fromWestToNorth != lC){
+				this.fromWestToNorth = LightColour.YELLOW;
+				toYellow();
 				if(lC == LightColour.GREEN){
 					this.fromWestToNorth = LightColour.GREEN;
 					timer.schedule ( new RedToGreen() , 1000 ) ;
@@ -227,8 +256,9 @@ public class TrafficLight{
 			break;
 			
 		case FROMNORTHTOSOUTH:
-			this.fromNorthToSouth= LightColour.YELLOW;
 			if(this.fromNorthToSouth != lC){
+				this.fromNorthToSouth= LightColour.YELLOW;
+				toYellow();
 				if(lC == LightColour.GREEN){
 					this.fromNorthToSouth = LightColour.GREEN;
 					timer.schedule ( new RedToGreen() , 1000 ) ;
@@ -241,8 +271,9 @@ public class TrafficLight{
 			break;
 
 		case FROMNORTHTOWEST:
-			this.fromNorthToWest = LightColour.YELLOW;
 			if(this.fromNorthToWest != lC){
+				this.fromNorthToWest = LightColour.YELLOW;
+				toYellow();
 				if(lC == LightColour.GREEN){
 					System.out.println("changecolour");
 					this.fromNorthToWest = LightColour.GREEN;
