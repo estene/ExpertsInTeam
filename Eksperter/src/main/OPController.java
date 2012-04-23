@@ -237,6 +237,8 @@ public class OPController{
 				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.RED);
 				changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
 				
+				changeLights(Direction.FROMWESTTONORTH, LightColour.GREEN);
+				changeLights(Direction.FROMNORTHTOWEST, LightColour.GREEN);
 				changePedLights(greenDirection);
 			}
 			else if(greenDirection == Direction.FROMNORTHTOSOUTH){ //For pedestrians
@@ -244,7 +246,9 @@ public class OPController{
 				changeLights(Direction.FROMSOUTHTONORTH, LightColour.RED);
 				changeLights(Direction.FROMNORTHTOWEST, LightColour.RED);
 				changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
-
+				
+				changeLights(Direction.FROMWESTTOSOUTH, LightColour.GREEN);
+				changeLights(Direction.FROMSOUTHTOWEST, LightColour.GREEN);
 				changePedLights(greenDirection);
 			}
 			else if(greenDirection == Direction.FROMSOUTHTONORTHWEST){ //For pedestrians
@@ -253,6 +257,8 @@ public class OPController{
 				changeLights(Direction.FROMWESTTONORTH, LightColour.RED);
 				changeLights(Direction.FROMWESTTOSOUTH, LightColour.RED);
 				
+				changeLights(Direction.FROMSOUTHTONORTH, LightColour.GREEN);
+				changeLights(Direction.FROMNORTHTOSOUTH, LightColour.GREEN);
 				changePedLights(greenDirection);
 			}
 			
