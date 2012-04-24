@@ -153,7 +153,6 @@ public class MainView {
 		});
 		
 
-
 		
 		scenarioBox.setToolTipText("Select scenario");
 		scenarioBox.setBounds(22, 448, 236, 20);
