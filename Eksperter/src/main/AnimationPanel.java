@@ -134,8 +134,11 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 	}
 
 	@Override
+	/**
+	 * Used to print out coordinates
+	 */
 	public void mouseMoved(MouseEvent e) {
-		System.out.println("Location: " + e.getX()+ " "+ e.getY());
+		//System.out.println("Location: " + e.getX()+ " "+ e.getY());
 	}
 	
 	/**
