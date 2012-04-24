@@ -304,8 +304,7 @@ public class OPController{
 			}
 		} else{
 			for(Person p : personQueue){
-				if(d.equals(Direction.FROMSOUTHTONORTH) && p.isWaitingForGreen()){
-					
+				if(d.equals(Direction.FROMSOUTHTONORTH) && p.isWaitingForGreen()){					
 					utilityValue += this.southEastLight.getPedLight1().getPeopleAmount() + this.southEastLight.getPeopleFromPedL1S().getWaitTime() + this.southWestLight.getPedLight1().getPeopleAmount() + this.southWestLight.getPeopleFromPedL1S().getWaitTime();
 				}
 				else if (d.equals(Direction.FROMSOUTHTONORTHWEST) && p.isWaitingForGreen()){
