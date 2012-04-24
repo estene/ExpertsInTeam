@@ -125,6 +125,7 @@ public class MainView {
 		resetButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		resetButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				animationPanel.stopAnimation();
 				animationPanel.removeAll();
 				mainPanel.remove(animationPanel);
 				animationPanel = new AnimationPanel();
