@@ -26,7 +26,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
 /**
- * MainView - containts frames,panels etc. 
+ * MainView - contains frames,panels etc. 
  * @author Even
  */
 
@@ -45,6 +45,7 @@ public class MainView {
 	/**
 	 * Launch the application.
 	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -217,8 +218,7 @@ public class MainView {
 					setSelectedScenario("scen3");
 				}
 			}
-		});
-		
+		});		
 		
 		scenarioBox.setToolTipText("Select scenario");
 		scenarioBox.setBounds(22, 448, 236, 20);
