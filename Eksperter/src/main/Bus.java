@@ -52,8 +52,6 @@ public class Bus {
 		
 		classLoader = Thread.currentThread().getContextClassLoader();
 		image = getImage("bussmall.png");
-		
-		System.out.println("Jeg er en ny buss!");
 	}
 	
 	public int getPeopleAmount(){

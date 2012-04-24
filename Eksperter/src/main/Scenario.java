@@ -18,8 +18,6 @@ public class Scenario {
 		this.aP = aP;
 		
 		if(scenario.equals("scen1")){
-			
-			System.out.println("Changed to Scenario 1");
 			people.add(new Person(506, 280, "4", Direction.FROMEASTTOWESTSOUTH));
 			people.add(new Person(254, 285, "2", Direction.FROMWESTTOEASTSOUTH));
 
@@ -36,7 +34,6 @@ public class Scenario {
 			
 		}
 		else if(scenario.equals("scen2")){
-			System.out.println("Changed to Scenario 2");
 			buses.add(new Bus(0, 190, "10", Direction.FROMWESTTONORTH));
 			buses.add(new Bus(390, 420, "10", Direction.FROMSOUTHTOWEST));
 			buses.get(1).setMinutesLate(3);
@@ -47,7 +44,6 @@ public class Scenario {
 			}
 		}
 		else if(scenario.equals("scen3")) {
-			System.out.println("Changed to Scenario 3");
 			people.add(new Person(268, 316, "5", Direction.FROMSOUTHTONORTHWEST));
 			people.add(new Person(268, 69, "10", Direction.FROMNORTHTOSOUTHWEST));
 			

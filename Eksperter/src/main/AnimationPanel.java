@@ -110,7 +110,6 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 		if (animate == true) {
 			if(timer > 40){
 				overpassController.calculateNextAction();
-				System.out.println("Timer: " + timer);
 				timer = 0;				
 			}else{
 				timer++;
@@ -135,7 +134,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 
 	@Override
 	/**
-	 * Used to print out coordinates
+	 * Used to print out coordinates if they are needed
 	 */
 	public void mouseMoved(MouseEvent e) {
 		//System.out.println("Location: " + e.getX()+ " "+ e.getY());

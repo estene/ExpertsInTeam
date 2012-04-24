@@ -285,7 +285,6 @@ public class TrafficLight{
 	 */
 	
 	public void changePedLight(Direction dir){
-		System.out.println(dir);
 		if(this.placement == Placement.NORTHEAST && dir == Direction.FROMNORTHTOSOUTH){
 			this.pedLight1.changeColour();
 		}else
