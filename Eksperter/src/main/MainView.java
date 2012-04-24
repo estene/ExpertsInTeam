@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Image;
 
@@ -11,10 +12,13 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
+import javax.swing.ListModel;
+
 import java.awt.Font;
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,6 +39,8 @@ public class MainView {
 	private ClassLoader classLoader;
 	private String scenario;
 	Image image;
+	private JList messageList;
+	private DefaultListModel listMessages;
 
 	/**
 	 * Launch the application.
@@ -83,10 +89,13 @@ public class MainView {
 		animationPanel.setLayout(null);
 		scenario = "";
 		
-		JList messageList = new JList();
+		listMessages = new DefaultListModel();
+		
+		messageList = new JList(listMessages);
+		
 		messageList.setBounds(10, 11, 461, 333);
 		mainPanel.add(messageList);
-		
+				
 		JButton playButton = new JButton("");
 		
 		playButton.setIcon(new ImageIcon(getImage("play2.png")));
@@ -132,27 +141,84 @@ public class MainView {
 		scenarioBox.setModel(new DefaultComboBoxModel(scenarioString));
 		scenarioBox.setSelectedIndex(0);
 		setSelectedScenario("scen1");
+		
+		listMessages.clear();
+		
+		String[] sc1 = {"Scenario 1:", 
+				" ", 
+				"Buss A = 30 personer, 3 min forsinket, fra sør til vest", 
+				"Buss B = 31 personer, i rute, fra vest til nord", 
+				"Buss C = 20 personer, i rute, fra nord til vest",
+				" ", 
+				"Fotgjengere:", 
+				"4 fra Sør-Øst til Sør-Vest", 
+				"2 fra Sør-Vest til Sør-Øst"};
+		
+		for(String s : sc1) listMessages.addElement(s);
+		
 		scenarioBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (scenarioBox.getSelectedIndex() == 0) {
 					animationPanel.stopAnimation();
+					
 					animationPanel.setScenario("scen1");
+					listMessages.clear();
+					
+					String[] sc1 = {"Scenario 1:", 
+							" ", 
+							"Buss A = 30 personer, 3 min forsinket, fra sør til vest", 
+							"Buss B = 31 personer, i rute, fra vest til nord", 
+							"Buss C = 20 personer, i rute, fra nord til vest",
+							" ", 
+							"Fotgjengere:", 
+							"4 fra Sør-Øst til Sør-Vest", 
+							"2 fra Sør-Vest til Sør-Øst"};
+					
+					for(String s : sc1) listMessages.addElement(s);
 					setSelectedScenario("scen1");
+										
 				}
 				else if (scenarioBox.getSelectedIndex() == 1) {
 					animationPanel.stopAnimation();
 					animationPanel.setScenario("scen2");
+					
+					listMessages.clear();
+					String[] sc1 = {"Scenario 2:", 
+							" ", 
+							"Busser:",
+							"Buss A = 10 personer, i rute, fra vest til nord",
+							"Buss B = 10 personer, 3 min forsinket, fra sør til vest", 
+							"Buss C = 10 personer, i rute, fra vest til sør", 
+							" ", 
+							"Fotgjengere:", 
+							"-"};
+					
+					for(String s : sc1) listMessages.addElement(s);
+					
 					setSelectedScenario("scen2");
 				}
 				else if (scenarioBox.getSelectedIndex() == 2) {
 					animationPanel.stopAnimation();
 					animationPanel.setScenario("scen3");
+					
+					listMessages.clear();
+					String[] sc1 = {"Scenario 3:", 
+							" ", 
+							"Buss A = 15 personer, 10 min forsinket, fra sør til vest", 
+							"Buss B = 10 personer, i rute, fra vest til sør", 
+							"Buss C = 20 personer, i rute, fra nord til vest",
+							" ", 
+							"Fotgjengere:", 
+							"5 stk fra nord til sør", 
+							"10 stk fra sør til nord"};
+					
+					for(String s : sc1) listMessages.addElement(s);
+					
 					setSelectedScenario("scen3");
 				}
 			}
 		});
 		
-
 		
 		scenarioBox.setToolTipText("Select scenario");
 		scenarioBox.setBounds(22, 448, 236, 20);
