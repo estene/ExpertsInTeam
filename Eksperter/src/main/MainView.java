@@ -148,13 +148,13 @@ public class MainView {
 		
 		String[] sc1 = {"Scenario 1:", 
 				" ", 
-				"Buss A = 30 personer, 3 min forsinket, fra sÃ¸r til vest", 
+				"Buss A = 30 personer, 3 min forsinket, fra sør til vest", 
 				"Buss B = 31 personer, i rute, fra vest til nord", 
 				"Buss C = 20 personer, i rute, fra nord til vest",
 				" ", 
 				"Fotgjengere:", 
-				"4 fra SÃ¸r-Ã˜st til SÃ¸r-Vest", 
-				"2 fra SÃ¸r-Vest til SÃ¸r-Ã˜st"};
+				"4 fra Sør-Øst til Sør-Vest", 
+				"2 fra Sør-Vest til Sør-Øst"};
 		
 		for(String s : sc1) listMessages.addElement(s);
 		
@@ -168,13 +168,13 @@ public class MainView {
 					
 					String[] sc1 = {"Scenario 1:", 
 							" ", 
-							"Buss A = 30 personer, 3 min forsinket, fra sÃ¸r til vest", 
+							"Buss A = 30 personer, 3 min forsinket, fra sør til vest", 
 							"Buss B = 31 personer, i rute, fra vest til nord", 
 							"Buss C = 20 personer, i rute, fra nord til vest",
 							" ", 
 							"Fotgjengere:", 
-							"4 fra SÃ¸r-Ã˜st til SÃ¸r-Vest", 
-							"2 fra SÃ¸r-Vest til SÃ¸r-Ã˜st"};
+							"4 fra Sør-Øst til Sør-Vest", 
+							"2 fra Sør-Vest til Sør-Øst"};
 					
 					for(String s : sc1) listMessages.addElement(s);
 					setSelectedScenario("scen1");
@@ -185,15 +185,16 @@ public class MainView {
 					animationPanel.setScenario("scen2");
 					
 					listMessages.clear();
-					String[] sc1 = {"Scenario 2:", 
-							" ", 
-							"Busser:",
-							"Buss A = 10 personer, i rute, fra vest til nord",
-							"Buss B = 10 personer, 3 min forsinket, fra sÃ¸r til vest", 
-							"Buss C = 10 personer, i rute, fra vest til sÃ¸r", 
-							" ", 
-							"Fotgjengere:", 
-							"-"};
+
+				String[] sc1 = {"Scenario 2:", 
+											" ", 
+											"Busser:",
+											"Buss A = 10 personer, i rute, fra vest til nord",
+											"Buss B = 10 personer, 3 min forsinket, fra sør til vest", 
+											"Buss C = 10 personer, i rute, fra vest til sør", 
+											" ", 
+											"Fotgjengere:", 
+											"-"};
 					
 					for(String s : sc1) listMessages.addElement(s);
 					
@@ -206,13 +207,13 @@ public class MainView {
 					listMessages.clear();
 					String[] sc1 = {"Scenario 3:", 
 							" ", 
-							"Buss A = 15 personer, 10 min forsinket, fra sÃ¸r til vest", 
-							"Buss B = 10 personer, i rute, fra vest til sÃ¸r", 
+							"Buss A = 15 personer, 10 min forsinket, fra sør til vest", 
+							"Buss B = 10 personer, i rute, fra vest til sør", 
 							"Buss C = 20 personer, i rute, fra nord til vest",
 							" ", 
 							"Fotgjengere:", 
-							"7 stk fra nord til sÃ¸r", 
-							"5 stk fra sÃ¸r til nord"};
+							"7 stk fra nord til sør", 
+							"5 stk fra sør til nord"};
 					
 					for(String s : sc1) listMessages.addElement(s);
 					
