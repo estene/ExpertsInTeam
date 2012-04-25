@@ -154,7 +154,13 @@ public class MainView {
 				" ", 
 				"Fotgjengere:", 
 				"4 fra Sør-Øst til Sør-Vest", 
-				"2 fra Sør-Vest til Sør-Øst"};
+				"2 fra Sør-Vest til Sør-Øst",
+				" ",
+				"Hendelsesforløp:",
+				"1. Buss A ankommer sør. Buss B ankommer vest.",
+				"2. Buss A får prioritet og får grønt - da får også Buss B grønt og kjører",
+				"3. Buss C får prioritet over fotgjengere og passerer fra nord til vest",
+				"4. Fotgjengere får gå"};
 		
 		for(String s : sc1) listMessages.addElement(s);
 		
@@ -174,7 +180,13 @@ public class MainView {
 							" ", 
 							"Fotgjengere:", 
 							"4 fra Sør-Øst til Sør-Vest", 
-							"2 fra Sør-Vest til Sør-Øst"};
+							"2 fra Sør-Vest til Sør-Øst",
+							" ",
+							"Hendelsesforløp:",
+							"1. Buss A ankommer sør. Buss B ankommer vest.",
+							"2. Buss A får prioritet og får grønt - da får også Buss B grønt og kjører",
+							"3. Buss C får prioritet over fotgjengere og passerer fra nord til vest",
+							"4. Fotgjengere får gå"};
 					
 					for(String s : sc1) listMessages.addElement(s);
 					setSelectedScenario("scen1");
@@ -186,15 +198,21 @@ public class MainView {
 					
 					listMessages.clear();
 
-				String[] sc1 = {"Scenario 2:", 
-											" ", 
-											"Busser:",
-											"Buss A = 10 personer, i rute, fra vest til nord",
-											"Buss B = 10 personer, 3 min forsinket, fra sør til vest", 
-											"Buss C = 10 personer, i rute, fra vest til sør", 
-											" ", 
-											"Fotgjengere:", 
-											"-"};
+					String[] sc1 = {"Scenario 2:", 
+							" ", 
+							"Busser:",
+							"Buss A = 10 personer, i rute, fra vest til nord",
+							"Buss B = 10 personer, 3 min forsinket, fra sør til vest", 
+							"Buss C = 10 personer, i rute, fra vest til sør", 
+							" ", 
+							"Fotgjengere:", 
+							"-",
+							" ",
+							"Hendelsesforløp:",
+							"1. Bussene ankommer krysset",
+							"2. Buss A ankommer fra sør, er forsinket, får prioritet og passerer krysset",
+							"3. Buss C får da også grønt og passerer krysset. ",
+							"4. Buss B passerer krysset til slutt"};
 					
 					for(String s : sc1) listMessages.addElement(s);
 					
@@ -213,7 +231,15 @@ public class MainView {
 							" ", 
 							"Fotgjengere:", 
 							"7 stk fra nord til sør", 
-							"5 stk fra sør til nord"};
+							"5 stk fra sør til nord",
+							" ",
+							"Hendelsesforløp:",
+							"1. Bussene ankommer krysset. ",
+							"2. Buss A er 10 min forsinket og får prioritet.",
+							"3. Buss B får grønt samtidig og kjører",
+							"4. Fotgjengere får prioritet over Buss C som er i rute.",
+							"5. Fotgjengere får passere",
+							"6. Buss C får passere"};
 					
 					for(String s : sc1) listMessages.addElement(s);
 					
