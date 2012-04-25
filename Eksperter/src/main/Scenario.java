@@ -55,7 +55,7 @@ public class Scenario {
 			buses.add(new Bus(390, 420, "15", Direction.FROMSOUTHTOWEST));
 			buses.get(0).setMinutesLate(10);
 			buses.add(new Bus(20, 190, "10", Direction.FROMWESTTOSOUTH));
-			buses.add(new Bus(330, 0, "20", Direction.FROMNORTHTOSOUTH));
+			buses.add(new Bus(330, 0, "20", Direction.FROMNORTHTOWEST));
 			
 			for(Bus b : buses){
 				aP.addBusToQueue(b);
