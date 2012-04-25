@@ -158,9 +158,10 @@ public class MainView {
 				" ",
 				"Hendelsesforløp:",
 				"1. Buss A ankommer sør. Buss B ankommer vest.",
-				"2. Buss A får prioritet og får grønt - da får også Buss B grønt og kjører",
-				"3. Buss C får prioritet over fotgjengere og passerer fra nord til vest",
-				"4. Fotgjengere får gå"};
+				"2. Buss A får prioritet og passerer krysset",
+				"3. Buss B får kjøre ",
+				"4. Buss C får prioritet over fotgjengere og passerer fra nord til vest",
+				"5. Fotgjengere får gå"};
 		
 		for(String s : sc1) listMessages.addElement(s);
 		
@@ -184,9 +185,10 @@ public class MainView {
 							" ",
 							"Hendelsesforløp:",
 							"1. Buss A ankommer sør. Buss B ankommer vest.",
-							"2. Buss A får prioritet og får grønt - da får også Buss B grønt og kjører",
-							"3. Buss C får prioritet over fotgjengere og passerer fra nord til vest",
-							"4. Fotgjengere får gå"};
+							"2. Buss A får prioritet og passerer krysset",
+							"3. Buss B får kjøre ",
+							"4. Buss C får prioritet over fotgjengere og passerer fra nord til vest",
+							"5. Fotgjengere får gå"};
 					
 					for(String s : sc1) listMessages.addElement(s);
 					setSelectedScenario("scen1");
