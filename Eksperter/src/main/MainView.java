@@ -211,8 +211,8 @@ public class MainView {
 							"Buss C = 20 personer, i rute, fra nord til vest",
 							" ", 
 							"Fotgjengere:", 
-							"5 stk fra nord til sør", 
-							"10 stk fra sør til nord"};
+							"7 stk fra nord til sør", 
+							"5 stk fra sør til nord"};
 					
 					for(String s : sc1) listMessages.addElement(s);
 					
