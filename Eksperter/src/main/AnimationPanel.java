@@ -22,7 +22,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 	 * @author Even
 	 */
 	private static final long serialVersionUID = 1L;
-	private Image image;
+	private Image image, image2, image3, image4, image5, image6;
 	private Timer t;
 	private boolean animate = false;
 	private ClassLoader classLoader;
@@ -40,7 +40,11 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
     	this.setBounds(481, 11, 590, 425);
 		classLoader = Thread.currentThread().getContextClassLoader();
 		image = getImage("prinsenkryssetmedium.png");
-		
+		image2 = getImage("egon.png");
+		image3 = getImage("thon.png");
+		image4 = getImage("quality.png");
+		image5 = getImage("torget.png");
+		image6 = getImage("sjakkmatt.png");
 		t = new Timer(25, this);
 		t.start();
 		addMouseMotionListener(this);
@@ -85,7 +89,12 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
     @Override
     public void paintComponent(Graphics g) {
     	super.paintComponent(g); // Clean up
-        g.drawImage(image, 0, 0, null); 
+        g.drawImage(image, 0, 0, null);
+        g.drawImage(image2, 150, 30, null);
+        g.drawImage(image3, 50, 10, null);
+        g.drawImage(image4, 513, 0, null);
+        g.drawImage(image5, 500, 365, null);
+        g.drawImage(image6, 168, 353, null);
         scen.draw(g);
         
         for(TrafficLight tl : getTrafficLights()){
@@ -101,7 +110,6 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 		if (animate == true) {
 			if(timer > 40){
 				overpassController.calculateNextAction();
-				System.out.println("Timer: " + timer);
 				timer = 0;				
 			}else{
 				timer++;
@@ -125,8 +133,11 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseMotio
 	}
 
 	@Override
+	/**
+	 * Used to print out coordinates if they are needed
+	 */
 	public void mouseMoved(MouseEvent e) {
-		System.out.println("Location: " + e.getX()+ " "+ e.getY());
+		//System.out.println("Location: " + e.getX()+ " "+ e.getY());
 	}
 	
 	/**

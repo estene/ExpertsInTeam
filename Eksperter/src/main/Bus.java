@@ -1,5 +1,7 @@
 package main;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
@@ -25,6 +27,8 @@ public class Bus {
 	private Direction myHeadingDirection;
 	private String personQueue;
 	private boolean waitingAtOverpass;
+	private Font font;
+	private Color color;
 	
 	/**
 	 * Constructor
@@ -34,6 +38,8 @@ public class Bus {
 	 * @param mHD - the bus' heading direction
 	 */
 	public Bus(int x, int y, String numberPeople, Direction mHD){
+		font = new Font("Arial", Font.BOLD, 20);
+		color = new Color(255, 0, 0); // Ferrari red
 		xDir = 1;
 		yDir = 0;
 		coordinates = new GPSCoordinates(x,y,xDir,yDir);
@@ -46,8 +52,6 @@ public class Bus {
 		
 		classLoader = Thread.currentThread().getContextClassLoader();
 		image = getImage("bussmall.png");
-		
-		System.out.println("Jeg er en ny buss!");
 	}
 	
 	public int getPeopleAmount(){
@@ -204,6 +208,9 @@ public class Bus {
 	 */
 	public void draw(Graphics g) {
 		g.drawImage(image, x, y, null); 
+		g.setFont(font);
+		g.setColor(color);
+		g.drawString(String.valueOf(getPeopleAmount()), coordinates.getxCoord() + 8, coordinates.getyCoord() + 40);
 	}
 
 
